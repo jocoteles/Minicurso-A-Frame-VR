@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "2.1 Realidade Virtual em páginas e aplicativos web",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#realidade-virtual-em-páginas-e-aplicativos-web",
+    "href": "summary.html#realidade-virtual-em-páginas-e-aplicativos-web",
+    "title": "2  Summary",
+    "section": "",
+    "text": "As vantagens, flexibilidade, alcance e potencial de aplicações web baseadas em HTML5/JS/CSS.\nA API (Interface de Programação de Aplicativos) WebXR utilizada pelos headsets VR nas páginas web.\nExemplos de Plataformas Web que utilizam WebXR:\n\nThree.js\nBabylon.js\nA-Frame",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#principais-características-do-a-frame",
+    "href": "summary.html#principais-características-do-a-frame",
+    "title": "2  Summary",
+    "section": "2.2 Principais características do A-Frame",
+    "text": "2.2 Principais características do A-Frame\n\nFilosofia\nObjetivos\nUsos",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#breve-introdução-ao-htmljavascript",
+    "href": "summary.html#breve-introdução-ao-htmljavascript",
+    "title": "2  Summary",
+    "section": "2.3 Breve introdução ao HTML/Javascript",
+    "text": "2.3 Breve introdução ao HTML/Javascript\n\nComo se estrutura um arquivo HTML/Javascript básico\nFormas de rodar o arquivo HTML:\n\nPágina local (editor de texto txt). Usaremos apenas para mostrar os passos iniciais do HTML/Javascript.\nServidor web (usaremos o Glitch, mas existem inúmeros outros). Será usado para o desenvolvimento de todo o aplicativo STL.\nServidor local (apenas mostraremos, ao final do minicurso, o caminho que estamos adotando em nossos projetos).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#aplicativo-sol-terra-lua-em-vr-com-o-a-frame",
+    "href": "summary.html#aplicativo-sol-terra-lua-em-vr-com-o-a-frame",
+    "title": "2  Summary",
+    "section": "2.4 Aplicativo Sol-Terra-Lua em VR com o A-Frame",
+    "text": "2.4 Aplicativo Sol-Terra-Lua em VR com o A-Frame\nVamos aprender a usar o A-Frame através de um processo mão na massa de construção de um aplicativo VR para visualização do sistema Sol-Terra-Lua (STL).\n\n2.4.1 Elementos primitivos (A-Frame primitives):\nVamos construir alguns elementos primitivos como esferas, cubos e cones e definir alguns de seus atributos via componentes A-Frame components.\n\n\n2.4.2 Entidades personalizadas (A-Frame entities):",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]

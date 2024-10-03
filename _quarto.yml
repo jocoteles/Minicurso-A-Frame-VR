@@ -2,20 +2,20 @@ project:
   type: book
 
 book:
-  title: "Minicurso A-Frame VR"
-  author: "Norah Jones"
-  date: "02/10/2024"
-  chapters:
+  title: "Minicurso A-Frame VR"  
+  author: "João Teles"
+  date: "17/10/2024"
+  chapters:        
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - htmlbasico.qmd
+    - referencias.qmd  
 
 bibliography: references.bib
 
 format:
   html:
     theme: cosmo
+    lang: pt
   pdf:
     documentclass: scrreprt
 

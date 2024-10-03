@@ -1,5 +1,35 @@
-# Preface {.unnumbered}
+---
+title: Resumo
+lang: pt
+---
 
-This is a Quarto book.
+# Realidade Virtual em páginas e aplicativos web
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+- As vantagens, flexibilidade, alcance e potencial de aplicações web baseadas em HTML5/JS/CSS.
+- Realidade Virtual em smartphones versus VR headsets. Focaremos no segundo.
+- A API (Interface de Programação de Aplicativos) WebXR utilizada pelos headsets VR nas páginas web.
+- Exemplos de Plataformas Web que utilizam WebXR:
+    - Three.js
+    - Babylon.js
+    - A-Frame
+
+# Principais características do A-Frame
+
+- Filosofia
+- Objetivos
+- Usos
+
+# Breve introdução ao HTML/Javascript
+
+- Como se estrutura um arquivo HTML/Javascript básico
+- Formas de rodar o arquivo HTML:
+    - Página local (editor de texto txt). Usaremos apenas para mostrar os passos iniciais do HTML/Javascript.
+    - Servidor web (usaremos o Glitch, mas existem inúmeros outros). Será usado para o desenvolvimento de todo o aplicativo deste minicurso.
+    - Servidor local (apenas mostraremos, ao final do minicurso, o caminho que estamos adotando em nossos projetos).
+
+# Aplicativo Sol-Terra-Lua em VR com o A-Frame 
+
+Vamos aprender a usar o A-Frame através de um processo mão na massa de construção de um aplicativo VR para visualização da dinâmica do sistema Sol-Terra-Lua (STL).
+
+
+

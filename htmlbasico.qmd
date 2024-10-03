@@ -1,0 +1,133 @@
+---
+title: HTML/Javascript básico
+lang: pt
+code-overflow: wrap
+---
+
+## Estrutura básica de uma página HTML
+
+
+### Elementos HTML
+
+São incluídos com palavras reservadas na forma de **tags** HTML: `<bla></bla>` ou somente `<blas>`. Exemplos:
+
+- Títulos de seção: `<h1>Título</h1>`
+- Parágrafos: `<p>Conteúdo do parágrafo</p>`
+- Botões: `<button>Texto do botão</button>`
+- Inputs de texto: `<input>`
+
+1. Copie e cole o conteúdo abaixo em um editor de texto para arquivos txt (bloco de notas no Windows, gedit no Linux, etc).
+
+    ```html
+    <h1>Minha adorável página HTML</h1>
+
+    <p>Nesta página estou incluindo somente alguns elementos HTML para testar o seu uso. Algo muito simples, porém o HTML possui muitos outros recursos.</p>
+
+    <p>Elementos HTML podem ser aninhados uns dentro dos outros, como neste parágrafo, em que terminamos com essa entrada de texto usando o elemento "input": <input></p>
+
+    <p>Clique nesse botão e veja o que acontece: <button>Clique em mim</button> </p>
+
+    ```
+    Em seguida, salve o arquivo com extensão html. Por exemplo: "arquivomeu.html".
+
+2. Abra o arquivo com o navegador de internet (Chrome, Bing, Firefox, Safari, etc.)
+
+3. Edite o arquivo para incluir elementos novos criados por você. Salve o arquivo, recarregue a página e veja que suas alterações foram atualizadas na página.
+
+### Adicionando lógica e programação com Javascript
+
+Para que coisas úteis aconteçam na página HTML, precisamos processar informação. Para isso, existe a linguagem Javascript que é incluída com a tag `<script></script>`. Exemplo:
+
+```html
+<h1>Página dos apertadores de botão</h1>
+
+<p>
+    <button onclick="processarClique()">
+        Botão incrível
+    </button>
+</p>
+
+<p id="resultado"><p>
+
+<script>
+    var clicadas = 0;
+    
+    function processarClique() {
+        clicadas = clicadas + 1;
+        document.getElementById("resultado").innerHTML = "Você clicou " + clicadas + " vezes no Botão incrível.";
+    }
+</script>
+
+```
+
+4. Salve o código acima em um arquivo .html e abra no seu navegador de internet para ver o resultado.
+
+::: {.callout-tip title="Clique para um exemplo mais preciso" collapse="true"}
+
+```html
+<h1>Página dos apertadores de botão</h1>
+
+<p>
+    <button onclick="processarClique()">
+        Botão incrível
+    </button>
+</p>
+
+<p id="resultado"><p>
+
+<script>
+    var clicadas = 0;
+    
+    function processarClique() {
+        clicadas = clicadas + 1;
+
+        if (clicadas > 1) {
+            document.getElementById("resultado").innerHTML = "Você clicou " + clicadas + " vezes no Botão incrível.";
+        }
+        else {
+            document.getElementById("resultado").innerHTML = "Você clicou " + clicadas + " vez no Botão incrível.";
+        }
+    }
+</script>
+
+```
+
+:::
+
+
+```html
+<html>
+
+    <head>
+    </head>
+    
+    <body>
+    
+        <script>
+        </script>
+    
+    </body>
+
+</html>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Para aprender mais sobre HTML/Javascript:
+
+- W3Schools
+- Física com Javascript

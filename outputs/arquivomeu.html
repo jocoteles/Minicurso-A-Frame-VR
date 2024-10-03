@@ -1,0 +1,18 @@
+<h1>Página dos apertadores de botão</h1>
+
+<p>
+    <button onclick="processarClique()">
+        Botão incrível
+    </button>
+</p>
+
+<p id="resultado"><p>
+
+<script>
+    var clicadas = 0;
+    
+    function processarClique() {
+        clicadas = clicadas + 1;
+        document.getElementById("resultado").innerHTML = "Você clicou " + clicadas + " vezes no Botão incrível.";
+    }
+</script>

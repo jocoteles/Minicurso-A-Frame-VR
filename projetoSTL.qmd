@@ -56,7 +56,7 @@ Eis um exemplo de uma estrutura ECS no A-Frame:
     - `rodas = "quantidade : 2; aro: 40"`
     - `material = "cor: vermelho; metalicidade: 0.8"`
 
-![Ilustração das *Entidades* carro e moto com seus *componentes* e *atributos* específicos (feita com DALL-E)](carro_e_moto.webp)
+![Ilustração das *Entidades* carro e moto com seus *componentes* e *atributos* específicos (feita com DALL-E)](carro_e_moto.jpg)
 
 Nesse exemplo, *carro* e *moto* são ***entidades*** distintas, mas *rodas* e *material* são ***componentes*** que podem ser compartilhados pelas diferentes entidades. Esses componentes irão se diferenciar por possuírem valores diferentes para os seus ***atributos*** (e.g. rodas com `quantidade : 2` ou `quantidade : 4`) e por estarem atrelados a diferentes entidades. Uma das vantages dessa abordagem ECS é que eu preciso programar o componente *rodas* somente uma vez e ele pode ser usado em diferentes veículos.
 

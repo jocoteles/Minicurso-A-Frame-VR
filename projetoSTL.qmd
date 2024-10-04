@@ -88,7 +88,7 @@ Se fizermos o preview lateral para tentarmos observar o resultado, provavelmente
 
 Cada botão do mouse quando mantido apertado permite rotacionar, transladar e aproximar/afastar a visão da cena. Ao clicar em uma entidade é possível também aferir e alterar os valores dos seus atributos. É possível até mesmo criar entidades novas e atribuir componentes no *Visual inspector*.
 
-Voltando à Terra, vamos "dar um talento" em nosso *pale blue dot*.[^1] Para isso, vamos usar uma imagem planificada da superfície da Terra e mapeá-la na esfera. Por sorte, o A-Frame faz isso muito diretamente para a gente. Vejamos como.
+Voltando à Terra, vamos "dar um talento" em nosso *pale blue dot*.[^1] Para isso, usaremos uma imagem planificada da superfície da Terra para projetá-la na esfera. Por sorte, o A-Frame faz isso muito diretamente para a gente. Vejamos como.
 
 ## Carregando arquivos externos em nosso projeto STL
 
@@ -101,7 +101,7 @@ No momento, vamos usar a segunda opção.
 
 3. Clique com o botão direito do mouse sobre o mapa da Terra abaixo e copie o seu link.
 
-![https://en.wikipedia.org/wiki/World_map#/media/File:Blue_Marble_2002.png](1280px-Blue_Marble_2002.png)
+![[https://upload.wikimedia.org/](https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png)](1280px-Blue_Marble_2002.png)
 
 4. Dentro do `<a-scene>` inclua o elemento:
 
@@ -120,6 +120,12 @@ No momento, vamos usar a segunda opção.
     </a-entity>
     ``` 
 
+## Usando animações prontas do A-Frame
+
+Como já dizia o sábio Galileu: "*Eppur si muove*".[^2] Vamos então pôr o mundo a girar.
 
 [^1]:
     Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.
+
+[^2]:
+    A expressão em italiano que significa "E, no entanto, ela se move" teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção científica, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.

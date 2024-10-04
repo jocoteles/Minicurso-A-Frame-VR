@@ -213,6 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#elementos-html-do-a-frame" id="toc-elementos-html-do-a-frame" class="nav-link active" data-scroll-target="#elementos-html-do-a-frame"><span class="header-section-number">3.1</span> Elementos HTML do A-Frame</a></li>
   <li><a href="#carregando-arquivos-externos-em-nosso-projeto-stl" id="toc-carregando-arquivos-externos-em-nosso-projeto-stl" class="nav-link" data-scroll-target="#carregando-arquivos-externos-em-nosso-projeto-stl"><span class="header-section-number">3.2</span> Carregando arquivos externos em nosso projeto STL</a></li>
+  <li><a href="#usando-animações-prontas-do-a-frame" id="toc-usando-animações-prontas-do-a-frame" class="nav-link" data-scroll-target="#usando-animações-prontas-do-a-frame"><span class="header-section-number">3.3</span> Usando animações prontas do A-Frame</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://jocoteles.github.io/Minicurso-A-Frame-VR/edit/main/projetoSTL.qmd" class="toc-action"><i class="bi bi-git"></i>Editar essa página</a></li></ul></div></nav>
     </div>
@@ -312,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Se fizermos o preview lateral para tentarmos observar o resultado, provavelmente não veremos nada. Isso ocorre, pois não estamos usando os óculos de realidade virtual. A melhor forma de interagir com a página gerada na tela do computador é escolhendo a opção <em>Preview in a new window</em>. Na página que foi aberta, devemos entrar no modo de inspeção (<em>Visual inspector</em>) ao digitar a combinação de teclas <code>&lt;ctrl&gt;</code> + <code>&lt;alt&gt;</code> + <code>i</code> ou <code>&lt;ctrl&gt;</code> + <code>&lt;option&gt;</code> + <code>i</code>.</p>
 <p>Cada botão do mouse quando mantido apertado permite rotacionar, transladar e aproximar/afastar a visão da cena. Ao clicar em uma entidade é possível também aferir e alterar os valores dos seus atributos. É possível até mesmo criar entidades novas e atribuir componentes no <em>Visual inspector</em>.</p>
-<p>Voltando à Terra, vamos “dar um talento” em nosso <em>pale blue dot</em>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Para isso, vamos usar uma imagem planificada da superfície da Terra e mapeá-la na esfera. Por sorte, o A-Frame faz isso muito diretamente para a gente. Vejamos como.</p>
+<p>Voltando à Terra, vamos “dar um talento” em nosso <em>pale blue dot</em>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Para isso, usaremos uma imagem planificada da superfície da Terra para projetá-la na esfera. Por sorte, o A-Frame faz isso muito diretamente para a gente. Vejamos como.</p>
 </section>
 <section id="carregando-arquivos-externos-em-nosso-projeto-stl" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="carregando-arquivos-externos-em-nosso-projeto-stl"><span class="header-section-number">3.2</span> Carregando arquivos externos em nosso projeto STL</h2>
@@ -328,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="1280px-Blue_Marble_2002.png" class="img-fluid figure-img"></p>
-<figcaption>https://en.wikipedia.org/wiki/World_map#/media/File:Blue_Marble_2002.png</figcaption>
+<figcaption><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png">https://upload.wikimedia.org/</a></figcaption>
 </figure>
 </div>
 <ol start="4" type="1">
@@ -342,6 +343,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
+</section>
+<section id="usando-animações-prontas-do-a-frame" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="usando-animações-prontas-do-a-frame"><span class="header-section-number">3.3</span> Usando animações prontas do A-Frame</h2>
+<p>Como já dizia o sábio Galileu: “<em>Eppur si muove</em>”.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Vamos então pôr o mundo a girar.</p>
 
 
 </section>
@@ -349,6 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <ol>
 <li id="fn1"><p>Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A expressão em italiano que significa “E, no entanto, ela se move” teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção científica, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

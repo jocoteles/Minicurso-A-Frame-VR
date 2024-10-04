@@ -213,7 +213,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#elementos-html-do-a-frame" id="toc-elementos-html-do-a-frame" class="nav-link active" data-scroll-target="#elementos-html-do-a-frame"><span class="header-section-number">3.1</span> Elementos HTML do A-Frame</a></li>
   <li><a href="#carregando-arquivos-externos-em-nosso-projeto-stl" id="toc-carregando-arquivos-externos-em-nosso-projeto-stl" class="nav-link" data-scroll-target="#carregando-arquivos-externos-em-nosso-projeto-stl"><span class="header-section-number">3.2</span> Carregando arquivos externos em nosso projeto STL</a></li>
-  <li><a href="#usando-animações-prontas-do-a-frame" id="toc-usando-animações-prontas-do-a-frame" class="nav-link" data-scroll-target="#usando-animações-prontas-do-a-frame"><span class="header-section-number">3.3</span> Usando animações prontas do A-Frame</a></li>
+  <li><a href="#animando-as-coisas" id="toc-animando-as-coisas" class="nav-link" data-scroll-target="#animando-as-coisas"><span class="header-section-number">3.3</span> Animando as coisas</a></li>
+  <li><a href="#sistemas-de-referência" id="toc-sistemas-de-referência" class="nav-link" data-scroll-target="#sistemas-de-referência"><span class="header-section-number">3.4</span> Sistemas de referência</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://jocoteles.github.io/Minicurso-A-Frame-VR/edit/main/projetoSTL.qmd" class="toc-action"><i class="bi bi-git"></i>Editar essa página</a></li></ul></div></nav>
     </div>
@@ -260,15 +261,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>https://aframe.io/releases/1.6.0/aframe.min.js</code>.</p>
 <p>É esse arquivo, acessado remotamente, que disponibilizará o núcleo de funcionalidades do A-Frame.</p>
 <ol type="1">
-<li><p>O elemento HTML básico e obrigatório do A-Frame é o <em>a-scene</em>, o qual temos que incluir dentro do elemento <em>body</em>:</p>
+<li><p>O elemento HTML básico e obrigatório do A-Frame é o <code>&lt;a-scene&gt;</code> (<a href="https://aframe.io/docs/1.6.0/core/scene.html">Cena</a>), o qual temos que incluir dentro do elemento <code>&lt;body&gt;</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
-<p>Dentro do <em>a-scene</em> todos os elementos espaciais do projeto serão incluídos. Esses elementos recebem o nome de <em>a-entity</em> (entidades). Cada entidade, por sua vez, terá uma série de propriedades, chamadas de <em>components</em> (componentes). Por fim, cada componente terá atributos que definirão as aparências e funcionalidades da entidade.</p>
+<p>Dentro do <code>&lt;a-scene&gt;</code> todos os elementos espaciais do projeto serão incluídos. Esses elementos recebem o nome de <code>&lt;a-entity&gt;</code> (<a href="https://aframe.io/docs/1.6.0/core/entity.html">Entidades</a>). Cada entidade, por sua vez, terá uma série de propriedades, chamadas de <em>components</em> (<a href="https://aframe.io/docs/1.6.0/core/component.html">Componentes</a>). Por fim, cada componente terá <em>atributos</em> que definirão as aparências e funcionalidades da entidade.</p>
 <p>Esse tipo de estruturação segue o modelo ECS (Entity-Component-System) que é alternativo ao modelo de classes e objetos. Ele se opõe ao sistema de hierarquização da programação orientada a objetos ao permitir maior modularização e inter-operacionalização dos componentes que podem ser aplicados diretamente em diferentes entidades.</p>
-<p>Eis um exemplo de uma estrutura ECS no A-Frame:</p>
+<p>De forma abstrata, uma estrutura ECS no A-Frame poderia ser algo assim:</p>
+<p><strong>Cena:</strong></p>
+<ul>
+<li><p><strong>Entidade 1</strong>:</p>
+<ul>
+<li><em>Componente A</em> -&gt; <strong><em>Atributo A1</em></strong>: valor E1A1; <strong><em>Atributo A2</em></strong>: valor E1A2</li>
+<li><em>Componente B</em> -&gt; <strong><em>Atributo B1</em></strong>: valor E1B1; <strong><em>Atributo B2</em></strong>: valor E1B2</li>
+</ul></li>
+<li><p><strong>Entidade 2</strong>:</p>
+<ul>
+<li><em>Componente A</em> -&gt; <strong><em>Atributo A1</em></strong>: valor E2A1; <strong><em>Atributo A2</em></strong>: valor E2A2</li>
+<li><em>Componente C</em> -&gt; <strong><em>Atributo C1</em></strong>: valor E2C1; <strong><em>Atributo C2</em></strong>: valor E2C2</li>
+</ul></li>
+</ul>
+<p>Um exemplo mais concreto seria:</p>
 <p><strong>a-scene:</strong></p>
 <ul>
 <li><p><strong>a-entity</strong> <code>id = "carro"</code>:</p>
@@ -309,7 +324,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Vamos então criar nossa primeira entidade: o planeta Terra.</p>
 <ol start="2" type="1">
 <li><p>Coloque a entidade abaixo dentro do elemento a-scene:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span><span class="ot"> geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span><span class="ot"> material</span><span class="op">=</span><span class="st">"color: blue"</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"color: blue"</span><span class="dt">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 <p>Se fizermos o preview lateral para tentarmos observar o resultado, provavelmente não veremos nada. Isso ocorre, pois não estamos usando os óculos de realidade virtual. A melhor forma de interagir com a página gerada na tela do computador é escolhendo a opção <em>Preview in a new window</em>. Na página que foi aberta, devemos entrar no modo de inspeção (<em>Visual inspector</em>) ao digitar a combinação de teclas <code>&lt;ctrl&gt;</code> + <code>&lt;alt&gt;</code> + <code>i</code> ou <code>&lt;ctrl&gt;</code> + <code>&lt;option&gt;</code> + <code>i</code>.</p>
 <p>Cada botão do mouse quando mantido apertado permite rotacionar, transladar e aproximar/afastar a visão da cena. Ao clicar em uma entidade é possível também aferir e alterar os valores dos seus atributos. É possível até mesmo criar entidades novas e atribuir componentes no <em>Visual inspector</em>.</p>
@@ -338,15 +356,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_terra"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"substitua_isto_pelo_endereço_da_imagem"</span><span class="dt">&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Em seguida substitua o atributo <em>color</em> por <em>src</em> no componente <em>material</em> da entidade <code>terra</code>, usando como valor a <code>id</code> do mapa da Terra:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="annotated-cell-4"><pre class="sourceCode html code-annotation-code code-with-copy code-annotated"><code class="sourceCode html"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
+<span id="annotated-cell-4-4"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="3" data-code-annotation="1">Atributo <code>src</code> no lugar de <code>color</code>.</span>
+</dd>
+</dl></li>
 </ol>
 </section>
-<section id="usando-animações-prontas-do-a-frame" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="usando-animações-prontas-do-a-frame"><span class="header-section-number">3.3</span> Usando animações prontas do A-Frame</h2>
-<p>Como já dizia o sábio Galileu: “<em>Eppur si muove</em>”.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Vamos então pôr o mundo a girar.</p>
+<section id="animando-as-coisas" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="animando-as-coisas"><span class="header-section-number">3.3</span> Animando as coisas</h2>
+<p>Como já dizia o sábio Galileu, “<em>Eppur si muove</em>”.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Vamos então pôr o mundo a girar.</p>
+<p>O A-Frame possui várias possibilidades de animação <em>built in</em> através do componente <code>animation</code>. Os atributos principais desse componente são:</p>
+<ul>
+<li><code>property</code>: a propriedade da entidade que será animada, e.g.&nbsp;ângulo de rotação, posição, grau de transparência, etc.</li>
+<li><code>from</code>: o valor inicial da propriedade (default: o valor atual).</li>
+<li><code>to</code>: o valor final da propriedade ao término da animação.</li>
+<li><code>dur</code>: duração da animação em milissegundos.</li>
+<li><code>loop</code>: se a animação deve ser reiniciada automaticamente após <code>dur</code> ms (<code>ture</code>ou <code>false</code>).</li>
+<li><code>easing</code>: a taxa de variação da propriedade (default: aumento quadrático = aceleração constante).</li>
+</ul>
+<p>Comecemos implementando a razão dos nossos dias e noites: a rotação da Terra em torno do próprio eixo.</p>
+<ol start="6" type="1">
+<li><p>Para isso inclua o seguinte componente <code>animation</code> na entidade <code>terra</code>:</p>
+<div class="sourceCode" id="annotated-cell-5"><pre class="sourceCode html code-annotation-code code-with-copy code-annotated"><code class="sourceCode html"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
+<span id="annotated-cell-5-3"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 10000, easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="annotated-cell-5-5"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="1">Componente <code>animation</code> para rotação da Terra.</span>
+</dd>
+</dl></li>
+<li><p>Recarregue a página de preview e entre no modo de inspeção (<code>&lt;ctrl&gt;&lt;alt&gt;i</code>). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão de play ▶ no canto superior esquerdo.</p></li>
+</ol>
+<p>Assim, deveremos observar a Terra girando <em>ad eternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução a cada 10 segundos.</p>
+<p><video src="terra_girando.mp4" class="img-fluid" loop="true" controls=""><a href="terra_girando.mp4">Video</a></video></p>
+</section>
+<section id="sistemas-de-referência" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sistemas-de-referência"><span class="header-section-number">3.4</span> Sistemas de referência</h2>
 
 
 </section>
@@ -354,7 +408,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <ol>
 <li id="fn1"><p>Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>A expressão em italiano que significa “E, no entanto, ela se move” teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção científica, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A expressão em italiano que significa “E, no entanto, ela se move” teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

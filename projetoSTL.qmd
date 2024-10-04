@@ -29,7 +29,7 @@ Repare que o projeto está bastante vazio, com apenas o arquivo `index.html` e s
 
 É esse arquivo, acessado remotamente, que disponibilizará o núcleo de funcionalidades do A-Frame.
 
-1. O elemento HTML básico e obrigatório do A-Frame é o *a-scene*, o qual temos que incluir dentro do elemento *body*:
+1. O elemento HTML básico e obrigatório do A-Frame é o `<a-scene>` ([Cena](https://aframe.io/docs/1.6.0/core/scene.html)), o qual temos que incluir dentro do elemento `<body>`:
 
     ```html
     <body>
@@ -38,11 +38,25 @@ Repare que o projeto está bastante vazio, com apenas o arquivo `index.html` e s
     </body>
     ```
 
-Dentro do *a-scene* todos os elementos espaciais do projeto serão incluídos. Esses elementos recebem o nome de *a-entity* (entidades). Cada entidade, por sua vez, terá uma série de propriedades, chamadas de *components* (componentes). Por fim, cada componente terá atributos que definirão as aparências e funcionalidades da entidade.
+Dentro do `<a-scene>` todos os elementos espaciais do projeto serão incluídos. Esses elementos recebem o nome de `<a-entity>` ([Entidades](https://aframe.io/docs/1.6.0/core/entity.html)). Cada entidade, por sua vez, terá uma série de propriedades, chamadas de *components* ([Componentes](https://aframe.io/docs/1.6.0/core/component.html)). Por fim, cada componente terá *atributos* que definirão as aparências e funcionalidades da entidade.
 
 Esse tipo de estruturação segue o modelo ECS (Entity-Component-System) que é alternativo ao modelo de classes e objetos. Ele se opõe ao sistema de hierarquização da programação orientada a objetos ao permitir maior modularização e inter-operacionalização dos componentes que podem ser aplicados diretamente em diferentes entidades.
 
-Eis um exemplo de uma estrutura ECS no A-Frame:
+De forma abstrata, uma estrutura ECS no A-Frame poderia ser algo assim:
+
+**Cena:**
+
+- **Entidade 1**:
+    
+    - *Componente A* -> ***Atributo A1***: valor E1A1; ***Atributo A2***: valor E1A2
+    - *Componente B* -> ***Atributo B1***: valor E1B1; ***Atributo B2***: valor E1B2
+
+- **Entidade 2**:
+    
+    - *Componente A* -> ***Atributo A1***: valor E2A1; ***Atributo A2***: valor E2A2
+    - *Componente C* -> ***Atributo C1***: valor E2C1; ***Atributo C2***: valor E2C2
+
+Um exemplo mais concreto seria:
 
 **a-scene:**
 
@@ -81,7 +95,10 @@ Vamos então criar nossa primeira entidade: o planeta Terra.
 2. Coloque a entidade abaixo dentro do elemento a-scene:
 
     ```html 
-    <a-entity id="terra" geometry="primitive: sphere" material="color: blue"></a-entity>
+    <a-entity id="terra"
+        geometry="primitive: sphere"
+        material="color: blue">
+    </a-entity>
     ``` 
 
 Se fizermos o preview lateral para tentarmos observar o resultado, provavelmente não veremos nada. Isso ocorre, pois não estamos usando os óculos de realidade virtual. A melhor forma de interagir com a página gerada na tela do computador é escolhendo a opção *Preview in a new window*. Na página que foi aberta, devemos entrar no modo de inspeção (*Visual inspector*) ao digitar a combinação de teclas `<ctrl>` + `<alt>` + `i` ou `<ctrl>` + `<option>` + `i`.
@@ -116,16 +133,48 @@ No momento, vamos usar a segunda opção.
     ```html
     <a-entity id="terra"
         geometry="primitive: sphere"
-        material="src: #mapa_terra">
+        material="src: #mapa_terra"> <!--<1>-->
     </a-entity>
     ``` 
+    1. Atributo `src` no lugar de `color`.
 
-## Usando animações prontas do A-Frame
+## Animando as coisas
 
-Como já dizia o sábio Galileu: "*Eppur si muove*".[^2] Vamos então pôr o mundo a girar.
+Como já dizia o sábio Galileu, "*Eppur si muove*".[^2] Vamos então pôr o mundo a girar.
+
+O A-Frame possui várias possibilidades de animação *built in* através do componente `animation`. Os atributos principais desse componente são:
+
+- `property`: a propriedade da entidade que será animada, e.g. ângulo de rotação, posição, grau de transparência, etc.
+- `from`: o valor inicial da propriedade (default: o valor atual).
+- `to`: o valor final da propriedade ao término da animação.
+- `dur`: duração da animação em milissegundos.
+- `loop`: se a animação deve ser reiniciada automaticamente após `dur` ms (`ture`ou `false`).
+- `easing`: a taxa de variação da propriedade (default: aumento quadrático = aceleração constante).
+
+Comecemos implementando a razão dos nossos dias e noites: a rotação da Terra em torno do próprio eixo.
+
+6. Para isso inclua o seguinte componente `animation` na entidade `terra`:
+
+    ```html
+    <a-entity id="terra"
+        geometry="primitive: sphere"
+        material="src: #mapa_terra"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000, easing: linear"> <!-- <1> -->
+    </a-entity>
+    ```
+    1. Componente `animation` para rotação da Terra.
+
+7. Recarregue a página de preview e entre no modo de inspeção (`<ctrl><alt>i`). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão de play ▶ no canto superior esquerdo. 
+
+Assim, deveremos observar a Terra girando *ad eternum* (`loop: true`) com velocidade constante (`easing: linear`) e executando uma revolução a cada 10 segundos.
+
+![](terra_girando.mp4){loop="true"}
+
+## Sistemas de referência
+
 
 [^1]:
     Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.
 
 [^2]:
-    A expressão em italiano que significa "E, no entanto, ela se move" teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção científica, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.
+    A expressão em italiano que significa "E, no entanto, ela se move" teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.

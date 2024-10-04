@@ -36,33 +36,53 @@ São incluídos com palavras reservadas na forma de **tags** HTML: `<bla></bla>`
 
 ### Adicionando lógica e programação com Javascript
 
-Para que coisas úteis aconteçam na página HTML, precisamos processar informação. Para isso, existe a linguagem Javascript que é incluída com a tag `<script></script>`. Exemplo:
+Para que coisas úteis aconteçam na página HTML, precisamos processar informação. Para isso, existe a linguagem Javascript que é incluída com a tag `<script></script>`.
 
-```html
-<h1>Página dos apertadores de botão</h1>
+4. O código abaixo foi extraído de @silva2016. Salve-o em um arquivo HTML e carregue no seu navegador de internet para ver o resultado.
 
-<p>
-    <button onclick="processarClique()">
-        Botão incrível
-    </button>
-</p>
+    ```html
+    <script>
+        var a = 2;
+        var b = 3;
+        var c = a + b;
+        document.write("A soma de " + a + " com " + b + " resulta em " + c);
+    </script>
+    ```
 
-<p id="resultado"><p>
+5. Modifique o script anterior para efetuar a multiplicação de dois números. A operação de multiplicação é implementada com o caractere "*" (asterisco).
 
-<script>
-    var clicadas = 0;
-    
-    function processarClique() {
-        clicadas = clicadas + 1;
-        document.getElementById("resultado").innerHTML = "Você clicou " + clicadas + " vezes no Botão incrível.";
-    }
-</script>
 
-```
+### Interagindo HTML com Javascript
 
-4. Salve o código acima em um arquivo .html e abra no seu navegador de internet para ver o resultado.
+Para fazer com que elementos HTML específicos sejam modificados via código Javascript é necessário adicionar atributos a eles.
 
-::: {.callout-tip title="Clique para um exemplo mais preciso" collapse="true"}
+6. No código abaixo, um elemento de parágrafo inicialmente vazio recebe o atributo de identificação `id` e o elemento de botão recebe o atributo `onclick`. Dessa forma, quando o botão é clicado, a função `processarClique()` é chamada em que ela atualiza o texto do parágrafo pela sua identificação.
+
+    ```html
+    <h1>Página dos apertadores de botão</h1>
+
+    <p>
+        <button onclick="processarClique()">
+            Botão incrível
+        </button>
+    </p>
+
+    <p id="resultado"><p>
+
+    <script>
+        var clicadas = 0;
+        
+        function processarClique() {
+            clicadas = clicadas + 1;
+            document.getElementById("resultado").innerHTML = "Você clicou " + clicadas + " vezes no Botão incrível.";
+        }
+    </script>
+
+    ```
+
+7. Salve o código acima em um arquivo .html e abra no seu navegador de internet para ver o resultado.
+
+::: {.callout-tip title="Veja uma implementação mais precisa do código acima" collapse="true"}
 
 ```html
 <h1>Página dos apertadores de botão</h1>
@@ -95,39 +115,89 @@ Para que coisas úteis aconteçam na página HTML, precisamos processar informa�
 :::
 
 
+## Estrutura completa de uma página HTML
+
+Uma página HTML completa, em geral, vai ser dividida em três arquivos:
+
+- `index.html`: é o arquivo principal e o primeiro a ser carregado pelo navegador de internet.
+- `script.js`: é o arquivo em que a programação Javascript fica melhor separada e organizada.
+- `style.css`: é o arquivo de estilos que altera a aparência, e à vezes a funcionalidade, dos elementos HTML.
+
+E o arquivo `index.html` terá uma estrutura semelhante a esta:
+
 ```html
+<!DOCTYPE html>
+
 <html>
 
+    <!-- Aqui é incluído o preâmbulo com as configurações da página -->
     <head>
+
+        <!-- Este é o título (opcional) da página -->    
+        <title>Hello World!</title>
+
+        <!-- Aqui é carregado a arquivo de estilos -->
+        <link rel="stylesheet" href="/style.css" />
+
+        <!-- Aqui é carregado o arquivo Javascript -->
+        <script src="/script.js" defer></script>
+
     </head>
-    
+
+    <!-- Aqui é incluído todo o HTML e, caso queira, o Javascript também -->
     <body>
-    
+
+        <h1>Minha página web completa</h1>
+
+        <p>Meu sucinto parágrafo.</p>
+
+        <button>Meu inútil botão</button>
+
+        <!-- Você também pode colocar código Javascript aqui -->
         <script>
+
+            var x = 3;
+            var y = 2;
+            var z = x + y;
+
         </script>
-    
+
     </body>
 
 </html>
+
 ```
 
+Podemos criar arquivos txt para cada um dos três arquivos e abrir o arquivo HTML no navegador de internet como vínhamos fazendo até aqui. Entretanto, a partir de agora começaremos a colocar nossas páginas diretamente na Internet.
+
+
+## Disponibilizando páginas web diretamente na Internet
+
+Existem diversas plataformas gratuitas que permitem a hospedagem de páginas web. Entre elas, podemos destacar:
+
+- [Replit](https://replit.com/)
+- [CodeSandbox](https://codesandbox.io/)
+- [GitHub Pages](https://pages.github.com/)
+- [Glitch](https://glitch.com/)
+
+Neste minicurso usaremos o [Glitch](https://glitch.com/).
+
+Glitch é uma plataforma online para desenvolvimento e hospedagem de aplicações web, permitindo edição colaborativa em tempo real diretamente no navegador. Páginas criadas no Glitch são disponibilizadas quase que instantaneamente em um endereço de internet de acesso público.
+
+Vamos começar a partir de um projeto básico que criamos para este minicurso. 
+
+Acesse: 
+[https://glitch.com/edit/#!/fishy-foil-technosaurus](https://glitch.com/edit/#!/fishy-foil-technosaurus)
+
+Ao acessar esse projeto, você deverá observar a tela abaixo.
+
+![Print da tela do projeto fishy-foil-technosaurus no Glitch](fishy-foil-technosaurus.png)
+
+
+é possível navegar e inspecionar os arquivos (html, js, css) que o compõe e também fazer um *preview* da página web gerada a partir desses arquivos.
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-Para aprender mais sobre HTML/Javascript:
-
-- W3Schools
-- Física com Javascript

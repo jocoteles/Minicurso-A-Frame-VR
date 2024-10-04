@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -172,7 +192,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#elementos-html" id="toc-elementos-html" class="nav-link" data-scroll-target="#elementos-html"><span class="header-section-number">2.1.1</span> Elementos HTML</a></li>
   <li><a href="#adicionando-lógica-e-programação-com-javascript" id="toc-adicionando-lógica-e-programação-com-javascript" class="nav-link" data-scroll-target="#adicionando-lógica-e-programação-com-javascript"><span class="header-section-number">2.1.2</span> Adicionando lógica e programação com Javascript</a></li>
+  <li><a href="#interagindo-html-com-javascript" id="toc-interagindo-html-com-javascript" class="nav-link" data-scroll-target="#interagindo-html-com-javascript"><span class="header-section-number">2.1.3</span> Interagindo HTML com Javascript</a></li>
   </ul></li>
+  <li><a href="#estrutura-completa-de-uma-página-html" id="toc-estrutura-completa-de-uma-página-html" class="nav-link" data-scroll-target="#estrutura-completa-de-uma-página-html"><span class="header-section-number">2.2</span> Estrutura completa de uma página HTML</a></li>
+  <li><a href="#disponibilizando-páginas-web-diretamente-na-internet" id="toc-disponibilizando-páginas-web-diretamente-na-internet" class="nav-link" data-scroll-target="#disponibilizando-páginas-web-diretamente-na-internet"><span class="header-section-number">2.3</span> Disponibilizando páginas web diretamente na Internet</a></li>
   </ul>
 </nav>
     </div>
@@ -225,40 +248,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="adicionando-lógica-e-programação-com-javascript" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="adicionando-lógica-e-programação-com-javascript"><span class="header-section-number">2.1.2</span> Adicionando lógica e programação com Javascript</h3>
-<p>Para que coisas úteis aconteçam na página HTML, precisamos processar informação. Para isso, existe a linguagem Javascript que é incluída com a tag <code>&lt;script&gt;&lt;/script&gt;</code>. Exemplo:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Página dos apertadores de botão<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">button</span><span class="ot"> onclick</span><span class="op">=</span><span class="st">"processarClique()"</span><span class="dt">&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        Botão incrível</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> id</span><span class="op">=</span><span class="st">"resultado"</span><span class="dt">&gt;&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> clicadas <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">processarClique</span>() {</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        clicadas <span class="op">=</span> clicadas <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"resultado"</span>)<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">"Você clicou "</span> <span class="op">+</span> clicadas <span class="op">+</span> <span class="st">" vezes no Botão incrível."</span><span class="op">;</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para que coisas úteis aconteçam na página HTML, precisamos processar informação. Para isso, existe a linguagem Javascript que é incluída com a tag <code>&lt;script&gt;&lt;/script&gt;</code>.</p>
 <ol start="4" type="1">
-<li>Salve o código acima em um arquivo .html e abra no seu navegador de internet para ver o resultado.</li>
+<li><p>O código abaixo foi extraído de <span class="citation" data-cites="silva2016">Silva (<a href="referencias.html#ref-silva2016" role="doc-biblioref">2016</a>)</span>. Salve-o em um arquivo HTML e carregue no seu navegador de internet para ver o resultado.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> a <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> b <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> c <span class="op">=</span> a <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="fu">write</span>(<span class="st">"A soma de "</span> <span class="op">+</span> a <span class="op">+</span> <span class="st">" com "</span> <span class="op">+</span> b <span class="op">+</span> <span class="st">" resulta em "</span> <span class="op">+</span> c)<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Modifique o script anterior para efetuar a multiplicação de dois números. A operação de multiplicação é implementada com o caractere “*” (asterisco).</p></li>
 </ol>
-<div class="callout callout-style-default callout-tip callout-titled" title="Clique para um exemplo mais preciso">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Clique para um exemplo mais preciso
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+</section>
+<section id="interagindo-html-com-javascript" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="interagindo-html-com-javascript"><span class="header-section-number">2.1.3</span> Interagindo HTML com Javascript</h3>
+<p>Para fazer com que elementos HTML específicos sejam modificados via código Javascript é necessário adicionar atributos a eles.</p>
+<ol start="6" type="1">
+<li><p>No código abaixo, um elemento de parágrafo inicialmente vazio recebe o atributo de identificação <code>id</code> e o elemento de botão recebe o atributo <code>onclick</code>. Dessa forma, quando o botão é clicado, a função <code>processarClique()</code> é chamada em que ela atualiza o texto do parágrafo pela sua identificação.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Página dos apertadores de botão<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
@@ -271,42 +277,133 @@ Clique para um exemplo mais preciso
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> clicadas <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">processarClique</span>() {</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        clicadas <span class="op">=</span> clicadas <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (clicadas <span class="op">&gt;</span> <span class="dv">1</span>) {</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"resultado"</span>)<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">"Você clicou "</span> <span class="op">+</span> clicadas <span class="op">+</span> <span class="st">" vezes no Botão incrível."</span><span class="op">;</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> {</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"resultado"</span>)<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">"Você clicou "</span> <span class="op">+</span> clicadas <span class="op">+</span> <span class="st">" vez no Botão incrível."</span><span class="op">;</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"resultado"</span>)<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">"Você clicou "</span> <span class="op">+</span> clicadas <span class="op">+</span> <span class="st">" vezes no Botão incrível."</span><span class="op">;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Salve o código acima em um arquivo .html e abra no seu navegador de internet para ver o resultado.</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Veja uma implementação mais precisa do código acima">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Veja uma implementação mais precisa do código acima
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Página dos apertadores de botão<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Para aprender mais sobre HTML/Javascript:</p>
-<ul>
-<li>W3Schools</li>
-<li>Física com Javascript</li>
-</ul>
-
-
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">button</span><span class="ot"> onclick</span><span class="op">=</span><span class="st">"processarClique()"</span><span class="dt">&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        Botão incrível</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> id</span><span class="op">=</span><span class="st">"resultado"</span><span class="dt">&gt;&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> clicadas <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">processarClique</span>() {</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        clicadas <span class="op">=</span> clicadas <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (clicadas <span class="op">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"resultado"</span>)<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">"Você clicou "</span> <span class="op">+</span> clicadas <span class="op">+</span> <span class="st">" vezes no Botão incrível."</span><span class="op">;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> {</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>            <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"resultado"</span>)<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">"Você clicou "</span> <span class="op">+</span> clicadas <span class="op">+</span> <span class="st">" vez no Botão incrível."</span><span class="op">;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </section>
+</section>
+<section id="estrutura-completa-de-uma-página-html" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="estrutura-completa-de-uma-página-html"><span class="header-section-number">2.2</span> Estrutura completa de uma página HTML</h2>
+<p>Uma página HTML completa, em geral, vai ser dividida em três arquivos:</p>
+<ul>
+<li><code>index.html</code>: é o arquivo principal e o primeiro a ser carregado pelo navegador de internet.</li>
+<li><code>script.js</code>: é o arquivo em que a programação Javascript fica melhor separada e organizada.</li>
+<li><code>style.css</code>: é o arquivo de estilos que altera a aparência, e à vezes a funcionalidade, dos elementos HTML.</li>
+</ul>
+<p>E o arquivo <code>index.html</code> terá uma estrutura semelhante a esta:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Aqui é incluído o preâmbulo com as configurações da página --&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">&lt;!-- Este é o título (opcional) da página --&gt;</span>    </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Hello World!<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">&lt;!-- Aqui é carregado a arquivo de estilos --&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"stylesheet"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"/style.css"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">&lt;!-- Aqui é carregado o arquivo Javascript --&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">"/script.js"</span><span class="ot"> defer</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Aqui é incluído todo o HTML e, caso queira, o Javascript também --&gt;</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Minha página web completa<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Meu sucinto parágrafo.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">button</span><span class="dt">&gt;</span>Meu inútil botão<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="co">&lt;!-- Você também pode colocar código Javascript aqui --&gt;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>            <span class="kw">var</span> x <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>            <span class="kw">var</span> y <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>            <span class="kw">var</span> z <span class="op">=</span> x <span class="op">+</span> y<span class="op">;</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Podemos criar arquivos txt para cada um dos três arquivos e abrir o arquivo HTML no navegador de internet como vínhamos fazendo até aqui. Entretanto, a partir de agora começaremos a colocar nossas páginas diretamente na Internet.</p>
+</section>
+<section id="disponibilizando-páginas-web-diretamente-na-internet" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="disponibilizando-páginas-web-diretamente-na-internet"><span class="header-section-number">2.3</span> Disponibilizando páginas web diretamente na Internet</h2>
+<p>Existem diversas plataformas gratuitas que permitem a hospedagem de páginas web. Entre elas, podemos destacar:</p>
+<ul>
+<li><a href="https://replit.com/">Replit</a></li>
+<li><a href="https://codesandbox.io/">CodeSandbox</a></li>
+<li><a href="https://pages.github.com/">GitHub Pages</a></li>
+<li><a href="https://glitch.com/">Glitch</a></li>
+</ul>
+<p>Neste minicurso usaremos o <a href="https://glitch.com/">Glitch</a>.</p>
+<p>Glitch é uma plataforma online para desenvolvimento e hospedagem de aplicações web, permitindo edição colaborativa em tempo real diretamente no navegador. Páginas criadas no Glitch são disponibilizadas quase que instantaneamente em um endereço de internet de acesso público.</p>
+<p>Vamos começar a partir de um projeto básico que criamos para este minicurso.</p>
+<p>Acesse: <a href="https://glitch.com/edit/#!/fishy-foil-technosaurus">https://glitch.com/edit/#!/fishy-foil-technosaurus</a></p>
+<p>Ao acessar esse projeto, você deverá observar a tela abaixo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fishy-foil-technosaurus.png" class="img-fluid figure-img"></p>
+<figcaption>Print da tela do projeto fishy-foil-technosaurus no Glitch</figcaption>
+</figure>
+</div>
+<p>é possível navegar e inspecionar os arquivos (html, js, css) que o compõe e também fazer um <em>preview</em> da página web gerada a partir desses arquivos.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-silva2016" class="csl-entry" role="listitem">
+Silva, Nelson Canzian da. 2016. <em>Física com JavaScript</em>. Depto de Física - UFSC. <a href="https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf">https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

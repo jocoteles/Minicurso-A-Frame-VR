@@ -3,7 +3,8 @@
     "summary.html": "e77be679"
   },
   "index.qmd": {
-    "index.html": "3556d804"
+    "index.html": "3556d804",
+    "index.tex": "574272e3"
   },
   "intro.qmd": {
     "intro.html": "17704f56"
@@ -15,10 +16,12 @@
     "resumo.html": "9e2dc14e"
   },
   "referencias.qmd": {
-    "referencias.html": "f302c65e"
+    "referencias.html": "f302c65e",
+    "referencias.tex": "66ebd9e8"
   },
   "htmlbasico.qmd": {
-    "htmlbasico.html": "99290a7b"
+    "htmlbasico.html": "99290a7b",
+    "htmlbasico.tex": "06dc2849"
   },
   "projetoSTL.qmd": {
     "projetoSTL.html": "97916df3"

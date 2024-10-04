@@ -1,6 +1,7 @@
 project:
-  type: book
-
+  type: website
+  output-dir: docs
+  
 book:
   title: "Minicurso A-Frame VR para Ensino de Física e Astronomia"  
   author: "João Teles"

@@ -195,7 +195,7 @@ div.csl-indent {
   <li><a href="#interagindo-html-com-javascript" id="toc-interagindo-html-com-javascript" class="nav-link" data-scroll-target="#interagindo-html-com-javascript"><span class="header-section-number">2.1.3</span> Interagindo HTML com Javascript</a></li>
   </ul></li>
   <li><a href="#estrutura-completa-de-uma-página-html" id="toc-estrutura-completa-de-uma-página-html" class="nav-link" data-scroll-target="#estrutura-completa-de-uma-página-html"><span class="header-section-number">2.2</span> Estrutura completa de uma página HTML</a></li>
-  <li><a href="#disponibilizando-páginas-web-diretamente-na-internet" id="toc-disponibilizando-páginas-web-diretamente-na-internet" class="nav-link" data-scroll-target="#disponibilizando-páginas-web-diretamente-na-internet"><span class="header-section-number">2.3</span> Disponibilizando páginas web diretamente na Internet</a></li>
+  <li><a href="#disponibilizando-páginas-web-diretamente-na-internet-com-glitch" id="toc-disponibilizando-páginas-web-diretamente-na-internet-com-glitch" class="nav-link" data-scroll-target="#disponibilizando-páginas-web-diretamente-na-internet-com-glitch"><span class="header-section-number">2.3</span> Disponibilizando páginas web diretamente na Internet com Glitch</a></li>
   </ul>
 </nav>
     </div>
@@ -332,9 +332,9 @@ Veja uma implementação mais precisa do código acima
 <ul>
 <li><code>index.html</code>: é o arquivo principal e o primeiro a ser carregado pelo navegador de internet.</li>
 <li><code>script.js</code>: é o arquivo em que a programação Javascript fica melhor separada e organizada.</li>
-<li><code>style.css</code>: é o arquivo de estilos que altera a aparência, e à vezes a funcionalidade, dos elementos HTML.</li>
+<li><code>style.css</code>: é o arquivo de estilos que altera a aparência e às, vezes, a funcionalidade dos elementos HTML.</li>
 </ul>
-<p>E o arquivo <code>index.html</code> terá uma estrutura semelhante a esta:</p>
+<p>Em que o arquivo <code>index.html</code> terá uma estrutura semelhante a esta:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
@@ -376,8 +376,8 @@ Veja uma implementação mais precisa do código acima
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Podemos criar arquivos txt para cada um dos três arquivos e abrir o arquivo HTML no navegador de internet como vínhamos fazendo até aqui. Entretanto, a partir de agora começaremos a colocar nossas páginas diretamente na Internet.</p>
 </section>
-<section id="disponibilizando-páginas-web-diretamente-na-internet" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="disponibilizando-páginas-web-diretamente-na-internet"><span class="header-section-number">2.3</span> Disponibilizando páginas web diretamente na Internet</h2>
+<section id="disponibilizando-páginas-web-diretamente-na-internet-com-glitch" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="disponibilizando-páginas-web-diretamente-na-internet-com-glitch"><span class="header-section-number">2.3</span> Disponibilizando páginas web diretamente na Internet com Glitch</h2>
 <p>Existem diversas plataformas gratuitas que permitem a hospedagem de páginas web. Entre elas, podemos destacar:</p>
 <ul>
 <li><a href="https://replit.com/">Replit</a></li>
@@ -396,7 +396,39 @@ Veja uma implementação mais precisa do código acima
 <figcaption>Print da tela do projeto fishy-foil-technosaurus no Glitch</figcaption>
 </figure>
 </div>
-<p>é possível navegar e inspecionar os arquivos (html, js, css) que o compõe e também fazer um <em>preview</em> da página web gerada a partir desses arquivos.</p>
+<p>A tela apresenta basicamente dois painéis:</p>
+<ul>
+<li>O painel de arquivos e configurações à esquerda.</li>
+<li>O painel de código à direita que mostra o conteúdo do arquivo escolhido no painel de arquivo.</li>
+</ul>
+<p>No canto inferior direito há o botão de <em>preview</em>, que renderiza (gera/compila) a página index.html que será mostrada para quem acessar a página no endereço público do projeto.</p>
+<ol start="8" type="1">
+<li><p>Agora, antes de começar a editar e trabalhar em projetos no Glitch, é importante <a href="https://glitch.com/signin">criar uma conta</a> nele, pois isso permitirá acessar os projetos posteriormente.</p></li>
+<li><p>Após criar a conta acesse novamente a edição do projeto <a href="https://glitch.com/edit/#!/fishy-foil-technosaurus">fishy-foil-technosaurus</a> e clique no botão <em>Remix do Edit</em> localizado no canto superior direito.</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="Tarefa">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tarefa
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol start="10" type="1">
+<li>A partir do <em>fishy-foil-technosaurus</em> remixado implemente o botão contador de clicadas que fizemos anteriormente no editor de texto.</li>
+</ol>
+</div>
+</div>
+<p>Clicando em <em>Settings</em> no painel de arquivos e configurações você pode alterar o nome do projeto.</p>
+<p>Para finalizar, com o botão <em>Share</em> você pode compartilhar o seu projeto de três formas diferentes:</p>
+<ul>
+<li>A página web final (<em>Live site</em>): <a href="https://fishy-foil-technosaurus.glitch.me">https://fishy-foil-technosaurus.glitch.me</a></li>
+<li>A edição do código [<em>Code</em>]: <a href="https://glitch.com/edit/#!/fishy-foil-technosaurus">https://glitch.com/edit/#!/fishy-foil-technosaurus</a></li>
+<li>Página de apresentação [<em>Project Page</em>]: <a href="https://glitch.com/~fishy-foil-technosaurus">https://glitch.com/~fishy-foil-technosaurus</a></li>
+</ul>
+<p><a href="https://help.glitch.com/hc/en-us">Mais sobre o Glitch.</a></p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">

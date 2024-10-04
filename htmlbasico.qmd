@@ -121,9 +121,9 @@ Uma página HTML completa, em geral, vai ser dividida em três arquivos:
 
 - `index.html`: é o arquivo principal e o primeiro a ser carregado pelo navegador de internet.
 - `script.js`: é o arquivo em que a programação Javascript fica melhor separada e organizada.
-- `style.css`: é o arquivo de estilos que altera a aparência, e à vezes a funcionalidade, dos elementos HTML.
+- `style.css`: é o arquivo de estilos que altera a aparência e às, vezes, a funcionalidade dos elementos HTML.
 
-E o arquivo `index.html` terá uma estrutura semelhante a esta:
+Em que o arquivo `index.html` terá uma estrutura semelhante a esta:
 
 ```html
 <!DOCTYPE html>
@@ -171,7 +171,7 @@ E o arquivo `index.html` terá uma estrutura semelhante a esta:
 Podemos criar arquivos txt para cada um dos três arquivos e abrir o arquivo HTML no navegador de internet como vínhamos fazendo até aqui. Entretanto, a partir de agora começaremos a colocar nossas páginas diretamente na Internet.
 
 
-## Disponibilizando páginas web diretamente na Internet
+## Disponibilizando páginas web diretamente na Internet com Glitch
 
 Existem diversas plataformas gratuitas que permitem a hospedagem de páginas web. Entre elas, podemos destacar:
 
@@ -194,10 +194,31 @@ Ao acessar esse projeto, você deverá observar a tela abaixo.
 ![Print da tela do projeto fishy-foil-technosaurus no Glitch](fishy-foil-technosaurus.png)
 
 
-é possível navegar e inspecionar os arquivos (html, js, css) que o compõe e também fazer um *preview* da página web gerada a partir desses arquivos.
+A tela apresenta basicamente dois painéis:
+
+- O painel de arquivos e configurações à esquerda.
+- O painel de código à direita que mostra o conteúdo do arquivo escolhido no painel de arquivo.
+
+No canto inferior direito há o botão de *preview*, que renderiza (gera/compila) a página index.html que será mostrada para quem acessar a página no endereço público do projeto.
+
+8. Agora, antes de começar a editar e trabalhar em projetos no Glitch, é importante [criar uma conta](https://glitch.com/signin) nele, pois isso permitirá acessar os projetos posteriormente.
+
+9. Após criar a conta acesse novamente a edição do projeto [fishy-foil-technosaurus](https://glitch.com/edit/#!/fishy-foil-technosaurus) e clique no botão *Remix do Edit* localizado no canto superior direito.
+
+::: {.callout-note title="Tarefa"}
+10. A partir do *fishy-foil-technosaurus* remixado implemente o botão contador de clicadas que fizemos anteriormente no editor de texto.
+:::
+
+Clicando em *Settings* no painel de arquivos e configurações você pode alterar o nome do projeto.
+
+Para finalizar, com o botão *Share* você pode compartilhar o seu projeto de três formas diferentes:
+
+- A página web final (*Live site*): [https://fishy-foil-technosaurus.glitch.me](https://fishy-foil-technosaurus.glitch.me)
+- A edição do código [*Code*]: [https://glitch.com/edit/#!/fishy-foil-technosaurus](https://glitch.com/edit/#!/fishy-foil-technosaurus) 
+- Página de apresentação [*Project Page*]: [https://glitch.com/~fishy-foil-technosaurus](https://glitch.com/~fishy-foil-technosaurus)
 
 
-
+[Mais sobre o Glitch.](https://help.glitch.com/hc/en-us)
 
 
 

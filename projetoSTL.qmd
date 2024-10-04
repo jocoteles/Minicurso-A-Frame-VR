@@ -1,0 +1,125 @@
+---
+title: O projeto Sol-Terra-Lua
+lang: pt
+code-overflow: wrap
+---
+
+Neste capítulo, aprenderemos o uso básico do [A-Frame](https://aframe.io/) por meio do desenvolvimento de um projeto para ensino de Astronomia.
+
+No projeto Sol-Terra-Lua (abrev. STL) iremos:
+
+- Criar as esferas solar, terrestre e lunar no espaço tridimensional em realidade aumentada.
+- Texturizar a superfície das esferas com os mapas dos respectivos astros.
+- Estabelecer os tamanhos e posições dos astros de forma pertinente aos objetivos didáticos de uma atividade educacional.
+- Implementar o movimento de rotação de cada astro em torno do próprio eixo.
+- Definir o plano orbital da Terra e da Lua.
+- Implementar o movimento orbital da Terra e da Lua.
+- Dar interatividade aos objetos celestes.
+
+
+## Elementos HTML do A-Frame
+
+Todo o desenvolvimento do projeto será realizado no [Glitch](htmlbasico.qmd#disponibilizando-páginas-web-diretamente-na-internet-com-glitch).
+
+1. Faça o login na sua conta do Glitch e remixe o projeto [aframe-minicurso-vr](https://glitch.com/edit/#!/aframe-minicurso-vr)
+
+Repare que o projeto está bastante vazio, com apenas o arquivo `index.html` e sem qualquer código Javascript explícito. Entretanto, temos dentro do `head` a inclusão do arquivo online:
+
+`https://aframe.io/releases/1.6.0/aframe.min.js`.
+
+É esse arquivo, acessado remotamente, que disponibilizará o núcleo de funcionalidades do A-Frame.
+
+1. O elemento HTML básico e obrigatório do A-Frame é o *a-scene*, o qual temos que incluir dentro do elemento *body*:
+
+    ```html
+    <body>
+        <a-scene>
+        </a-scene>
+    </body>
+    ```
+
+Dentro do *a-scene* todos os elementos espaciais do projeto serão incluídos. Esses elementos recebem o nome de *a-entity* (entidades). Cada entidade, por sua vez, terá uma série de propriedades, chamadas de *components* (componentes). Por fim, cada componente terá atributos que definirão as aparências e funcionalidades da entidade.
+
+Esse tipo de estruturação segue o modelo ECS (Entity-Component-System) que é alternativo ao modelo de classes e objetos. Ele se opõe ao sistema de hierarquização da programação orientada a objetos ao permitir maior modularização e inter-operacionalização dos componentes que podem ser aplicados diretamente em diferentes entidades.
+
+Eis um exemplo de uma estrutura ECS no A-Frame:
+
+**a-scene:**
+
+- **a-entity** `id = "carro"`:
+    
+    - `rodas = "quantidade : 4; aro: 20"`
+    - `material = "cor: azul; metalicidade: 0.5"`
+
+- **a-entity** `id = "moto"`:
+    
+    - `rodas = "quantidade : 2; aro: 40"`
+    - `material = "cor: vermelho; metalicidade: 0.8"`
+
+![Ilustração das *Entidades* carro e moto com seus *componentes* e *atributos* específicos (feita com DALL-E)](carro_e_moto.webp)
+
+Nesse exemplo, *carro* e *moto* são ***entidades*** distintas, mas *rodas* e *material* são ***componentes*** que podem ser compartilhados pelas diferentes entidades. Esses componentes irão se diferenciar por possuírem valores diferentes para os seus ***atributos*** (e.g. rodas com `quantidade : 2` ou `quantidade : 4`) e por estarem atrelados a diferentes entidades. Uma das vantages dessa abordagem ECS é que eu preciso programar o componente *rodas* somente uma vez e ele pode ser usado em diferentes veículos.
+
+Entidades podem ser aninhadas. Por exemplo, ao invés de tratar as rodas como sendo componentes, poderíamos considerar mais apropriado implementá-las na forma de uma entidade:
+
+**a-scene:**
+
+- **a-entity** `id = "fusca"`:
+
+    - **a-entity** `id = "rodas_do_fusca"`:    
+        
+        - `material = "cor: preto; metalicidade: 0.1"`
+        - `dimensoes = "aro: 20; largura: 10; quantidade: 4"`
+
+- **a-entity** `id = "moto"`:
+    
+    - `rodas = "quantidade : 2; aro: 40"`
+    - `material = "cor: vermelho; metalicidade: 0.8"`
+
+Vamos então criar nossa primeira entidade: o planeta Terra.
+
+2. Coloque a entidade abaixo dentro do elemento a-scene:
+
+    ```html 
+    <a-entity id="terra" geometry="primitive: sphere" material="color: blue"></a-entity>
+    ``` 
+
+Se fizermos o preview lateral para tentarmos observar o resultado, provavelmente não veremos nada. Isso ocorre, pois não estamos usando os óculos de realidade virtual. A melhor forma de interagir com a página gerada na tela do computador é escolhendo a opção *Preview in a new window*. Na página que foi aberta, devemos entrar no modo de inspeção (*Visual inspector*) ao digitar a combinação de teclas `<ctrl>` + `<alt>` + `i` ou `<ctrl>` + `<option>` + `i`.
+
+Cada botão do mouse quando mantido apertado permite rotacionar, transladar e aproximar/afastar a visão da cena. Ao clicar em uma entidade é possível também aferir e alterar os valores dos seus atributos. É possível até mesmo criar entidades novas e atribuir componentes no *Visual inspector*.
+
+Voltando à Terra, vamos "dar um talento" em nosso *pale blue dot*.[^1] Para isso, vamos usar uma imagem planificada da superfície da Terra e mapeá-la na esfera. Por sorte, o A-Frame faz isso muito diretamente para a gente. Vejamos como.
+
+## Carregando arquivos externos em nosso projeto STL
+
+O A-Frame possui um elemento chamado `<a-asset>` para pré-carregar todos os recursos (imagens, áudios, vídeos, etc) que sejam usados na página. Existem duas formas para fazer isso:
+
+- Carregando o recurso dentro do Glitch via *Files* no menu lateral de arquivos.
+- Indicando o endereço de internet (URL) do recurso caso ele esteja disponível.
+
+No momento, vamos usar a segunda opção.
+
+3. Clique com o botão direito do mouse sobre o mapa da Terra abaixo e copie o seu link.
+
+![https://en.wikipedia.org/wiki/World_map#/media/File:Blue_Marble_2002.png](1280px-Blue_Marble_2002.png)
+
+4. Dentro do `<a-scene>` inclua o elemento:
+
+    ```html
+    <a-assets>
+        <img id="mapa_terra" src="substitua_isto_pelo_endereço_da_imagem">
+    </a-assets>
+    ``` 
+
+5. Em seguida substitua o atributo *color* por *src* no componente *material* da entidade `terra`, usando como valor a `id` do mapa da Terra:
+
+    ```html
+    <a-entity id="terra"
+        geometry="primitive: sphere"
+        material="src: #mapa_terra">
+    </a-entity>
+    ``` 
+
+
+[^1]:
+    Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.

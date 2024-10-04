@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="João Teles">
 
-<title>Minicurso A-Frame VR para Ensino de Física e Astronomia</title>
+<title>3&nbsp; O projeto Sol-Terra-Lua – Minicurso A-Frame VR para Ensino de Física e Astronomia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./htmlbasico.html" rel="next">
+<link href="./referencias.html" rel="next">
+<link href="./htmlbasico.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Resumo</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./projetoSTL.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O projeto Sol-Terra-Lua</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -108,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Resumo</span></span></a>
   </div>
 </li>
@@ -120,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projetoSTL.html" class="sidebar-item-text sidebar-link">
+  <a href="./projetoSTL.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O projeto Sol-Terra-Lua</span></span></a>
   </div>
 </li>
@@ -140,10 +174,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#realidade-virtual-em-páginas-e-aplicativos-web" id="toc-realidade-virtual-em-páginas-e-aplicativos-web" class="nav-link active" data-scroll-target="#realidade-virtual-em-páginas-e-aplicativos-web"><span class="header-section-number">1</span> Realidade Virtual em páginas e aplicativos web</a></li>
-  <li><a href="#principais-características-do-a-frame" id="toc-principais-características-do-a-frame" class="nav-link" data-scroll-target="#principais-características-do-a-frame"><span class="header-section-number">2</span> Principais características do A-Frame</a></li>
-  <li><a href="#breve-introdução-ao-htmljavascript" id="toc-breve-introdução-ao-htmljavascript" class="nav-link" data-scroll-target="#breve-introdução-ao-htmljavascript"><span class="header-section-number">3</span> Breve introdução ao HTML/Javascript</a></li>
-  <li><a href="#aplicativo-sol-terra-lua-em-vr-com-o-a-frame" id="toc-aplicativo-sol-terra-lua-em-vr-com-o-a-frame" class="nav-link" data-scroll-target="#aplicativo-sol-terra-lua-em-vr-com-o-a-frame"><span class="header-section-number">4</span> Aplicativo Sol-Terra-Lua em VR com o A-Frame</a></li>
+  <li><a href="#elementos-html-do-a-frame" id="toc-elementos-html-do-a-frame" class="nav-link active" data-scroll-target="#elementos-html-do-a-frame"><span class="header-section-number">3.1</span> Elementos HTML do A-Frame</a></li>
+  <li><a href="#carregando-arquivos-externos-em-nosso-projeto-stl" id="toc-carregando-arquivos-externos-em-nosso-projeto-stl" class="nav-link" data-scroll-target="#carregando-arquivos-externos-em-nosso-projeto-stl"><span class="header-section-number">3.2</span> Carregando arquivos externos em nosso projeto STL</a></li>
   </ul>
 </nav>
     </div>
@@ -152,26 +184,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Minicurso A-Frame VR para Ensino de Física e Astronomia</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O projeto Sol-Terra-Lua</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Autor</div>
-    <div class="quarto-title-meta-contents">
-             <p>João Teles </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Data de Publicação</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">10 de maio de 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -181,45 +201,118 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="realidade-virtual-em-páginas-e-aplicativos-web" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Realidade Virtual em páginas e aplicativos web</h1>
+<p>Neste capítulo, aprenderemos o uso básico do <a href="https://aframe.io/">A-Frame</a> por meio do desenvolvimento de um projeto para ensino de Astronomia.</p>
+<p>No projeto Sol-Terra-Lua (abrev. STL) iremos:</p>
 <ul>
-<li>As vantagens, flexibilidade, alcance e potencial de aplicações web baseadas em HTML5/JS/CSS.</li>
-<li>Realidade Virtual em smartphones versus VR headsets. Focaremos no segundo.</li>
-<li>A API (Interface de Programação de Aplicativos) WebXR utilizada pelos headsets VR nas páginas web.</li>
-<li>Exemplos de Plataformas Web que utilizam WebXR:
+<li>Criar as esferas solar, terrestre e lunar no espaço tridimensional em realidade aumentada.</li>
+<li>Texturizar a superfície das esferas com os mapas dos respectivos astros.</li>
+<li>Estabelecer os tamanhos e posições dos astros de forma pertinente aos objetivos didáticos de uma atividade educacional.</li>
+<li>Implementar o movimento de rotação de cada astro em torno do próprio eixo.</li>
+<li>Definir o plano orbital da Terra e da Lua.</li>
+<li>Implementar o movimento orbital da Terra e da Lua.</li>
+<li>Dar interatividade aos objetos celestes.</li>
+</ul>
+<section id="elementos-html-do-a-frame" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="elementos-html-do-a-frame"><span class="header-section-number">3.1</span> Elementos HTML do A-Frame</h2>
+<p>Todo o desenvolvimento do projeto será realizado no <a href="./htmlbasico.html#disponibilizando-páginas-web-diretamente-na-internet-com-glitch">Glitch</a>.</p>
+<ol type="1">
+<li>Faça o login na sua conta do Glitch e remixe o projeto <a href="https://glitch.com/edit/#!/aframe-minicurso-vr">aframe-minicurso-vr</a></li>
+</ol>
+<p>Repare que o projeto está bastante vazio, com apenas o arquivo <code>index.html</code> e sem qualquer código Javascript explícito. Entretanto, temos dentro do <code>head</code> a inclusão do arquivo online:</p>
+<p><code>https://aframe.io/releases/1.6.0/aframe.min.js</code>.</p>
+<p>É esse arquivo, acessado remotamente, que disponibilizará o núcleo de funcionalidades do A-Frame.</p>
+<ol type="1">
+<li><p>O elemento HTML básico e obrigatório do A-Frame é o <em>a-scene</em>, o qual temos que incluir dentro do elemento <em>body</em>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<p>Dentro do <em>a-scene</em> todos os elementos espaciais do projeto serão incluídos. Esses elementos recebem o nome de <em>a-entity</em> (entidades). Cada entidade, por sua vez, terá uma série de propriedades, chamadas de <em>components</em> (componentes). Por fim, cada componente terá atributos que definirão as aparências e funcionalidades da entidade.</p>
+<p>Esse tipo de estruturação segue o modelo ECS (Entity-Component-System) que é alternativo ao modelo de classes e objetos. Ele se opõe ao sistema de hierarquização da programação orientada a objetos ao permitir maior modularização e inter-operacionalização dos componentes que podem ser aplicados diretamente em diferentes entidades.</p>
+<p>Eis um exemplo de uma estrutura ECS no A-Frame:</p>
+<p><strong>a-scene:</strong></p>
 <ul>
-<li>Three.js</li>
-<li>Babylon.js</li>
-<li>A-Frame</li>
+<li><p><strong>a-entity</strong> <code>id = "carro"</code>:</p>
+<ul>
+<li><code>rodas = "quantidade : 4; aro: 20"</code></li>
+<li><code>material = "cor: azul; metalicidade: 0.5"</code></li>
+</ul></li>
+<li><p><strong>a-entity</strong> <code>id = "moto"</code>:</p>
+<ul>
+<li><code>rodas = "quantidade : 2; aro: 40"</code></li>
+<li><code>material = "cor: vermelho; metalicidade: 0.8"</code></li>
 </ul></li>
 </ul>
-</section>
-<section id="principais-características-do-a-frame" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Principais características do A-Frame</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="carro_e_moto.webp" class="img-fluid figure-img"></p>
+<figcaption>Ilustração das <em>Entidades</em> carro e moto com seus <em>componentes</em> e <em>atributos</em> específicos (feita com DALL-E)</figcaption>
+</figure>
+</div>
+<p>Nesse exemplo, <em>carro</em> e <em>moto</em> são <strong><em>entidades</em></strong> distintas, mas <em>rodas</em> e <em>material</em> são <strong><em>componentes</em></strong> que podem ser compartilhados pelas diferentes entidades. Esses componentes irão se diferenciar por possuírem valores diferentes para os seus <strong><em>atributos</em></strong> (e.g.&nbsp;rodas com <code>quantidade : 2</code> ou <code>quantidade : 4</code>) e por estarem atrelados a diferentes entidades. Uma das vantages dessa abordagem ECS é que eu preciso programar o componente <em>rodas</em> somente uma vez e ele pode ser usado em diferentes veículos.</p>
+<p>Entidades podem ser aninhadas. Por exemplo, ao invés de tratar as rodas como sendo componentes, poderíamos considerar mais apropriado implementá-las na forma de uma entidade:</p>
+<p><strong>a-scene:</strong></p>
 <ul>
-<li>Filosofia</li>
-<li>Objetivos</li>
-<li>Usos</li>
-</ul>
-</section>
-<section id="breve-introdução-ao-htmljavascript" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Breve introdução ao HTML/Javascript</h1>
+<li><p><strong>a-entity</strong> <code>id = "fusca"</code>:</p>
 <ul>
-<li>Como se estrutura um arquivo HTML/Javascript básico</li>
-<li>Formas de rodar o arquivo HTML:
+<li><p><strong>a-entity</strong> <code>id = "rodas_do_fusca"</code>:</p>
 <ul>
-<li>Página local (editor de texto txt). Usaremos apenas para mostrar os passos iniciais do HTML/Javascript.</li>
-<li>Servidor web (usaremos o Glitch, mas existem inúmeros outros). Será usado para o desenvolvimento de todo o aplicativo deste minicurso.</li>
-<li>Servidor local (apenas mostraremos, ao final do minicurso, o caminho que estamos adotando em nossos projetos).</li>
+<li><code>material = "cor: preto; metalicidade: 0.1"</code></li>
+<li><code>dimensoes = "aro: 20; largura: 10; quantidade: 4"</code></li>
+</ul></li>
+</ul></li>
+<li><p><strong>a-entity</strong> <code>id = "moto"</code>:</p>
+<ul>
+<li><code>rodas = "quantidade : 2; aro: 40"</code></li>
+<li><code>material = "cor: vermelho; metalicidade: 0.8"</code></li>
 </ul></li>
 </ul>
+<p>Vamos então criar nossa primeira entidade: o planeta Terra.</p>
+<ol start="2" type="1">
+<li><p>Coloque a entidade abaixo dentro do elemento a-scene:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span><span class="ot"> geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span><span class="ot"> material</span><span class="op">=</span><span class="st">"color: blue"</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<p>Se fizermos o preview lateral para tentarmos observar o resultado, provavelmente não veremos nada. Isso ocorre, pois não estamos usando os óculos de realidade virtual. A melhor forma de interagir com a página gerada na tela do computador é escolhendo a opção <em>Preview in a new window</em>. Na página que foi aberta, devemos entrar no modo de inspeção (<em>Visual inspector</em>) ao digitar a combinação de teclas <code>&lt;ctrl&gt;</code> + <code>&lt;alt&gt;</code> + <code>i</code> ou <code>&lt;ctrl&gt;</code> + <code>&lt;option&gt;</code> + <code>i</code>.</p>
+<p>Cada botão do mouse quando mantido apertado permite rotacionar, transladar e aproximar/afastar a visão da cena. Ao clicar em uma entidade é possível também aferir e alterar os valores dos seus atributos. É possível até mesmo criar entidades novas e atribuir componentes no <em>Visual inspector</em>.</p>
+<p>Voltando à Terra, vamos “dar um talento” em nosso <em>pale blue dot</em>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Para isso, vamos usar uma imagem planificada da superfície da Terra e mapeá-la na esfera. Por sorte, o A-Frame faz isso muito diretamente para a gente. Vejamos como.</p>
 </section>
-<section id="aplicativo-sol-terra-lua-em-vr-com-o-a-frame" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Aplicativo Sol-Terra-Lua em VR com o A-Frame</h1>
-<p>Vamos aprender a usar o A-Frame através de um processo mão na massa de construção de um aplicativo VR para visualização da dinâmica do sistema Sol-Terra-Lua (STL).</p>
+<section id="carregando-arquivos-externos-em-nosso-projeto-stl" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="carregando-arquivos-externos-em-nosso-projeto-stl"><span class="header-section-number">3.2</span> Carregando arquivos externos em nosso projeto STL</h2>
+<p>O A-Frame possui um elemento chamado <code>&lt;a-asset&gt;</code> para pré-carregar todos os recursos (imagens, áudios, vídeos, etc) que sejam usados na página. Existem duas formas para fazer isso:</p>
+<ul>
+<li>Carregando o recurso dentro do Glitch via <em>Files</em> no menu lateral de arquivos.</li>
+<li>Indicando o endereço de internet (URL) do recurso caso ele esteja disponível.</li>
+</ul>
+<p>No momento, vamos usar a segunda opção.</p>
+<ol start="3" type="1">
+<li>Clique com o botão direito do mouse sobre o mapa da Terra abaixo e copie o seu link.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="1280px-Blue_Marble_2002.png" class="img-fluid figure-img"></p>
+<figcaption>https://en.wikipedia.org/wiki/World_map#/media/File:Blue_Marble_2002.png</figcaption>
+</figure>
+</div>
+<ol start="4" type="1">
+<li><p>Dentro do <code>&lt;a-scene&gt;</code> inclua o elemento:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_terra"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"substitua_isto_pelo_endereço_da_imagem"</span><span class="dt">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Em seguida substitua o atributo <em>color</em> por <em>src</em> no componente <em>material</em> da entidade <code>terra</code>, usando como valor a <code>id</code> do mapa da Terra:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -645,10 +738,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./htmlbasico.html" class="pagination-link" aria-label="HTML/Javascript básico">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">HTML/Javascript básico</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./htmlbasico.html" class="pagination-link" aria-label="HTML/Javascript básico">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">HTML/Javascript básico</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./referencias.html" class="pagination-link" aria-label="Referências">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Referências</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

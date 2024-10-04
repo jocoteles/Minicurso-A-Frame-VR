@@ -84,7 +84,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./referencias.html" rel="next">
+<link href="./projetoSTL.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -174,8 +174,14 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./projetoSTL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O projeto Sol-Terra-Lua</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./referencias.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Referências</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Referências</span></span></a>
   </div>
 </li>
     </ul>
@@ -221,11 +227,12 @@ div.csl-indent {
 </header>
 
 
+<p>Neste capítulo daremos uma noção bastante introdutória de como criar arquivos HTML/Javascript que podem ser carregados diretamente em um <em>browser</em> a partir de um arquivo local <em>txt</em> ou a partir de uma hospedagem na internet.</p>
 <section id="estrutura-básica-de-uma-página-html" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="estrutura-básica-de-uma-página-html"><span class="header-section-number">2.1</span> Estrutura básica de uma página HTML</h2>
 <section id="elementos-html" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="elementos-html"><span class="header-section-number">2.1.1</span> Elementos HTML</h3>
-<p>São incluídos com palavras reservadas na forma de <strong>tags</strong> HTML: <code>&lt;bla&gt;&lt;/bla&gt;</code> ou somente <code>&lt;blas&gt;</code>. Exemplos:</p>
+<p>Os elementos HTML são incluídos com palavras reservadas na forma de <strong>tags</strong> HTML: <code>&lt;bla&gt;&lt;/bla&gt;</code> ou somente <code>&lt;blas&gt;</code>. Exemplos:</p>
 <ul>
 <li>Títulos de seção: <code>&lt;h1&gt;Título&lt;/h1&gt;</code></li>
 <li>Parágrafos: <code>&lt;p&gt;Conteúdo do parágrafo&lt;/p&gt;</code></li>
@@ -375,6 +382,9 @@ Veja uma implementação mais precisa do código acima
 <span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Podemos criar arquivos txt para cada um dos três arquivos e abrir o arquivo HTML no navegador de internet como vínhamos fazendo até aqui. Entretanto, a partir de agora começaremos a colocar nossas páginas diretamente na Internet.</p>
+<p style="text-align:right">
+<a href="https://www.w3schools.com/">Aprender mais sobre HTML/Javascript/CSS</a>
+</p>
 </section>
 <section id="disponibilizando-páginas-web-diretamente-na-internet-com-glitch" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="disponibilizando-páginas-web-diretamente-na-internet-com-glitch"><span class="header-section-number">2.3</span> Disponibilizando páginas web diretamente na Internet com Glitch</h2>
@@ -388,7 +398,9 @@ Veja uma implementação mais precisa do código acima
 <p>Neste minicurso usaremos o <a href="https://glitch.com/">Glitch</a>.</p>
 <p>Glitch é uma plataforma online para desenvolvimento e hospedagem de aplicações web, permitindo edição colaborativa em tempo real diretamente no navegador. Páginas criadas no Glitch são disponibilizadas quase que instantaneamente em um endereço de internet de acesso público.</p>
 <p>Vamos começar a partir de um projeto básico que criamos para este minicurso.</p>
-<p>Acesse: <a href="https://glitch.com/edit/#!/fishy-foil-technosaurus">https://glitch.com/edit/#!/fishy-foil-technosaurus</a></p>
+<ol start="8" type="1">
+<li>Acesse: <a href="https://glitch.com/edit/#!/fishy-foil-technosaurus">https://glitch.com/edit/#!/fishy-foil-technosaurus</a></li>
+</ol>
 <p>Ao acessar esse projeto, você deverá observar a tela abaixo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -402,9 +414,9 @@ Veja uma implementação mais precisa do código acima
 <li>O painel de código à direita que mostra o conteúdo do arquivo escolhido no painel de arquivo.</li>
 </ul>
 <p>No canto inferior direito há o botão de <em>preview</em>, que renderiza (gera/compila) a página index.html que será mostrada para quem acessar a página no endereço público do projeto.</p>
-<ol start="8" type="1">
+<ol start="9" type="1">
 <li><p>Agora, antes de começar a editar e trabalhar em projetos no Glitch, é importante <a href="https://glitch.com/signin">criar uma conta</a> nele, pois isso permitirá acessar os projetos posteriormente.</p></li>
-<li><p>Após criar a conta acesse novamente a edição do projeto <a href="https://glitch.com/edit/#!/fishy-foil-technosaurus">fishy-foil-technosaurus</a> e clique no botão <em>Remix do Edit</em> localizado no canto superior direito.</p></li>
+<li><p>Após criar a conta, acesse novamente a edição do projeto <a href="https://glitch.com/edit/#!/fishy-foil-technosaurus">fishy-foil-technosaurus</a> e clique no botão <em>Remix do Edit</em> localizado no canto superior direito.</p></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Tarefa">
 <div class="callout-header d-flex align-content-center">
@@ -416,19 +428,21 @@ Tarefa
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol start="10" type="1">
-<li>A partir do <em>fishy-foil-technosaurus</em> remixado implemente o botão contador de clicadas que fizemos anteriormente no editor de texto.</li>
+<ol start="11" type="1">
+<li>A partir do <em>fishy-foil-technosaurus</em> remixado, implemente o botão contador de clicadas que fizemos anteriormente no editor de texto.</li>
 </ol>
 </div>
 </div>
 <p>Clicando em <em>Settings</em> no painel de arquivos e configurações você pode alterar o nome do projeto.</p>
 <p>Para finalizar, com o botão <em>Share</em> você pode compartilhar o seu projeto de três formas diferentes:</p>
 <ul>
-<li>A página web final (<em>Live site</em>): <a href="https://fishy-foil-technosaurus.glitch.me">https://fishy-foil-technosaurus.glitch.me</a></li>
-<li>A edição do código [<em>Code</em>]: <a href="https://glitch.com/edit/#!/fishy-foil-technosaurus">https://glitch.com/edit/#!/fishy-foil-technosaurus</a></li>
-<li>Página de apresentação [<em>Project Page</em>]: <a href="https://glitch.com/~fishy-foil-technosaurus">https://glitch.com/~fishy-foil-technosaurus</a></li>
+<li>Página web final (<em>Live site</em>): <a href="https://fishy-foil-technosaurus.glitch.me">https://fishy-foil-technosaurus.glitch.me</a></li>
+<li>Edição do código [<em>Code</em>]: <a href="https://glitch.com/edit/#!/fishy-foil-technosaurus">https://glitch.com/edit/#!/fishy-foil-technosaurus</a></li>
+<li>Apresentação do Projeto [<em>Project Page</em>]: <a href="https://glitch.com/~fishy-foil-technosaurus">https://glitch.com/~fishy-foil-technosaurus</a></li>
 </ul>
-<p><a href="https://help.glitch.com/hc/en-us">Mais sobre o Glitch.</a></p>
+<p style="text-align:right">
+<a href="https://help.glitch.com/hc/en-us">Aprender mais sobre o Glitch</a>
+</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -866,8 +880,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./referencias.html" class="pagination-link" aria-label="Referências">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Referências</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./projetoSTL.html" class="pagination-link" aria-label="O projeto Sol-Terra-Lua">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O projeto Sol-Terra-Lua</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

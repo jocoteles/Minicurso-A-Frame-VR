@@ -2,12 +2,13 @@ project:
   type: book
 
 book:
-  title: "Minicurso A-Frame VR"  
+  title: "Minicurso A-Frame VR para Ensino de Física e Astronomia"  
   author: "João Teles"
   date: "17/10/2024"
   chapters:        
     - index.qmd
     - htmlbasico.qmd
+    - projetoSTL.qmd
     - referencias.qmd  
 
 bibliography: references.bib

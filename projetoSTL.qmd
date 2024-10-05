@@ -101,9 +101,9 @@ Vamos então criar nossa primeira entidade: o planeta Terra.
     </a-entity>
     ``` 
 
-Se fizermos o preview lateral para tentarmos observar o resultado, provavelmente não veremos nada. Isso ocorre, pois não estamos usando os óculos de realidade virtual. A melhor forma de interagir com a página gerada na tela do computador é escolhendo a opção *Preview in a new window*. Na página que foi aberta, devemos entrar no modo de inspeção (*Visual inspector*) ao digitar a combinação de teclas `<ctrl>` + `<alt>` + `i` ou `<ctrl>` + `<option>` + `i`.
+Se fizermos o preview lateral para tentarmos observar o resultado, provavelmente não veremos nada. Isso ocorre, pois não estamos usando os óculos de realidade virtual. A melhor forma de interagir com a página gerada na tela do computador é escolhendo a opção *Preview in a new window*. Na página que foi aberta, devemos entrar no modo de inspeção ([Visual inspector](https://aframe.io/docs/1.6.0/introduction/visual-inspector-and-dev-tools.html#a-frame-inspector)) ao digitar a combinação de teclas `<ctrl>` + `<alt>` + `i`.
 
-Cada botão do mouse quando mantido apertado permite rotacionar, transladar e aproximar/afastar a visão da cena. Ao clicar em uma entidade é possível também aferir e alterar os valores dos seus atributos. É possível até mesmo criar entidades novas e atribuir componentes no *Visual inspector*.
+Cada botão do mouse quando mantido apertado permite rotacionar, transladar e aproximar/afastar a visão da cena. Ao clicar em uma entidade é possível também aferir e alterar os valores dos seus atributos. É possível até mesmo criar entidades novas e atribuir componentes no *Visual inspector*. Ao apertar a tecla `h` (*help*), temos acesso a todas as teclas de atalho.
 
 Voltando à Terra, vamos "dar um talento" em nosso *pale blue dot*.[^1] Para isso, usaremos uma imagem planificada da superfície da Terra para projetá-la na esfera. Por sorte, o A-Frame faz isso muito diretamente para a gente. Vejamos como.
 
@@ -118,7 +118,7 @@ No momento, vamos usar a segunda opção.
 
 3. Clique com o botão direito do mouse sobre o mapa da Terra abaixo e copie o seu link.
 
-![[https://upload.wikimedia.org/](https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png)](1280px-Blue_Marble_2002.png)
+![[Mapa terrestre planificado. Fonte: https://upload.wikimedia.org/](https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png)](1280px-Blue_Marble_2002.png)
 
 4. Dentro do `<a-scene>` inclua o elemento:
 
@@ -151,7 +151,7 @@ O A-Frame possui várias possibilidades de animação *built in* através do com
 - `loop`: se a animação deve ser reiniciada automaticamente após `dur` ms (`ture`ou `false`).
 - `easing`: a taxa de variação da propriedade (default: aumento quadrático = aceleração constante).
 
-Comecemos implementando a razão dos nossos dias e noites: a rotação da Terra em torno do próprio eixo.
+Comecemos implementando a rotação da Terra em torno do próprio eixo.
 
 6. Para isso inclua o seguinte componente `animation` na entidade `terra`:
 
@@ -164,13 +164,95 @@ Comecemos implementando a razão dos nossos dias e noites: a rotação da Terra 
     ```
     1. Componente `animation` para rotação da Terra.
 
-7. Recarregue a página de preview e entre no modo de inspeção (`<ctrl><alt>i`). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão de play ▶ no canto superior esquerdo. 
+7. Recarregue a página de preview e entre no modo de inspeção (`<ctrl><alt>i`). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão ▶ (*resume scene*) no canto superior esquerdo. 
 
-Assim, deveremos observar a Terra girando *ad eternum* (`loop: true`) com velocidade constante (`easing: linear`) e executando uma revolução a cada 10 segundos.
+Assim, deveremos observar a Terra girando *ad eternum* (`loop: true`) com velocidade constante (`easing: linear`) e executando uma revolução a cada 10 segundos (`dur: 10000`).
 
 ![](terra_girando.mp4){loop="true"}
 
-## Sistemas de referência
+## Sistemas de coordenadas no A-Frame
+
+Uma característica muito poderosa no A-Frame, é o conceito de sistemas de referências locais (referenciais), que é fácil de implementar quando você aninha uma `<a-entity>` dentro de outra.
+
+Pense que cada entidade tem seu próprio sistema de coordenadas (x, y, z), que define sua posição, rotação e escala. Quando uma `<a-entity>` está dentro de outra, dizemos que a entidade interna usa o sistema de referência local da entidade que a contém. Isso significa que qualquer transformação (movimento, rotação) aplicada à entidade "pai" afeta todas as suas "filhas" de forma relativa. Ou seja, quando criamos uma `<a-entity>`, não definimos apenas as propriedades do objeto 3D pelas suas componentes, mas também, implicitamente, criamos um sistema de coordenadas local.
+
+Podemos, ainda, criar uma `<a-entity>` "vazia", ou seja, sem componentes geométricos "plugados" nela. Nesse caso, ela serve exclusivamente como um sistema de coordenadas de referência para todas outras entidades que sejam aninhadas dentro dela.
+
+E o nosso projeto Sol-Terra-Lua se beneficia diretamente desse recurso. Vamos considerar uma `<a-entity>` que representa, exclusivamente, o referencial Terra e dentro dela outra `<a-entity>` que representa a Lua. Se você mover ou rotacionar o referencial Terra (a entidade "pai"), a Lua (a entidade "filha") será movida junto, mas ela ainda pode orbitar ao redor do referencial Terra se aplicarmos uma rotação à Lua individualmente. Assim, a Lua se move de duas maneiras: ela orbita o Sol ao "seguir" a Terra (movimento da entidade "pai") e orbita a Terra (movimento da entidade "filha").[^3]
+
+![Ao deslocar a `a-entity ref-Terra` (referencial "pai"), a `a-entity lua` (entidade filha) desloca-se conjuntamente. Ao deslocar a `a-entity lua`, a `a-entity ref-Terra` permanece inalterada.](referencial_terra.mp4){loop="true"}
+
+Portanto, o A-Frame é muito prático para simular cenários em que o movimento de um objeto depende de outro, como no caso de planetas em órbita, satélites, ou até objetos conectados em uma cadeia de eventos. Ao invés de ter que recalcular constantemente as posições de todos os objetos manualmente, o A-Frame faz isso automaticamente ao respeitar as hierarquias de aninhamento.
+
+## Cada astro em seu lugar
+
+Neste ponto, temos todos os elementos para a construção do sistema Sol-Terra-Lua.
+
+8. Primeiramente, vamos atualizar os nossos assets com as imagens das superfícies do Sol e da Lua:
+    
+    ```html
+    <a-assets>
+        <img id="mapa_sol" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Map_of_the_full_sun.jpg/1280px-Map_of_the_full_sun.jpg">
+        <img id="mapa_terra" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png">
+        <img id="mapa_lua" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Solarsystemscope_texture_8k_moon.jpg/1280px-Solarsystemscope_texture_8k_moon.jpg">
+    </a-assets>
+    ```
+
+Vamos criar os sistemas de coordenadas. O Sol será a entidade que comporá o sistema de coordenadas pai. Dentro dele, criaremos uma entidade para o referencial Terra e dentro deste o referencial Lua.
+
+9. Teremos, portanto, o seguinte aninhamento de sistemas de coordenadas:
+
+    ```html
+    <a-entity id="ref_sol">
+        <a-entity id="ref_terra">
+            <a-entity id="ref_lua">        
+            </a-entity>
+        </a-entity>    
+    </a-entity>
+    ```
+
+Vamos agora inserir cada astro em seu devido lugar e com o seu devido tamanho. Poderíamos respeitar a escala relativa de tamanhos, mas como o Sol é muito maior que a Terra (cerca de 100 vezes), vamos adotar uma escala intermediária para fins didáticos. O mesmo vale para as distâncias entre os astros (a distância Sol-Terra é cerca de 500 vezes maior que Terra-Lua).
+
+Usaremos as seguintes dimensões:
+
+- Distância Terra-Sol: 1,5 metros
+- Distância Terra-Lua: 0,5 metros
+- Diâmetro do Sol: 30 cm
+- Diâmetro da Terra: 15 cm
+- Diâmetro da Lua: 5 cm
+
+Para os diâmetros, usamos o atributo `radius` do componente `geometry` e para as distâncias usamos o componente `position`.
+
+10. As entidades de cada astro nos seus respectivos referenciais fica da seguinte forma:
+
+    ```html
+    <a-entity id="ref_sol" position="0 0 0">
+        
+        <a-entity id="sol"
+            geometry="primitive: sphere; radius: 0.3"
+            material="src: #mapa_sol">
+        </a-entity>
+        
+        <a-entity id="ref_terra"  position="1.5 0.0 0">
+          
+            <a-entity id="terra"
+                geometry="primitive: sphere; radius: 0.15"
+                material="src: #mapa_terra">
+            </a-entity>
+            
+            <a-entity id="ref_lua" position="0 0.0 0.5">
+                
+                <a-entity id="lua"
+                    geometry="primitive: sphere; radius: 0.05"
+                    material="src: #mapa_lua">
+                </a-entity>
+                
+            </a-entity>
+            
+        </a-entity>
+
+    </a-entity>
+    ```
 
 
 [^1]:
@@ -178,3 +260,6 @@ Assim, deveremos observar a Terra girando *ad eternum* (`loop: true`) com veloci
 
 [^2]:
     A expressão em italiano que significa "E, no entanto, ela se move" teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.
+
+[^3]:
+    Na verdade, a Lua não gira em tono da Terra, mas em torno do centro de massa do sistema Terra-Lua, assim como a própria Terra. Por motivos didáticos, usaremos o sistema de referência centrado na Terra para implementar o movimento orbital da Lua. Essa aproximação não é tão ruim, uma vez que o centro de massa do sistema está bem mais próximo da Terra do que da Lua.

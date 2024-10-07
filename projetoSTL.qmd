@@ -138,37 +138,6 @@ No momento, vamos usar a segunda opção.
     ``` 
     1. Atributo `src` no lugar de `color`.
 
-## Animando as coisas
-
-Como já dizia o sábio Galileu, "*Eppur si muove*".[^2] Vamos então pôr o mundo a girar.
-
-O A-Frame possui várias possibilidades de animação *built in* através do componente `animation`. Os atributos principais desse componente são:
-
-- `property`: a propriedade da entidade que será animada, e.g. ângulo de rotação, posição, grau de transparência, etc.
-- `from`: o valor inicial da propriedade (default: o valor atual).
-- `to`: o valor final da propriedade ao término da animação.
-- `dur`: duração da animação em milissegundos.
-- `loop`: se a animação deve ser reiniciada automaticamente após `dur` ms (`ture`ou `false`).
-- `easing`: a taxa de variação da propriedade (default: aumento quadrático = aceleração constante).
-
-Comecemos implementando a rotação da Terra em torno do próprio eixo.
-
-6. Para isso inclua o seguinte componente `animation` na entidade `terra`:
-
-    ```html
-    <a-entity id="terra"
-        geometry="primitive: sphere"
-        material="src: #mapa_terra"
-        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000, easing: linear"> <!-- <1> -->
-    </a-entity>
-    ```
-    1. Componente `animation` para rotação da Terra.
-
-7. Recarregue a página de preview e entre no modo de inspeção (`<ctrl><alt>i`). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão ▶ (*resume scene*) no canto superior esquerdo. 
-
-Assim, deveremos observar a Terra girando *ad eternum* (`loop: true`) com velocidade constante (`easing: linear`) e executando uma revolução a cada 10 segundos (`dur: 10000`).
-
-![](terra_girando.mp4){loop="true"}
 
 ## Sistemas de coordenadas no A-Frame
 
@@ -188,7 +157,7 @@ Portanto, o A-Frame é muito prático para simular cenários em que o movimento 
 
 Neste ponto, temos todos os elementos para a construção do sistema Sol-Terra-Lua.
 
-8. Primeiramente, vamos atualizar os nossos assets com as imagens das superfícies do Sol e da Lua:
+6. Primeiramente, vamos atualizar os nossos assets com as imagens das superfícies do Sol e da Lua:
     
     ```html
     <a-assets>
@@ -198,9 +167,9 @@ Neste ponto, temos todos os elementos para a construção do sistema Sol-Terra-L
     </a-assets>
     ```
 
-Vamos criar os sistemas de coordenadas. O Sol será a entidade que comporá o sistema de coordenadas pai. Dentro dele, criaremos uma entidade para o referencial Terra e dentro deste o referencial Lua.
+Vamos criar os sistemas de coordenadas. O Sol será a entidade que comporá o sistema de coordenadas pai. Dentro dele, criaremos uma entidade para o referencial Terra e, dentro deste, o referencial Lua.
 
-9. Teremos, portanto, o seguinte aninhamento de sistemas de coordenadas:
+7. Teremos, portanto, o seguinte aninhamento de sistemas de coordenadas:
 
     ```html
     <a-entity id="ref_sol">
@@ -221,9 +190,9 @@ Usaremos as seguintes dimensões:
 - Diâmetro da Terra: 15 cm
 - Diâmetro da Lua: 5 cm
 
-Para os diâmetros, usamos o atributo `radius` do componente `geometry` e para as distâncias usamos o componente `position`.
+Para os diâmetros, usamos o atributo `radius` do componente `geometry` e para as distâncias usamos o componente `position`. No A-Frame, a unidade de distância é o metro.
 
-10. As entidades de cada astro nos seus respectivos referenciais fica da seguinte forma:
+8. As entidades de cada astro nos seus respectivos referenciais fica da seguinte forma:
 
     ```html
     <a-entity id="ref_sol" position="0 0 0">
@@ -254,6 +223,71 @@ Para os diâmetros, usamos o atributo `radius` do componente `geometry` e para a
     </a-entity>
     ```
 
+## Animando as coisas
+
+Como já dizia o sábio Galileu, "*Eppur si muove*".[^2] Vamos então pôr o mundo a girar.
+
+O A-Frame possui várias possibilidades de animação *built in* através do componente `animation`. Os atributos principais desse componente são:
+
+- `property`: a propriedade da entidade que será animada, e.g. ângulo de rotação, posição, grau de transparência, etc.
+- `from`: o valor inicial da propriedade (default: o valor atual).
+- `to`: o valor final da propriedade ao término da animação.
+- `dur`: duração da animação em milissegundos.
+- `loop`: se a animação deve ser reiniciada automaticamente após `dur` ms (`ture`ou `false`).
+- `easing`: a taxa de variação da propriedade (default: aumento quadrático = aceleração constante).
+
+### Rotações em torno do próprio eixo
+
+Comecemos implementando a rotação da Terra em torno do próprio eixo.
+
+9. Para isso inclua o seguinte componente `animation` na entidade `terra`:
+
+    ```html
+    <a-entity id="terra"
+        geometry="primitive: sphere"
+        material="src: #mapa_terra"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"> <!-- <1> -->
+    </a-entity>
+    ```
+    1. Componente `animation` para rotação da Terra.
+
+10. Recarregue a página de preview e entre no modo de inspeção (`<ctrl><alt>i`). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão ▶ (*resume scene*) no canto superior esquerdo. 
+
+Assim, deveremos observar a Terra girando *ad eternum* (`loop: true`) com velocidade constante (`easing: linear`) e executando uma revolução (`to: 0 360 0`) a cada 10 segundos (`dur: 10000`).
+
+![](terra_girando.mp4){loop="true"}
+
+
+### Movimento orbital
+
+O movimento orbital será implementado pela rotação do sistema de coordenadas associado ao astro. Para isso, incluiremos o componente `animation` de rotação que agora rotacionará o astro não em torno do centro, mas em torno da posição dada pelo componente `position`
+
+11. Portanto, o movimento orbital da Terra será implementado por:
+
+    ```html
+        <a-entity id="ref_terra"
+            position="1.5 0.0 0"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear">
+    ```
+
+
+A @tbl-periodos contém os períodos de rotação e orbital dos três astros.
+
++-------+--------------------+--------------------+
+| Astro | Período de rotação | Período orbital    |
++=======+:===================+:===================+
+| Sol   | - real: 30 dias    | - não se aplica    |
+|       | - util: 50 s       | - não se aplica    | 
++-------+--------------------+--------------------+
+| Terra | - real: 24 horas   | - real: 365,3 dias |
+|       | - util: 10 s       | - util: 300 s      |
++-------+--------------------+--------------------+
+| Lua   | - real: 29,5 dias  | - real: 29,5 dias  |
+|       | - util: 30 s       | - util: 30 s       |
++-------+--------------------+--------------------+
+
+: Períodos dos astros em valores reais (real) e com os valores utilizados no projeto (util) {#tbl-periodos .striped .hover}
+
 
 [^1]:
     Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.
@@ -263,3 +297,6 @@ Para os diâmetros, usamos o atributo `radius` do componente `geometry` e para a
 
 [^3]:
     Na verdade, a Lua não gira em tono da Terra, mas em torno do centro de massa do sistema Terra-Lua, assim como a própria Terra. Por motivos didáticos, usaremos o sistema de referência centrado na Terra para implementar o movimento orbital da Lua. Essa aproximação não é tão ruim, uma vez que o centro de massa do sistema está bem mais próximo da Terra do que da Lua.
+
+[^4]:
+    O período do Sol se refere à rotação em relação às estrelas distantes, também chamado de período sideral. O período da Terra e da Lua correspondem ao período sinódico que é o período para que o astro volte à mesma posição em relação ao astro que ele orbita. 

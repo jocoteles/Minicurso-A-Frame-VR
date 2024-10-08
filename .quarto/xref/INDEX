@@ -1,29 +1,14 @@
 {
-  "summary.qmd": {
-    "summary.html": "e77be679"
+  "htmlbasico.qmd": {
+    "htmlbasico.html": "080842a1"
   },
   "index.qmd": {
-    "index.html": "3556d804",
-    "index.tex": "574272e3"
-  },
-  "intro.qmd": {
-    "intro.html": "17704f56"
-  },
-  "references.qmd": {
-    "references.html": "3a6ae312"
-  },
-  "resumo.qmd": {
-    "resumo.html": "9e2dc14e"
-  },
-  "referencias.qmd": {
-    "referencias.html": "f302c65e",
-    "referencias.tex": "66ebd9e8"
-  },
-  "htmlbasico.qmd": {
-    "htmlbasico.html": "99290a7b",
-    "htmlbasico.tex": "06dc2849"
+    "index.html": "24d8d56a"
   },
   "projetoSTL.qmd": {
-    "projetoSTL.html": "97916df3"
+    "projetoSTL.html": "d20fd14b"
+  },
+  "referencias.qmd": {
+    "referencias.html": "b445c320"
   }
 }

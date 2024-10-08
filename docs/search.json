@@ -1,15 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Minicurso A-Frame VR para Ensino de Física e Astronomia",
-    "section": "",
-    "text": "1 Realidade Virtual em páginas e aplicativos web\n\nAs vantagens, flexibilidade, alcance e potencial de aplicações web baseadas em HTML5/JS/CSS.\nRealidade Virtual em smartphones versus VR headsets. Focaremos no segundo.\nA API (Interface de Programação de Aplicativos) WebXR utilizada pelos headsets VR nas páginas web.\nExemplos de Plataformas Web que utilizam WebXR:\n\nThree.js\nBabylon.js\nA-Frame\n\n\n\n\n2 Principais características do A-Frame\n\nFilosofia\nObjetivos\nUsos\n\n\n\n3 Breve introdução ao HTML/Javascript\n\nComo se estrutura um arquivo HTML/Javascript básico\nFormas de rodar o arquivo HTML:\n\nPágina local (editor de texto txt). Usaremos apenas para mostrar os passos iniciais do HTML/Javascript.\nServidor web (usaremos o Glitch, mas existem inúmeros outros). Será usado para o desenvolvimento de todo o aplicativo deste minicurso.\nServidor local (apenas mostraremos, ao final do minicurso, o caminho que estamos adotando em nossos projetos).\n\n\n\n\n4 Aplicativo Sol-Terra-Lua em VR com o A-Frame\nVamos aprender a usar o A-Frame através de um processo mão na massa de construção de um aplicativo VR para visualização da dinâmica do sistema Sol-Terra-Lua (STL).",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Resumo</span>"
-    ]
-  },
-  {
     "objectID": "htmlbasico.html",
     "href": "htmlbasico.html",
     "title": "2  HTML/Javascript básico",
@@ -80,56 +70,6 @@
     ]
   },
   {
-    "objectID": "projetoSTL.html#footnotes",
-    "href": "projetoSTL.html#footnotes",
-    "title": "3  O projeto Sol-Terra-Lua",
-    "section": "",
-    "text": "Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.↩︎\nNa verdade, a Lua não gira em tono da Terra, mas em torno do centro de massa do sistema Terra-Lua, assim como a própria Terra. Por motivos didáticos, usaremos o sistema de referência centrado na Terra para implementar o movimento orbital da Lua. Essa aproximação não é tão ruim, uma vez que o centro de massa do sistema está bem mais próximo da Terra do que da Lua.↩︎\nA expressão em italiano que significa “E, no entanto, ela se move” teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.↩︎",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O projeto Sol-Terra-Lua</span>"
-    ]
-  },
-  {
-    "objectID": "referencias.html",
-    "href": "referencias.html",
-    "title": "4  Referências",
-    "section": "",
-    "text": "Silva, Nelson Canzian da. 2016. Física Com JavaScript. Depto de\nFísica - UFSC. https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Referências</span>"
-    ]
-  },
-  {
-    "objectID": "projetoSTL.html#usando-animações-prontas-do-a-frame",
-    "href": "projetoSTL.html#usando-animações-prontas-do-a-frame",
-    "title": "3  O projeto Sol-Terra-Lua",
-    "section": "3.3 Usando animações prontas do A-Frame",
-    "text": "3.3 Usando animações prontas do A-Frame\nComo já dizia o sábio Galileu, “Eppur si muove”.2 Vamos então pôr o mundo a girar.\nO A-Frame possui várias possibilidades de animação built in através do componente animation. Os atributos principais desse componente são:\n\nproperty: a propriedade da entidade que será animada, e.g. ângulo de rotação, posição, grau de transparência, etc.\nfrom: o valor inicial da propriedade (default: o valor atual).\nto: o valor final da propriedade ao término da animação.\ndur: duração da animação em milissegundos.\nloop: se a animação deve ser reiniciada automaticamente após dur ms (tureou false).\neasing: a taxa de variação da propriedade (default: aumento quadrático = aceleração constante).\n\nComecemos implementando a razão dos nossos dias e noites: a rotação da Terra em torno do próprio eixo.\n\nPara isso inclua o seguinte componente animation na entidade terra:\n&lt;a-entity id=\"terra\"\n    geometry=\"primitive: sphere\"\n    material=\"src: #mapa_terra\"\n1    animation=\"property: rotation; to: 0 360 0; loop: true; dur: 10000, easing: linear\"&gt;\n&lt;/a-entity&gt;\n\n1\n\nComponente animation para rotação da Terra.\n\n\nRecarregue a página de preview e entre no modo de inspeção (&lt;ctrl&gt;&lt;alt&gt;i). A Terra ainda estará parada. Isso ocorre, pois devemos acionar o botão de play () no canto superior esquerdo. Assim, deveremos observar a Terra girando ad eternum e executando uma revolução a cada 10 segundos.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O projeto Sol-Terra-Lua</span>"
-    ]
-  },
-  {
-    "objectID": "projetoSTL.html#animando-as-coisas",
-    "href": "projetoSTL.html#animando-as-coisas",
-    "title": "3  O projeto Sol-Terra-Lua",
-    "section": "3.5 Animando as coisas",
-    "text": "3.5 Animando as coisas\nComo já dizia o sábio Galileu, “Eppur si muove”.3 Vamos então pôr o mundo a girar.\nO A-Frame possui várias possibilidades de animação built in através do componente animation. Os atributos principais desse componente são:\n\nproperty: a propriedade da entidade que será animada, e.g. ângulo de rotação, posição, grau de transparência, etc.\nfrom: o valor inicial da propriedade (default: o valor atual).\nto: o valor final da propriedade ao término da animação.\ndur: duração da animação em milissegundos.\nloop: se a animação deve ser reiniciada automaticamente após dur ms (tureou false).\neasing: a taxa de variação da propriedade (default: aumento quadrático = aceleração constante).\n\n\n3.5.1 Rotações em torno do próprio eixo\nComecemos implementando a rotação da Terra em torno do próprio eixo.\n\nPara isso, inclua o seguinte componente animation na entidade terra:\n&lt;a-entity id=\"terra\"\n    geometry=\"primitive: sphere\"\n    material=\"src: #mapa_terra\"\n1    animation=\"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear\"&gt;\n&lt;/a-entity&gt;\n\n1\n\nComponente animation para rotação da Terra.\n\n\nRecarregue a página de preview e entre no modo de inspeção (&lt;ctrl&gt;&lt;alt&gt;i). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão ▶ (resume scene) no canto superior esquerdo.\n\nAssim, deveremos observar a Terra girando ad aeternum (loop: true) com velocidade constante (easing: linear) e executando uma revolução (to: 0 360 0) a cada 10 segundos (dur: 10000).\n\n\nVideo\nTerra em movimento de rotação com o componente animation.\n\n\n\n\n3.5.2 Movimento orbital\nO movimento orbital será implementado pela rotação do sistema de coordenadas associado ao astro. Para isso, incluiremos o componente animation que agora rotacionará o astro não em torno do centro, mas em torno da posição dada pelo componente position na a-entity interna.\nDa mesma forma que fizemos com as dimensões espaciais, não seremos fieis às proporções temporais da dinâmica dos astros. A Tabela 3.2 contém os períodos de rotação e orbital que escolhemos para os três astros.\n\n\n\nTabela 3.2: Períodos dos astros em valores reais (real) e com os valores utilizados no projeto (util)\n\n\n\n\n\n\n\n\n\n\nAstro\nPeríodo de rotação\nPeríodo orbital\n\n\n\n\nSol\n\nreal: 30 dias\nutil: 50 s\n\n\nnão se aplica\nnão se aplica\n\n\n\nTerra\n\nreal: 24 horas\nutil: 10 s\n\n\nreal: 365,3 dias\nutil: 300 s\n\n\n\nLua\n\nreal: 29,5 dias\nutil: 30 s\n\n\nreal: 29,5 dias\nutil: 30 s\n\n\n\n\n\n\n\n\nPortanto, o movimento orbital da Terra será implementado por:\n    &lt;a-entity id=\"ref_terra\" animation=\"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear\"&gt;&lt;a-entity position=\"1.5 0.0 0\"&gt;\n\nAssim, deveremos observar a Terra orbitando em torno do Sol ad aeternum (loop: true) com velocidade constante (easing: linear) e executando uma revolução (to: 0 360 0) a cada 300 segundos (dur: 300000).\n\nAplicando as animações correspondentes à Lua, o sistema STL completo fica da seguinte forma:\n    &lt;a-entity id=\"ref_sol\" position=\"0 0 0\"&gt;\n\n        &lt;a-entity id=\"sol\"\n            geometry=\"primitive: sphere; radius: 0.3\"\n            material=\"src: #mapa_sol\"&gt;\n        &lt;/a-entity&gt;\n\n        &lt;a-entity id=\"ref_terra\" animation=\"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear\"&gt;&lt;a-entity position=\"1.5 0.0 0\"&gt;\n\n            &lt;a-entity id=\"terra\"\n                geometry=\"primitive: sphere; radius: 0.15\"\n                material=\"src: #mapa_terra\"\n                animation=\"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear\"&gt;\n            &lt;/a-entity&gt;\n\n            &lt;a-entity id=\"ref_lua\" animation=\"property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear\"&gt;&lt;a-entity position=\"0 0.0 0.5\"&gt;\n\n                &lt;a-entity id=\"lua\"\n                    geometry=\"primitive: sphere; radius: 0.05\"\n                    material=\"src: #mapa_lua\"&gt;\n                &lt;/a-entity&gt;\n\n            &lt;/a-entity&gt;&lt;/a-entity&gt;\n\n        &lt;/a-entity&gt;&lt;/a-entity&gt;\n\n    &lt;/a-entity&gt;\n\nHá algo importante a observar no código acima. Não implementamos o animation associado à rotação da Lua em torno do próprio eixo. Isso significa que essa rotação não existe? Existe sim! Sabemos que devido ao efeito de “travamento” gravitacional pelas forças de maré atuando ao longo de milhões de anos, a Lua orbita com a mesma face voltada para Terra. Isso implica que o período de translação coincide com o de rotação. Quando fazemos a rotação de um sistema de referência no A-Frame, esse “travamento” ocorre por padrão, por isso que não precisamos incluir a animation correspondente.\n\n\nVideo\nSistema Sol-Terra-Lua com todos os movimentos – de rotação e orbital – implementados.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O projeto Sol-Terra-Lua</span>"
-    ]
-  },
-  {
-    "objectID": "projetoSTL.html#sistemas-de-referência",
-    "href": "projetoSTL.html#sistemas-de-referência",
-    "title": "3  O projeto Sol-Terra-Lua",
-    "section": "3.4 Sistemas de referência",
-    "text": "3.4 Sistemas de referência",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O projeto Sol-Terra-Lua</span>"
-    ]
-  },
-  {
     "objectID": "projetoSTL.html#sistemas-de-coordenadas-no-a-frame",
     "href": "projetoSTL.html#sistemas-de-coordenadas-no-a-frame",
     "title": "3  O projeto Sol-Terra-Lua",
@@ -150,6 +90,16 @@
     ]
   },
   {
+    "objectID": "projetoSTL.html#animando-as-coisas",
+    "href": "projetoSTL.html#animando-as-coisas",
+    "title": "3  O projeto Sol-Terra-Lua",
+    "section": "3.5 Animando as coisas",
+    "text": "3.5 Animando as coisas\nComo já dizia o sábio Galileu, “Eppur si muove”.3 Vamos então pôr o mundo a girar.\nO A-Frame possui várias possibilidades de animação built in através do componente animation. Os atributos principais desse componente são:\n\nproperty: a propriedade da entidade que será animada, e.g. ângulo de rotação, posição, grau de transparência, etc.\nfrom: o valor inicial da propriedade (default: o valor atual).\nto: o valor final da propriedade ao término da animação.\ndur: duração da animação em milissegundos.\nloop: se a animação deve ser reiniciada automaticamente após dur ms (tureou false).\neasing: a taxa de variação da propriedade (default: aumento quadrático = aceleração constante).\n\n\n3.5.1 Rotações em torno do próprio eixo\nComecemos implementando a rotação da Terra em torno do próprio eixo.\n\nPara isso, inclua o seguinte componente animation na entidade terra:\n&lt;a-entity id=\"terra\"\n    geometry=\"primitive: sphere\"\n    material=\"src: #mapa_terra\"\n1    animation=\"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear\"&gt;\n&lt;/a-entity&gt;\n\n1\n\nComponente animation para rotação da Terra.\n\n\nRecarregue a página de preview e entre no modo de inspeção (&lt;ctrl&gt;&lt;alt&gt;i). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão ▶ (resume scene) no canto superior esquerdo.\n\nAssim, deveremos observar a Terra girando ad aeternum (loop: true) com velocidade constante (easing: linear) e executando uma revolução (to: 0 360 0) a cada 10 segundos (dur: 10000).\n\n\nVideo\nTerra em movimento de rotação com o componente animation.\n\n\n\n\n3.5.2 Movimento orbital\nO movimento orbital será implementado pela rotação do sistema de coordenadas associado ao astro. Para isso, incluiremos o componente animation que agora rotacionará o astro não em torno do centro, mas em torno da posição dada pelo componente position na a-entity interna.\nDa mesma forma que fizemos com as dimensões espaciais, não seremos fieis às proporções temporais da dinâmica dos astros. A Tabela 3.2 contém os períodos de rotação e orbital que escolhemos para os três astros.\n\n\n\nTabela 3.2: Períodos dos astros em valores reais (real) e com os valores utilizados no projeto (util)\n\n\n\n\n\n\n\n\n\n\nAstro\nPeríodo de rotação\nPeríodo orbital\n\n\n\n\nSol\n\nreal: 30 dias\nutil: 50 s\n\n\nnão se aplica\nnão se aplica\n\n\n\nTerra\n\nreal: 24 horas\nutil: 10 s\n\n\nreal: 365,3 dias\nutil: 300 s\n\n\n\nLua\n\nreal: 29,5 dias\nutil: 30 s\n\n\nreal: 29,5 dias\nutil: 30 s\n\n\n\n\n\n\n\n\nPortanto, o movimento orbital da Terra será implementado por:\n    &lt;a-entity id=\"ref_terra\" animation=\"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear\"&gt;&lt;a-entity position=\"1.5 0.0 0\"&gt;\n\nAssim, deveremos observar a Terra orbitando em torno do Sol ad aeternum (loop: true) com velocidade constante (easing: linear) e executando uma revolução (to: 0 360 0) a cada 300 segundos (dur: 300000).\n\nAplicando as animações correspondentes à Lua, o sistema STL completo fica da seguinte forma:\n    &lt;a-entity id=\"ref_sol\" position=\"0 0 0\"&gt;\n\n        &lt;a-entity id=\"sol\"\n            geometry=\"primitive: sphere; radius: 0.3\"\n            material=\"src: #mapa_sol\"&gt;\n        &lt;/a-entity&gt;\n\n        &lt;a-entity id=\"ref_terra\" animation=\"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear\"&gt;&lt;a-entity position=\"1.5 0.0 0\"&gt;\n\n            &lt;a-entity id=\"terra\"\n                geometry=\"primitive: sphere; radius: 0.15\"\n                material=\"src: #mapa_terra\"\n                animation=\"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear\"&gt;\n            &lt;/a-entity&gt;\n\n            &lt;a-entity id=\"ref_lua\" animation=\"property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear\"&gt;&lt;a-entity position=\"0 0.0 0.5\"&gt;\n\n                &lt;a-entity id=\"lua\"\n                    geometry=\"primitive: sphere; radius: 0.05\"\n                    material=\"src: #mapa_lua\"&gt;\n                &lt;/a-entity&gt;\n\n            &lt;/a-entity&gt;&lt;/a-entity&gt;\n\n        &lt;/a-entity&gt;&lt;/a-entity&gt;\n\n    &lt;/a-entity&gt;\n\nHá algo importante a observar no código acima. Não implementamos o animation associado à rotação da Lua em torno do próprio eixo. Isso significa que essa rotação não existe? Existe sim! Sabemos que devido ao efeito de “travamento” gravitacional pelas forças de maré atuando ao longo de milhões de anos, a Lua orbita com a mesma face voltada para Terra. Isso implica que o período de translação coincide com o de rotação. Quando fazemos a rotação de um sistema de referência no A-Frame, esse “travamento” ocorre por padrão, por isso que não precisamos incluir a animation correspondente.\n\n\nVideo\nSistema Sol-Terra-Lua com todos os movimentos – de rotação e orbital – implementados.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O projeto Sol-Terra-Lua</span>"
+    ]
+  },
+  {
     "objectID": "projetoSTL.html#refinando-o-sistema",
     "href": "projetoSTL.html#refinando-o-sistema",
     "title": "3  O projeto Sol-Terra-Lua",
@@ -157,6 +107,26 @@
     "text": "3.6 Refinando o sistema\nSe quisermos explorar conceitos como estações do ano, fases da Lua e eclipses, existem certos detalhes do movimento dos astros que podemos abrir mão, como a excentricidade das órbitas, o movimento em torno do centro de massa ao invés do centro do astro, movimento de precessão e nutação, entre outros. Mas alguns são essenciais e estão na origem e geram as especificidades importantes daqueles fenômenos. São eles: (i) a inclinação do eixo de rotação da Terra e (ii) a inclinação do plano da órbita da Lua em torno da Terra em relação ao plano da órbita da Terra em torno do Sol.\n\n3.6.1 Inclinação do eixo de rotação da Terra\nConforme explicamos na seção Seção 3.5.2, a rotação de uma a-entity fora de centro no A-Frame ocorre de forma “travada”. Isso significa que uma volta completa do astro em torno do centro também causa uma volta completa do astro em torno do próprio eixo. Para entender melhor esse efeito, observe o vídeo 1 em que a Terra é vista orbitando o Sol de perfil aplicando animation somente à a-entity ref-terra e sem aplicar animation de rotação em torno do próprio eixo:\n    &lt;a-entity id=\"ref_terra\" animation=\"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear\"&gt;&lt;a-entity position=\"1.5 0.0 0\"&gt;\n    \n        &lt;a-entity id=\"terra\"\n            geometry=\"primitive: sphere; radius: 0.15\"\n            material=\"src: #mapa_terra\"&gt;\n        &lt;/a-entity&gt;\n                            \n    &lt;/a-entity&gt;&lt;/a-entity&gt;\n\n\nVideo\nIlustração do movimento orbital da Terra usando somente o animation da a-entity ref-terra. A cada volta na órbita a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>O projeto Sol-Terra-Lua</span>"
+    ]
+  },
+  {
+    "objectID": "projetoSTL.html#footnotes",
+    "href": "projetoSTL.html#footnotes",
+    "title": "3  O projeto Sol-Terra-Lua",
+    "section": "",
+    "text": "Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.↩︎\nNa verdade, a Lua não gira em tono da Terra, mas em torno do centro de massa do sistema Terra-Lua, assim como a própria Terra. Por motivos didáticos, usaremos o sistema de referência centrado na Terra para implementar o movimento orbital da Lua. Essa aproximação não é tão ruim, uma vez que o centro de massa do sistema está bem mais próximo da Terra do que da Lua.↩︎\nA expressão em italiano que significa “E, no entanto, ela se move” teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O projeto Sol-Terra-Lua</span>"
+    ]
+  },
+  {
+    "objectID": "referencias.html",
+    "href": "referencias.html",
+    "title": "4  Referências",
+    "section": "",
+    "text": "Silva, Nelson Canzian da. 2016. Física Com JavaScript. Depto de\nFísica - UFSC. https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Referências</span>"
     ]
   }
 ]

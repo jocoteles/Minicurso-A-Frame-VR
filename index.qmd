@@ -27,7 +27,7 @@ lang: pt
     - Servidor web (usaremos o Glitch, mas existem inúmeros outros). Será usado para o desenvolvimento de todo o aplicativo deste minicurso.
     - Servidor local (apenas mostraremos, ao final do minicurso, o caminho que estamos adotando em nossos projetos).
 
-# Aplicativo Sol-Terra-Lua em VR com o A-Frame 
+# Aplicativo Sol-Terra-Lua em VR com o A-Frame
 
 Vamos aprender a usar o A-Frame através de um processo mão na massa de construção de um aplicativo VR para visualização da dinâmica do sistema Sol-Terra-Lua (STL).
 

@@ -217,8 +217,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#cada-astro-em-seu-lugar" id="toc-cada-astro-em-seu-lugar" class="nav-link" data-scroll-target="#cada-astro-em-seu-lugar"><span class="header-section-number">3.4</span> Cada astro em seu lugar</a></li>
   <li><a href="#animando-as-coisas" id="toc-animando-as-coisas" class="nav-link" data-scroll-target="#animando-as-coisas"><span class="header-section-number">3.5</span> Animando as coisas</a>
   <ul class="collapse">
-  <li><a href="#rotações-em-torno-do-próprio-eixo" id="toc-rotações-em-torno-do-próprio-eixo" class="nav-link" data-scroll-target="#rotações-em-torno-do-próprio-eixo"><span class="header-section-number">3.5.1</span> Rotações em torno do próprio eixo</a></li>
-  <li><a href="#sec-movimento_orbital" id="toc-sec-movimento_orbital" class="nav-link" data-scroll-target="#sec-movimento_orbital"><span class="header-section-number">3.5.2</span> Movimento orbital</a></li>
+  <li><a href="#sec-movimento_orbital" id="toc-sec-movimento_orbital" class="nav-link" data-scroll-target="#sec-movimento_orbital"><span class="header-section-number">3.5.1</span> Movimento orbital</a></li>
+  <li><a href="#movimento-de-rotação" id="toc-movimento-de-rotação" class="nav-link" data-scroll-target="#movimento-de-rotação"><span class="header-section-number">3.5.2</span> Movimento de rotação</a></li>
   </ul></li>
   <li><a href="#refinando-o-sistema" id="toc-refinando-o-sistema" class="nav-link" data-scroll-target="#refinando-o-sistema"><span class="header-section-number">3.6</span> Refinando o sistema</a>
   <ul class="collapse">
@@ -257,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Estabelecer os tamanhos e posições dos astros de forma pertinente aos objetivos didáticos de uma atividade educacional.</li>
 <li>Implementar o movimento de rotação de cada astro em torno do próprio eixo.</li>
 <li>Definir o plano orbital da Terra e da Lua.</li>
-<li>Implementar o movimento orbital da Terra e da Lua.</li>
+<li>Implementar o movimento orbital de translação da Terra e da Lua.</li>
 <li>Dar interatividade aos objetos celestes.</li>
 </ul>
 <section id="elementos-html-do-a-frame" class="level2" data-number="3.1">
@@ -277,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 <p>Dentro do <code>&lt;a-scene&gt;</code> todos os elementos espaciais do projeto serão incluídos. Esses elementos recebem o nome de <code>&lt;a-entity&gt;</code> (<a href="https://aframe.io/docs/1.6.0/core/entity.html">Entidades</a>). Cada entidade, por sua vez, terá uma série de propriedades, chamadas de <em>components</em> (<a href="https://aframe.io/docs/1.6.0/core/component.html">Componentes</a>). Por fim, cada componente terá <em>atributos</em> que definirão as aparências e funcionalidades da entidade.</p>
-<p>Esse tipo de estruturação segue o modelo ECS (Entity-Component-System) que é alternativo ao modelo de classes e objetos. Ele se opõe ao sistema de hierarquização da programação orientada a objetos ao permitir maior modularização e inter-operacionalização dos componentes que podem ser aplicados diretamente em diferentes entidades.</p>
+<p>Esse tipo de estruturação segue o modelo ECS (<a href="https://aframe.io/docs/1.6.0/introduction/entity-component-system.html">Entity-Component-System</a>) que é alternativo ao modelo de classes e objetos. Ele se opõe ao sistema de hierarquização da programação orientada a objetos ao permitir maior modularização e inter-operacionalização dos componentes que podem ser aplicados diretamente em diferentes entidades.</p>
 <p>De forma abstrata, uma estrutura ECS no A-Frame poderia ser algo assim:</p>
 <p><strong>Cena:</strong></p>
 <ul>
@@ -312,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Ilustração das <em>Entidades</em> carro e moto com seus <em>componentes</em> e <em>atributos</em> específicos (feita com DALL-E)</figcaption>
 </figure>
 </div>
-<p>Nesse exemplo, <em>carro</em> e <em>moto</em> são <strong><em>entidades</em></strong> distintas, mas <em>rodas</em> e <em>material</em> são <strong><em>componentes</em></strong> que podem ser compartilhados pelas diferentes entidades. Esses componentes irão se diferenciar por possuírem valores diferentes para os seus <strong><em>atributos</em></strong> (e.g.&nbsp;rodas com <code>quantidade : 2</code> ou <code>quantidade : 4</code>) e por estarem atrelados a diferentes entidades. Uma das vantages dessa abordagem ECS é que eu preciso programar o componente <em>rodas</em> somente uma vez e ele pode ser usado em diferentes veículos.</p>
+<p>Nesse exemplo, <em>carro</em> e <em>moto</em> são <strong><em>entidades</em></strong> distintas, mas <em>rodas</em> e <em>material</em> são <strong><em>componentes</em></strong> que podem ser usados pelas diferentes entidades. Esses componentes irão se diferenciar por possuírem valores diferentes para os seus <strong><em>atributos</em></strong> (e.g.&nbsp;rodas com <code>quantidade : 2</code> ou <code>quantidade : 4</code>) e por estarem atrelados a diferentes entidades. Uma das vantages dessa abordagem ECS é que eu preciso programar o componente <em>rodas</em> somente uma vez e ele pode ser usado em diferentes veículos.</p>
 <p>Entidades podem ser aninhadas. Por exemplo, ao invés de tratar as rodas como sendo componentes, poderíamos considerar mais apropriado implementá-las na forma de uma entidade:</p>
 <p><strong>a-scene:</strong></p>
 <ul>
@@ -365,28 +365,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_terra"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"substitua_isto_pelo_endereço_da_imagem"</span><span class="dt">&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Em seguida substitua o atributo <em>color</em> por <em>src</em> no componente <em>material</em> da entidade <code>terra</code>, usando como valor a <code>id</code> do mapa da Terra:</p>
-<div class="sourceCode" id="annotated-cell-5"><pre class="sourceCode html code-annotation-code code-with-copy code-annotated"><code class="sourceCode html"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
-<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
-<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-10"><pre class="sourceCode html code-annotation-code code-with-copy code-annotated"><code class="sourceCode html"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="annotated-cell-10-2"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-10-3" class="code-annotation-target"><a href="#annotated-cell-10-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
+<span id="annotated-cell-10-4"><a href="#annotated-cell-10-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="1">Atributo <code>src</code> no lugar de <code>color</code>.</span>
+<span data-code-cell="annotated-cell-10" data-code-lines="3" data-code-annotation="1">Atributo <code>src</code> no lugar de <code>color</code>.</span>
 </dd>
 </dl></li>
 </ol>
 </section>
 <section id="sistemas-de-coordenadas-no-a-frame" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="sistemas-de-coordenadas-no-a-frame"><span class="header-section-number">3.3</span> Sistemas de coordenadas no A-Frame</h2>
-<p>Uma característica muito poderosa no A-Frame, é o conceito de sistemas de referências locais (referenciais), que é fácil de implementar quando você aninha uma <code>&lt;a-entity&gt;</code> dentro de outra.</p>
+<p>Uma característica muito útil no A-Frame, é o conceito de sistemas de coordenadas locais (também chamados de referenciais), que é fácil de implementar quando você aninha uma <code>&lt;a-entity&gt;</code> dentro de outra.</p>
 <p>Pense que cada entidade tem seu próprio sistema de coordenadas (x, y, z), que define sua posição, rotação e escala. Quando uma <code>&lt;a-entity&gt;</code> está dentro de outra, dizemos que a entidade interna usa o sistema de referência local da entidade que a contém. Isso significa que qualquer transformação (movimento, rotação) aplicada à entidade “pai” afeta todas as suas “filhas” de forma relativa. Ou seja, quando criamos uma <code>&lt;a-entity&gt;</code>, não definimos apenas as propriedades do objeto 3D pelas suas componentes, mas também, implicitamente, criamos um sistema de coordenadas local.</p>
-<p>Podemos, ainda, criar uma <code>&lt;a-entity&gt;</code> “vazia”, ou seja, sem componentes geométricos “plugados” nela. Nesse caso, ela serve exclusivamente como um sistema de coordenadas de referência para todas outras entidades que sejam aninhadas dentro dela.</p>
-<p>E o nosso projeto Sol-Terra-Lua se beneficia diretamente desse recurso. Vamos considerar uma <code>&lt;a-entity&gt;</code> que representa, exclusivamente, o referencial Terra e dentro dela outra <code>&lt;a-entity&gt;</code> que representa a Lua. Se você mover ou rotacionar o referencial Terra (a entidade “pai”), a Lua (a entidade “filha”) será movida junto, mas ela ainda pode orbitar ao redor do referencial Terra se aplicarmos uma rotação à Lua individualmente. Assim, a Lua se move de duas maneiras: ela orbita o Sol ao “seguir” a Terra (movimento da entidade “pai”) e orbita a Terra (movimento da entidade “filha”).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Podemos, ainda, criar uma <code>&lt;a-entity&gt;</code> “vazia”, ou seja, sem componentes geométricos como componentes dela. Nesse caso, ela serve exclusivamente como um sistema de coordenadas de referência para todas outras entidades que sejam aninhadas dentro dela.</p>
+<p>E o nosso projeto Sol-Terra-Lua se beneficia diretamente desse recurso. Vamos considerar uma <code>&lt;a-entity&gt;</code> que representa, exclusivamente, o referencial Terra (<code>ref_terra</code>) e dentro dela outra <code>&lt;a-entity&gt;</code> que representa a Lua. Se você mover ou rotacionar o referencial Terra (a entidade “pai”), a Lua (a entidade “filha”) será movida junto, mas ela ainda pode orbitar ao redor do referencial Terra se aplicarmos uma rotação à Lua individualmente. Assim, a Lua se move de duas maneiras: ela orbita o Sol ao “seguir” a Terra (movimento da entidade “pai”) e orbita a Terra (movimento da entidade “filha”).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><video src="referencial_terra.mp4" class="img-fluid" loop="true" controls=""><a href="referencial_terra.mp4">Video</a></video></p>
-<figcaption>Ao deslocar a <code>a-entity ref-Terra</code> (referencial “pai”), a <code>a-entity lua</code> (entidade filha) desloca-se conjuntamente. Ao deslocar a <code>a-entity lua</code>, a <code>a-entity ref-Terra</code> permanece inalterada.</figcaption>
+<figcaption>Ao deslocar a <code>a-entity ref-Terra</code> (referencial “pai”), a <code>a-entity lua</code> (entidade filha) desloca-se conjuntamente. Ao deslocar a <code>a-entity lua</code>, a <code>a-entity ref_Terra</code> permanece inalterada.</figcaption>
 </figure>
 </div>
 <p>Portanto, o A-Frame é muito prático para simular cenários em que o movimento de um objeto depende de outro, como no caso de planetas em órbita, satélites, ou até objetos conectados em uma cadeia de eventos. Ao invés de ter que recalcular constantemente as posições de todos os objetos manualmente, o A-Frame faz isso automaticamente ao respeitar as hierarquias de aninhamento.</p>
@@ -402,22 +402,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_lua"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Solarsystemscope_texture_8k_moon.jpg/1280px-Solarsystemscope_texture_8k_moon.jpg"</span><span class="dt">&gt;</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
-<p>Vamos criar os sistemas de coordenadas. O Sol será a entidade que comporá o sistema de coordenadas pai. Dentro dele, criaremos uma entidade para o referencial Terra e, dentro deste, o referencial Lua.</p>
-<ol start="7" type="1">
-<li><p>Teremos, portanto, o seguinte aninhamento de sistemas de coordenadas:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_sol"</span><span class="dt">&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_terra"</span><span class="dt">&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_lua"</span><span class="dt">&gt;</span>        </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>    </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ol>
-<p>Vamos agora inserir cada astro em seu devido lugar e com o seu devido tamanho. Poderíamos respeitar a escala relativa de tamanhos, mas como o Sol é muito maior que a Terra (cerca de 100 vezes), vamos adotar uma escala intermediária para fins didáticos. O mesmo vale para as distâncias entre os astros (a distância Sol-Terra é cerca de 500 vezes maior que Terra-Lua).</p>
-<p>A <a href="#tbl-dimensoes" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> contém os tamanhos e distâncias dos astros do projeto.</p>
+<p>Vamos agora inserir cada astro em seu devido lugar e com o seu devido tamanho. Poderíamos respeitar a escala relativa de tamanhos, mas como o Sol é muito maior que a Terra (cerca de 100 vezes), vamos adotar uma escala alternativa para fins didáticos. O mesmo vale para as distâncias entre os astros (a distância Sol-Terra é cerca de 500 vezes maior que a Terra-Lua).</p>
+<p>A <a href="#tbl-dimensoes" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> contém os tamanhos (raios esféricos) e distâncias ao astro “pai” (raios orbitais) dos astros do projeto.</p>
 <div id="tbl-dimensoes" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dimensoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;3.1: Dimensões dos astros em valores reais (real) e com os valores utilizados no projeto (util)
+Tabela&nbsp;3.1: Dimensões dos astros em valores reais (real) e com os valores utilizados (util) no projeto.
 </figcaption>
 <div aria-describedby="tbl-dimensoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover caption-top table">
@@ -429,15 +419,15 @@ Tabela&nbsp;3.1: Dimensões dos astros em valores reais (real) e com os valores 
 <thead>
 <tr class="header">
 <th>Astro</th>
-<th style="text-align: left;">Diâmetro</th>
-<th style="text-align: left;">Distância ao astro central</th>
+<th style="text-align: left;">Raio esférico</th>
+<th style="text-align: left;">Raio orbital</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Sol</td>
 <td style="text-align: left;"><ul>
-<li>real: 140 mil km</li>
+<li>real: 700 mil km</li>
 <li>util: 30 cm</li>
 </ul></td>
 <td style="text-align: left;"><ul>
@@ -448,7 +438,7 @@ Tabela&nbsp;3.1: Dimensões dos astros em valores reais (real) e com os valores 
 <tr class="even">
 <td>Terra</td>
 <td style="text-align: left;"><ul>
-<li>real: 12,7 mil km</li>
+<li>real: 6,4 mil km</li>
 <li>util: 15 cm</li>
 </ul></td>
 <td style="text-align: left;"><ul>
@@ -459,8 +449,8 @@ Tabela&nbsp;3.1: Dimensões dos astros em valores reais (real) e com os valores 
 <tr class="odd">
 <td>Lua</td>
 <td style="text-align: left;"><ul>
-<li>real: 3,5 mil km</li>
-<li>util: 5cm</li>
+<li>real: 1,7 mil km</li>
+<li>util: 5 cm</li>
 </ul></td>
 <td style="text-align: left;"><ul>
 <li>real: 384 mil km</li>
@@ -472,37 +462,50 @@ Tabela&nbsp;3.1: Dimensões dos astros em valores reais (real) e com os valores 
 </div>
 </figure>
 </div>
-<p>Para os diâmetros, usamos o atributo <code>radius</code> do componente <code>geometry</code> e para as distâncias usamos o componente <code>position</code>. No A-Frame, a unidade de distância é o metro.</p>
-<ol start="8" type="1">
-<li><p>As entidades de cada astro nos seus respectivos referenciais fica da seguinte forma:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_sol"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0"</span><span class="dt">&gt;</span></span>
+<p>Vamos criar o sistema de coordenadas de cada astro a uma distância do astro “pai” igual aos raios orbitais (util) da <a href="#tbl-dimensoes" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a>. O Sol será a entidade que comporá o sistema de coordenadas pai. Dentro dele, criaremos uma entidade para o referencial Terra e, dentro deste, o referencial Lua.</p>
+<p>Teremos, portanto, o seguinte aninhamento de sistemas de coordenadas:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_sol"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_terra"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_lua"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0.5"</span><span class="dt">&gt;</span>        </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>    </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Repare que para as distâncias usamos o componente <code>position</code> cujo atributo é uma trinca de coordenadas <code>x, y, z</code>.</p>
+<p>Agora, vamos colocar a entidade que representa a esfera de cada astro dentro dos respectivos referenciais.</p>
+<ol start="7" type="1">
+<li><p>Para isso, substitua o código 5 pelo seguinte:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_sol"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0"</span><span class="dt">&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"sol"</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ot">        geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.3"</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ot">        material</span><span class="op">=</span><span class="st">"src: #mapa_sol"</span><span class="dt">&gt;</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_terra"</span><span class="dt">&gt;&lt;</span><span class="kw">a-entity</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_terra"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span>  </span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ot">            geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ot">            material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>            </span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_lua"</span><span class="dt">&gt;&lt;</span><span class="kw">a-entity</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0.0 0.5"</span><span class="dt">&gt;</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_lua"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0.0 0.5"</span><span class="dt">&gt;</span>                </span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"lua"</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="ot">                geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.05"</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="ot">                material</span><span class="op">=</span><span class="st">"src: #mapa_lua"</span><span class="dt">&gt;</span></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>                </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>        </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
-<p>Repare que tivemos que colocar o componente <code>position</code> em uma <code>a-entity</code> própria dentro da <code>a-entity</code> de referencial. Isso é necessário para que os eixos de rotação associados ao movimento orbital estejam fora do centro do astro orbitante. Outra observação é que todas as dimensões são informadas ao A-Frame sem explicitar as unidades, pois o A-Frame considera todas elas metros.</p>
+<p>Repare que para o raio esférico de cada astro, usamos o atributo <code>radius</code> do componente <code>geometry</code>. Outra observação é que todas as dimensões são informadas ao A-Frame sem explicitar as unidades, pois o A-Frame considera todas elas em metros.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="STL_visto_de_cima.png" class="img-fluid figure-img"></p>
+<figcaption>Sol-Terra-Lua gerado pelo código 7 e visto de cima. Cada divisão do grid (em cinza claro) corresponde a 0,5 metros. As setas correspondem às direções x (vermelha à direita), y (verde saindo da tela) e z (azul para baixo).</figcaption>
+</figure>
+</div>
 </section>
 <section id="animando-as-coisas" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="animando-as-coisas"><span class="header-section-number">3.5</span> Animando as coisas</h2>
@@ -513,38 +516,13 @@ Tabela&nbsp;3.1: Dimensões dos astros em valores reais (real) e com os valores 
 <li><code>from</code>: o valor inicial da propriedade (default: o valor atual).</li>
 <li><code>to</code>: o valor final da propriedade ao término da animação.</li>
 <li><code>dur</code>: duração da animação em milissegundos.</li>
-<li><code>loop</code>: se a animação deve ser reiniciada automaticamente após <code>dur</code> ms (<code>ture</code>ou <code>false</code>).</li>
+<li><code>loop</code>: se a animação deve ser reiniciada automaticamente (<code>true</code> ou <code>false</code>).</li>
 <li><code>easing</code>: a taxa de variação da propriedade (default: aumento quadrático = aceleração constante).</li>
+<li><code>dir</code>: sentido da animação (<code>normal</code> ou <code>reverse</code>).</li>
 </ul>
-<section id="rotações-em-torno-do-próprio-eixo" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="rotações-em-torno-do-próprio-eixo"><span class="header-section-number">3.5.1</span> Rotações em torno do próprio eixo</h3>
-<p>Comecemos implementando a rotação da Terra em torno do próprio eixo.</p>
-<ol start="9" type="1">
-<li><p>Para isso, inclua o seguinte componente <code>animation</code> na entidade <code>terra</code>:</p>
-<div class="sourceCode" id="annotated-cell-9"><pre class="sourceCode html code-annotation-code code-with-copy code-annotated"><code class="sourceCode html"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
-<span id="annotated-cell-9-2"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
-<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"</span><span class="dt">&gt;</span></span>
-<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="1">Componente <code>animation</code> para rotação da Terra.</span>
-</dd>
-</dl></li>
-<li><p>Recarregue a página de preview e entre no modo de inspeção (<code>&lt;ctrl&gt;&lt;alt&gt;i</code>). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão ▶ (<em>resume scene</em>) no canto superior esquerdo.</p></li>
-</ol>
-<p>Assim, deveremos observar a Terra girando <em>ad aeternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução (<code>to: 0 360 0</code>) a cada 10 segundos (<code>dur: 10000</code>).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><video src="terra_girando.mp4" class="img-fluid" loop="true" controls=""><a href="terra_girando.mp4">Video</a></video></p>
-<figcaption>Terra em movimento de rotação com o componente <code>animation</code>.</figcaption>
-</figure>
-</div>
-</section>
-<section id="sec-movimento_orbital" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="sec-movimento_orbital"><span class="header-section-number">3.5.2</span> Movimento orbital</h3>
-<p>O movimento orbital será implementado pela rotação do sistema de coordenadas associado ao astro. Para isso, incluiremos o componente <code>animation</code> que agora rotacionará o astro não em torno do centro, mas em torno da posição dada pelo componente <code>position</code> na <code>a-entity</code> interna.</p>
+<section id="sec-movimento_orbital" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="sec-movimento_orbital"><span class="header-section-number">3.5.1</span> Movimento orbital</h3>
+<p>O movimento orbital, também conhecido por movimento de translação, será implementado por uma entidade específica (e.g.&nbsp;<code>orb_terra</code>) colocada acima da entidade do raio orbital (e.g.&nbsp;<code>pos_terra</code>). Essa entidade terá o componente <code>animation</code> que rotacionará a <code>a-entity pos_terra</code> que por sua vez está deslocada do centro pelo raio orbital especificado na componente <code>position</code>.</p>
 <p>Da mesma forma que fizemos com as dimensões espaciais, não seremos fieis às proporções temporais da dinâmica dos astros. A <a href="#tbl-periodos" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a> contém os períodos de rotação e orbital que escolhemos para os três astros.</p>
 <div id="tbl-periodos" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -604,40 +582,104 @@ Tabela&nbsp;3.2: Períodos dos astros em valores reais (real) e com os valores u
 </div>
 </figure>
 </div>
-<ol start="11" type="1">
-<li><p>Portanto, o movimento orbital da Terra será implementado por:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"</span><span class="dt">&gt;&lt;</span><span class="kw">a-entity</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ol>
-<p>Assim, deveremos observar a Terra orbitando em torno do Sol <em>ad aeternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução (<code>to: 0 360 0</code>) a cada 300 segundos (<code>dur: 300000</code>).</p>
+<p>Por exemplo, considerando somente o movimento orbital da Terra, teríamos o seguinte código:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"orb_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_terra"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span>  </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ot">            geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ot">            material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>               </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Com ele, deveremos observar a Terra orbitando em torno do Sol <em>ad aeternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução (<code>to: 0 360 0</code>) a cada 300 segundos (<code>dur: 300000</code>). Vide vídeo abaixo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><video src="movimento_orbital_travado.mp4" class="img-fluid" loop="true" controls=""><a href="movimento_orbital_travado.mp4">Video</a></video></p>
+<figcaption>Ilustração do movimento orbital da Terra usando o <code>animation</code> da <code>a-entity orb_terra</code>. A cada órbita completa, a Terra dá, também, uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.</figcaption>
+</figure>
+</div>
+<p>Com isso, conseguimos implementar o movimento orbital da Terra. Entretanto, essa <code>animation</code> produz, adicionalmente, um movimento de rotação da Terra em torno do próprio eixo. Esse é um efeito indesejado, pois queremos que o movimento de rotação e o orbital sejam independentes um do outro.</p>
+<p>Se quisermos implementar corretamente a rotação da Terra em torno de um eixo fixo, temos que compensar essa rotação espúria. Caso contrário, a direção do eixo ficará girando em torno da perpendicular à órbita em um movimento conhecido como precessão<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p>Para reverter essa rotação indesejada, podemos utilizar uma <code>animation</code> de rotação no sentido contrário <code>dir: reverse</code> em uma nova entidade <code>a-entity rev_terra</code> dentro da <code>a-entity pos_terra</code>. Ficando da seguinte forma:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"orb_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_terra"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span>  </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"rev_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse"</span><span class="dt">&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ot">                geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="ot">                material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>               </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esse código resulta no movimento orbital da Terra sem o movimento espúrio de rotação em torno do próprio eixo, conforme vemos no vídeo abaixo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><video src="movimento_orbital_livre.mp4" class="img-fluid" loop="true" controls=""><a href="movimento_orbital_livre.mp4">Video</a></video></p>
+<figcaption>Ilustração do movimento orbital da Terra com a compensação da rotação espúria em torno do próprio eixo usando um <code>animation</code> com rotação no sentido contrário. A cada órbita completa, a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico).</figcaption>
+</figure>
+</div>
+</section>
+<section id="movimento-de-rotação" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="movimento-de-rotação"><span class="header-section-number">3.5.2</span> Movimento de rotação</h3>
+<p>Agora vamos implementar o movimento desejado de rotação da Terra em torno do próprio eixo.</p>
+<p>Fazemos isso incluindo o componente <code>animation</code> na <code>a-entity terra</code>:</p>
+<div class="sourceCode" id="annotated-cell-4"><pre class="sourceCode html code-annotation-code code-with-copy code-annotated"><code class="sourceCode html"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
+<span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-4" class="code-annotation-target"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="annotated-cell-4-5"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="4" data-code-annotation="1">Componente <code>animation</code> para rotação da Terra.</span>
+</dd>
+</dl>
+<p>Assim, deveremos observar a Terra girando <em>ad aeternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução (<code>to: 0 360 0</code>) a cada 10 segundos (<code>dur: 10000</code>). O vídeo a seguir ilustra esse movimento isoladamente (sem o movimento orbital).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><video src="terra_girando.mp4" class="img-fluid" loop="true" controls=""><a href="terra_girando.mp4">Video</a></video></p>
+<figcaption>Terra em movimento de rotação com o componente <code>animation</code>.</figcaption>
+</figure>
+</div>
 <ol start="12" type="1">
 <li><p>Aplicando as animações correspondentes à Lua, o sistema STL completo fica da seguinte forma:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_sol"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0"</span><span class="dt">&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"sol"</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ot">            geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.3"</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ot">            material</span><span class="op">=</span><span class="st">"src: #mapa_sol"</span><span class="dt">&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"</span><span class="dt">&gt;&lt;</span><span class="kw">a-entity</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="ot">                geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ot">                material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ot">                animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"</span><span class="dt">&gt;</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_lua"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear"</span><span class="dt">&gt;&lt;</span><span class="kw">a-entity</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0.0 0.5"</span><span class="dt">&gt;</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"lua"</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="ot">                    geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.05"</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="ot">                    material</span><span class="op">=</span><span class="st">"src: #mapa_lua"</span><span class="dt">&gt;</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb9"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_sol"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"sol"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ot">            geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.3"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ot">            material</span><span class="op">=</span><span class="st">"src: #mapa_sol"</span><span class="dt">&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"</span><span class="dt">&gt;&lt;</span><span class="kw">a-entity</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="ot">                geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="ot">                material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="ot">                animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_lua"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear"</span><span class="dt">&gt;&lt;</span><span class="kw">a-entity</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0.0 0.5"</span><span class="dt">&gt;</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"lua"</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="ot">                    geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.05"</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="ot">                    material</span><span class="op">=</span><span class="st">"src: #mapa_lua"</span><span class="dt">&gt;</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 <p>Há algo importante a observar no código acima. Não implementamos o <code>animation</code> associado à rotação da Lua em torno do próprio eixo. Isso significa que essa rotação não existe? Existe sim! Sabemos que devido ao efeito de “travamento” gravitacional pelas forças de maré atuando ao longo de milhões de anos, a Lua orbita com a mesma face voltada para Terra. Isso implica que o período de translação coincide com o de rotação. Quando fazemos a rotação de um sistema de referência no A-Frame, esse “travamento” ocorre por padrão, por isso que não precisamos incluir a <code>animation</code> correspondente.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -646,28 +688,67 @@ Tabela&nbsp;3.2: Períodos dos astros em valores reais (real) e com os valores u
 <figcaption>Sistema Sol-Terra-Lua com todos os movimentos – de rotação e orbital – implementados.</figcaption>
 </figure>
 </div>
+<p>MANTER ISSO: Recarregue a página de preview e entre no modo de inspeção (<code>&lt;ctrl&gt;&lt;alt&gt;i</code>). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão ▶ (<em>resume scene</em>) no canto superior esquerdo.</p>
 </section>
 </section>
 <section id="refinando-o-sistema" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="refinando-o-sistema"><span class="header-section-number">3.6</span> Refinando o sistema</h2>
-<p>Se quisermos explorar conceitos como estações do ano, fases da Lua e eclipses, existem certos detalhes do movimento dos astros que podemos abrir mão, como a excentricidade das órbitas, o movimento em torno do centro de massa ao invés do centro do astro, movimento de precessão e nutação, entre outros. Mas alguns são essenciais e estão na origem e geram as especificidades importantes daqueles fenômenos. São eles: (i) a inclinação do eixo de rotação da Terra e (ii) a inclinação do plano da órbita da Lua em torno da Terra em relação ao plano da órbita da Terra em torno do Sol.</p>
+<p>Se quisermos explorar conceitos como estações do ano, fases da Lua e eclipses, existem certos detalhes do movimento dos astros que podemos abrir mão, como a excentricidade das órbitas, o movimento em torno do centro de massa, movimento de precessão e nutação, entre outros. Mas alguns são essenciais para aqueles fenômenos. São eles: (i) a inclinação do eixo de rotação da Terra e (ii) a inclinação do plano da órbita da Lua.</p>
 <section id="inclinação-do-eixo-de-rotação-da-terra" class="level3" data-number="3.6.1">
 <h3 data-number="3.6.1" class="anchored" data-anchor-id="inclinação-do-eixo-de-rotação-da-terra"><span class="header-section-number">3.6.1</span> Inclinação do eixo de rotação da Terra</h3>
-<p>Conforme explicamos na seção <a href="#sec-movimento_orbital" class="quarto-xref"><span>Seção 3.5.2</span></a>, a rotação de uma <code>a-entity</code> fora de centro no A-Frame ocorre de forma “travada”. Isso significa que uma volta completa do astro em torno do centro também causa uma volta completa do astro em torno do próprio eixo. Para entender melhor esse efeito, observe o vídeo 1 em que a Terra é vista orbitando o Sol de perfil aplicando <code>animation</code> somente à <code>a-entity ref-terra</code> e sem aplicar <code>animation</code> de rotação em torno do próprio eixo:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"</span><span class="dt">&gt;&lt;</span><span class="kw">a-entity</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ot">            geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ot">            material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                            </span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Conforme explicamos na <a href="#sec-movimento_orbital" class="quarto-xref"><span>Seção 3.5.1</span></a>, a rotação de uma <code>a-entity</code> fora de centro no A-Frame ocorre de forma “travada”. Isso significa que uma volta completa do astro em torno do centro também causa uma volta completa do astro em torno do próprio eixo. Para entender melhor esse efeito, observe o vídeo abaixo em que a Terra é vista orbitando o Sol de perfil aplicando <code>animation</code> somente à <code>a-entity ref-terra</code> e sem aplicar <code>animation</code> de rotação em torno do próprio eixo:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"</span><span class="dt">&gt;&lt;</span><span class="kw">a-entity</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ot">            geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ot">            material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                            </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><video src="movimento_orbital_travado.mp4" class="img-fluid" loop="true" controls=""><a href="movimento_orbital_travado.mp4">Video</a></video></p>
-<figcaption>Ilustração do movimento orbital da Terra usando somente o <code>animation</code> da <code>a-entity ref-terra</code>. A cada volta na órbita a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.</figcaption>
+<figcaption>Ilustração do movimento orbital da Terra usando somente o <code>animation</code> da <code>a-entity ref-terra</code>. A cada órbita completa, a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.</figcaption>
 </figure>
 </div>
+<p>Se quisermos implementar corretamente a rotação da Terra em torno de um eixo fixo, temos que compensar essa rotação espúria. Caso contrário, a direção do eixo ficará girando em torno da perpendicular à órbita em um movimento conhecido como precessão<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<p>Podemos realizar essa compensação aplicando uma <code>animation</code> de rotação no sentido contrário <code>dir: reverse</code> na <code>a-entity</code> que produz o deslocamento (<code>position</code>) do astro em relação ao centro. Além disso, precisamos incluir uma nova <code>a-entity</code> para inclinar a Terra (<code>rotation</code>) de um ângulo de 23,4°:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse"</span><span class="dt">&gt;</span>    </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> rotation</span><span class="op">=</span><span class="st">"23.4 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ot">                    geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ot">                    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>                            </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Com isso, temos o resultado esperado (ainda sem aplicar a <code>animation</code> de rotação em torno do próprio eixo) como mostrado no vídeo abaixo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><video src="movimento_orbital_livre.mp4" class="img-fluid" loop="true" controls=""><a href="movimento_orbital_livre.mp4">Video</a></video></p>
+<figcaption>Ilustração do movimento orbital da Terra com a compensação da rotação espúria usando um <code>animation</code> com rotação no sentido contrário. A cada órbita completa, a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.</figcaption>
+</figure>
+</div>
+<p>Em resumo, temos a seguinte hierarquia de entidades:</p>
+<ul>
+<li><code>a-entity</code> 5: animação da rotação do referencial da Terra para implementar o movimento de translação.
+<ul>
+<li><code>a-entity</code> 4: posicionamento da Terra no raio da órbita.
+<ul>
+<li><code>a-entity</code> 3: animação de rotação contrária a da <code>a-entity 1</code> para compensar a rotação indesejada da Terra ao longo do movimento de translação.
+<ul>
+<li><code>a-entity</code> 2: rotação para inclinação do eixo da Terra de 23,4°.
+<ul>
+<li><code>a-entity</code> 1: animação de rotação da Terra em torno do próprio eixo.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<ol start="13" type="1">
+<li>Segue o código completo com a inclinação do eixo da Terra e os movimentos de rotação e translação:</li>
+</ol>
 
 
 </section>
@@ -678,6 +759,8 @@ Tabela&nbsp;3.2: Períodos dos astros em valores reais (real) e com os valores u
 <li id="fn1"><p>Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Na verdade, a Lua não gira em tono da Terra, mas em torno do centro de massa do sistema Terra-Lua, assim como a própria Terra. Por motivos didáticos, usaremos o sistema de referência centrado na Terra para implementar o movimento orbital da Lua. Essa aproximação não é tão ruim, uma vez que o centro de massa do sistema está bem mais próximo da Terra do que da Lua.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>A expressão em italiano que significa “E, no entanto, ela se move” teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>O movimento de precessão do eixo de rotação terrestre realmente existe e é conhecido como precessão dos equinócios. Mas é um efeito muito lento, em que uma precessão completa leva 26 mil anos para ocorrer e é causada pela interação gravitacional da Terra oblata principalmente com o Sol e a Lua.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>O movimento de precessão do eixo de rotação terrestre realmente existe e é conhecido como precessão dos equinócios. Mas é um efeito muito lento, em que uma precessão completa leva 26 mil anos para ocorrer e é causada pela interação gravitacional da Terra oblata principalmente com o Sol e a Lua.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

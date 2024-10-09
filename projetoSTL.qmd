@@ -13,7 +13,7 @@ No projeto Sol-Terra-Lua (abrev. STL) iremos:
 - Estabelecer os tamanhos e posições dos astros de forma pertinente aos objetivos didáticos de uma atividade educacional.
 - Implementar o movimento de rotação de cada astro em torno do próprio eixo.
 - Definir o plano orbital da Terra e da Lua.
-- Implementar o movimento orbital da Terra e da Lua.
+- Implementar o movimento orbital de translação da Terra e da Lua.
 - Dar interatividade aos objetos celestes.
 
 
@@ -40,7 +40,7 @@ Repare que o projeto está bastante vazio, com apenas o arquivo `index.html` e s
 
 Dentro do `<a-scene>` todos os elementos espaciais do projeto serão incluídos. Esses elementos recebem o nome de `<a-entity>` ([Entidades](https://aframe.io/docs/1.6.0/core/entity.html)). Cada entidade, por sua vez, terá uma série de propriedades, chamadas de *components* ([Componentes](https://aframe.io/docs/1.6.0/core/component.html)). Por fim, cada componente terá *atributos* que definirão as aparências e funcionalidades da entidade.
 
-Esse tipo de estruturação segue o modelo ECS (Entity-Component-System) que é alternativo ao modelo de classes e objetos. Ele se opõe ao sistema de hierarquização da programação orientada a objetos ao permitir maior modularização e inter-operacionalização dos componentes que podem ser aplicados diretamente em diferentes entidades.
+Esse tipo de estruturação segue o modelo ECS ([Entity-Component-System](https://aframe.io/docs/1.6.0/introduction/entity-component-system.html)) que é alternativo ao modelo de classes e objetos. Ele se opõe ao sistema de hierarquização da programação orientada a objetos ao permitir maior modularização e inter-operacionalização dos componentes que podem ser aplicados diretamente em diferentes entidades.
 
 De forma abstrata, uma estrutura ECS no A-Frame poderia ser algo assim:
 
@@ -72,7 +72,7 @@ Um exemplo mais concreto seria:
 
 ![Ilustração das *Entidades* carro e moto com seus *componentes* e *atributos* específicos (feita com DALL-E)](carro_e_moto.jpg)
 
-Nesse exemplo, *carro* e *moto* são ***entidades*** distintas, mas *rodas* e *material* são ***componentes*** que podem ser compartilhados pelas diferentes entidades. Esses componentes irão se diferenciar por possuírem valores diferentes para os seus ***atributos*** (e.g. rodas com `quantidade : 2` ou `quantidade : 4`) e por estarem atrelados a diferentes entidades. Uma das vantages dessa abordagem ECS é que eu preciso programar o componente *rodas* somente uma vez e ele pode ser usado em diferentes veículos.
+Nesse exemplo, *carro* e *moto* são ***entidades*** distintas, mas *rodas* e *material* são ***componentes*** que podem ser usados pelas diferentes entidades. Esses componentes irão se diferenciar por possuírem valores diferentes para os seus ***atributos*** (e.g. rodas com `quantidade : 2` ou `quantidade : 4`) e por estarem atrelados a diferentes entidades. Uma das vantages dessa abordagem ECS é que eu preciso programar o componente *rodas* somente uma vez e ele pode ser usado em diferentes veículos.
 
 Entidades podem ser aninhadas. Por exemplo, ao invés de tratar as rodas como sendo componentes, poderíamos considerar mais apropriado implementá-las na forma de uma entidade:
 
@@ -141,15 +141,15 @@ No momento, vamos usar a segunda opção.
 
 ## Sistemas de coordenadas no A-Frame
 
-Uma característica muito poderosa no A-Frame, é o conceito de sistemas de referências locais (referenciais), que é fácil de implementar quando você aninha uma `<a-entity>` dentro de outra.
+Uma característica muito útil no A-Frame, é o conceito de sistemas de coordenadas locais (também chamados de referenciais), que é fácil de implementar quando você aninha uma `<a-entity>` dentro de outra.
 
 Pense que cada entidade tem seu próprio sistema de coordenadas (x, y, z), que define sua posição, rotação e escala. Quando uma `<a-entity>` está dentro de outra, dizemos que a entidade interna usa o sistema de referência local da entidade que a contém. Isso significa que qualquer transformação (movimento, rotação) aplicada à entidade "pai" afeta todas as suas "filhas" de forma relativa. Ou seja, quando criamos uma `<a-entity>`, não definimos apenas as propriedades do objeto 3D pelas suas componentes, mas também, implicitamente, criamos um sistema de coordenadas local.
 
-Podemos, ainda, criar uma `<a-entity>` "vazia", ou seja, sem componentes geométricos "plugados" nela. Nesse caso, ela serve exclusivamente como um sistema de coordenadas de referência para todas outras entidades que sejam aninhadas dentro dela.
+Podemos, ainda, criar uma `<a-entity>` "vazia", ou seja, sem componentes geométricos como componentes dela. Nesse caso, ela serve exclusivamente como um sistema de coordenadas de referência para todas outras entidades que sejam aninhadas dentro dela.
 
-E o nosso projeto Sol-Terra-Lua se beneficia diretamente desse recurso. Vamos considerar uma `<a-entity>` que representa, exclusivamente, o referencial Terra e dentro dela outra `<a-entity>` que representa a Lua. Se você mover ou rotacionar o referencial Terra (a entidade "pai"), a Lua (a entidade "filha") será movida junto, mas ela ainda pode orbitar ao redor do referencial Terra se aplicarmos uma rotação à Lua individualmente. Assim, a Lua se move de duas maneiras: ela orbita o Sol ao "seguir" a Terra (movimento da entidade "pai") e orbita a Terra (movimento da entidade "filha").[^3]
+E o nosso projeto Sol-Terra-Lua se beneficia diretamente desse recurso. Vamos considerar uma `<a-entity>` que representa, exclusivamente, o referencial Terra (`ref_terra`) e dentro dela outra `<a-entity>` que representa a Lua. Se você mover ou rotacionar o referencial Terra (a entidade "pai"), a Lua (a entidade "filha") será movida junto, mas ela ainda pode orbitar ao redor do referencial Terra se aplicarmos uma rotação à Lua individualmente. Assim, a Lua se move de duas maneiras: ela orbita o Sol ao "seguir" a Terra (movimento da entidade "pai") e orbita a Terra (movimento da entidade "filha").[^3]
 
-![Ao deslocar a `a-entity ref-Terra` (referencial "pai"), a `a-entity lua` (entidade filha) desloca-se conjuntamente. Ao deslocar a `a-entity lua`, a `a-entity ref-Terra` permanece inalterada.](referencial_terra.mp4){loop="true"}
+![Ao deslocar a `a-entity ref-Terra` (referencial "pai"), a `a-entity lua` (entidade filha) desloca-se conjuntamente. Ao deslocar a `a-entity lua`, a `a-entity ref_Terra` permanece inalterada.](referencial_terra.mp4){loop="true"}
 
 Portanto, o A-Frame é muito prático para simular cenários em que o movimento de um objeto depende de outro, como no caso de planetas em órbita, satélites, ou até objetos conectados em uma cadeia de eventos. Ao invés de ter que recalcular constantemente as posições de todos os objetos manualmente, o A-Frame faz isso automaticamente ao respeitar as hierarquias de aninhamento.
 
@@ -167,73 +167,75 @@ Neste ponto, temos todos os elementos para a construção do sistema Sol-Terra-L
     </a-assets>
     ```
 
-Vamos criar os sistemas de coordenadas. O Sol será a entidade que comporá o sistema de coordenadas pai. Dentro dele, criaremos uma entidade para o referencial Terra e, dentro deste, o referencial Lua.
+Vamos agora inserir cada astro em seu devido lugar e com o seu devido tamanho. Poderíamos respeitar a escala relativa de tamanhos, mas como o Sol é muito maior que a Terra (cerca de 100 vezes), vamos adotar uma escala alternativa para fins didáticos. O mesmo vale para as distâncias entre os astros (a distância Sol-Terra é cerca de 500 vezes maior que a Terra-Lua).
 
-7. Teremos, portanto, o seguinte aninhamento de sistemas de coordenadas:
-
-    ```html
-    <a-entity id="ref_sol">
-        <a-entity id="ref_terra">
-            <a-entity id="ref_lua">        
-            </a-entity>
-        </a-entity>    
-    </a-entity>
-    ```
-
-Vamos agora inserir cada astro em seu devido lugar e com o seu devido tamanho. Poderíamos respeitar a escala relativa de tamanhos, mas como o Sol é muito maior que a Terra (cerca de 100 vezes), vamos adotar uma escala intermediária para fins didáticos. O mesmo vale para as distâncias entre os astros (a distância Sol-Terra é cerca de 500 vezes maior que Terra-Lua).
-
-A @tbl-dimensoes contém os tamanhos e distâncias dos astros do projeto.
+A @tbl-dimensoes contém os tamanhos (raios esféricos) e distâncias ao astro "pai" (raios orbitais) dos astros do projeto.
 
 +-------+---------------------+-----------------------------+
-| Astro | Diâmetro            | Distância ao astro central  |
+| Astro | Raio esférico       | Raio orbital                |
 +=======+:====================+:============================+
-| Sol   | - real: 140 mil km  | - não se aplica             |
+| Sol   | - real: 700 mil km  | - não se aplica             |
 |       | - util: 30 cm       | - não se aplica             | 
 +-------+---------------------+-----------------------------+
-| Terra | - real: 12,7 mil km | - real: 150 milhões km      |
+| Terra | - real: 6,4 mil km  | - real: 150 milhões km      |
 |       | - util: 15 cm       | - util: 1,5 m               |
 +-------+---------------------+-----------------------------+
-| Lua   | - real: 3,5 mil km  | - real: 384 mil km          |
-|       | - util: 5cm         | - util: 0,5 m               |
+| Lua   | - real: 1,7 mil km  | - real: 384 mil km          |
+|       | - util: 5 cm        | - util: 0,5 m               |
 +-------+---------------------+-----------------------------+
 
-: Dimensões dos astros em valores reais (real) e com os valores utilizados no projeto (util) {#tbl-dimensoes .striped .hover}
+: Dimensões dos astros em valores reais (real) e com os valores utilizados (util) no projeto. {#tbl-dimensoes .striped .hover}
 
+Vamos criar o sistema de coordenadas de cada astro a uma distância do astro "pai" igual aos raios orbitais (util) da @tbl-dimensoes. O Sol será a entidade que comporá o sistema de coordenadas pai. Dentro dele, criaremos uma entidade para o referencial Terra e, dentro deste, o referencial Lua.
 
-Para os diâmetros, usamos o atributo `radius` do componente `geometry` e para as distâncias usamos o componente `position`. No A-Frame, a unidade de distância é o metro.
+Teremos, portanto, o seguinte aninhamento de sistemas de coordenadas:
 
-8. As entidades de cada astro nos seus respectivos referenciais fica da seguinte forma:
+```html
+<a-entity id="pos_sol" position="0 0 0">
+    <a-entity id="pos_terra" position="1.5 0 0">
+        <a-entity id="pos_lua" position="0 0 0.5">        
+        </a-entity>
+    </a-entity>    
+</a-entity>
+```
+
+Repare que para as distâncias usamos o componente `position` cujo atributo é uma trinca de coordenadas `x, y, z`.
+
+Agora, vamos colocar a entidade que representa a esfera de cada astro dentro dos respectivos referenciais.
+
+7. Para isso, substitua o código 5 pelo seguinte:
 
     ```html
-    <a-entity id="ref_sol" position="0 0 0">
+    <a-entity id="pos_sol" position="0 0 0">
         
         <a-entity id="sol"
             geometry="primitive: sphere; radius: 0.3"
             material="src: #mapa_sol">
         </a-entity>
         
-        <a-entity id="ref_terra"><a-entity position="1.5 0.0 0">
-          
+        <a-entity id="pos_terra" position="1.5 0.0 0">  
+
             <a-entity id="terra"
                 geometry="primitive: sphere; radius: 0.15"
                 material="src: #mapa_terra">
-            </a-entity>
-            
-            <a-entity id="ref_lua"><a-entity position="0 0.0 0.5">
-                
+            </a-entity>            
+
+            <a-entity id="pos_lua" position="0 0.0 0.5">                
+
                 <a-entity id="lua"
                     geometry="primitive: sphere; radius: 0.05"
                     material="src: #mapa_lua">
                 </a-entity>
-            
-            </a-entity></a-entity>
         
-        </a-entity></a-entity>
-
+            </a-entity>                
+        </a-entity>        
     </a-entity>
     ```
 
-Repare que tivemos que colocar o componente `position` em uma `a-entity` própria dentro da `a-entity` de referencial. Isso é necessário para que os eixos de rotação associados ao movimento orbital estejam fora do centro do astro orbitante. Outra observação é que todas as dimensões são informadas ao A-Frame sem explicitar as unidades, pois o A-Frame considera todas elas metros.
+Repare que para o raio esférico de cada astro, usamos o atributo `radius` do componente `geometry`. Outra observação é que todas as dimensões são informadas ao A-Frame sem explicitar as unidades, pois o A-Frame considera todas elas em metros.
+
+![Sol-Terra-Lua gerado pelo código 7 e visto de cima. Cada divisão do grid (em cinza claro) corresponde a 0,5 metros. As setas correspondem às direções x (vermelha à direita), y (verde saindo da tela) e z (azul para baixo).](STL_visto_de_cima.png)
+
 
 ## Animando as coisas
 
@@ -245,34 +247,14 @@ O A-Frame possui várias possibilidades de animação *built in* através do com
 - `from`: o valor inicial da propriedade (default: o valor atual).
 - `to`: o valor final da propriedade ao término da animação.
 - `dur`: duração da animação em milissegundos.
-- `loop`: se a animação deve ser reiniciada automaticamente após `dur` ms (`ture`ou `false`).
+- `loop`: se a animação deve ser reiniciada automaticamente (`true` ou `false`).
 - `easing`: a taxa de variação da propriedade (default: aumento quadrático = aceleração constante).
-
-### Rotações em torno do próprio eixo
-
-Comecemos implementando a rotação da Terra em torno do próprio eixo.
-
-9. Para isso, inclua o seguinte componente `animation` na entidade `terra`:
-
-    ```html
-    <a-entity id="terra"
-        geometry="primitive: sphere"
-        material="src: #mapa_terra"
-        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"> <!-- <1> -->
-    </a-entity>
-    ```
-    1. Componente `animation` para rotação da Terra.
-
-10. Recarregue a página de preview e entre no modo de inspeção (`<ctrl><alt>i`). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão ▶ (*resume scene*) no canto superior esquerdo. 
-
-Assim, deveremos observar a Terra girando *ad aeternum* (`loop: true`) com velocidade constante (`easing: linear`) e executando uma revolução (`to: 0 360 0`) a cada 10 segundos (`dur: 10000`).
-
-![Terra em movimento de rotação com o componente `animation`.](terra_girando.mp4){loop="true"}
+- `dir`: sentido da animação (`normal` ou `reverse`).
 
 
 ### Movimento orbital {#sec-movimento_orbital}
 
-O movimento orbital será implementado pela rotação do sistema de coordenadas associado ao astro. Para isso, incluiremos o componente `animation` que agora rotacionará o astro não em torno do centro, mas em torno da posição dada pelo componente `position` na `a-entity` interna.
+O movimento orbital, também conhecido por movimento de translação, será implementado por uma entidade específica (e.g. `orb_terra`) colocada acima da entidade do raio orbital (e.g. `pos_terra`). Essa entidade terá o componente `animation` que rotacionará a `a-entity pos_terra` que por sua vez está deslocada do centro pelo raio orbital especificado na componente `position`.
 
 Da mesma forma que fizemos com as dimensões espaciais, não seremos fieis às proporções temporais da dinâmica dos astros. A @tbl-periodos contém os períodos de rotação e orbital que escolhemos para os três astros.
 
@@ -291,14 +273,123 @@ Da mesma forma que fizemos com as dimensões espaciais, não seremos fieis às p
 
 : Períodos dos astros em valores reais (real) e com os valores utilizados no projeto (util) {#tbl-periodos .striped .hover}
 
+Por exemplo, considerando somente o movimento orbital da Terra, teríamos o seguinte código:
 
-11. Portanto, o movimento orbital da Terra será implementado por:
+```html
+<a-entity id="orb_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear">
+    
+    <a-entity id="pos_terra" position="1.5 0.0 0">  
+
+        <a-entity id="terra"
+            geometry="primitive: sphere; radius: 0.15"
+            material="src: #mapa_terra">
+        </a-entity>
+
+    </a-entity>               
+
+</a-entity>
+```
+
+Com ele, deveremos observar a Terra orbitando em torno do Sol *ad aeternum* (`loop: true`) com velocidade constante (`easing: linear`) e executando uma revolução (`to: 0 360 0`) a cada 300 segundos (`dur: 300000`). Vide vídeo abaixo.
+
+![Ilustração do movimento orbital da Terra usando o `animation` da `a-entity orb_terra`. A cada órbita completa, a Terra dá, também, uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.](movimento_orbital_travado.mp4){loop="true"}
+
+Com isso, conseguimos implementar o movimento orbital da Terra. Entretanto, essa `animation` produz, adicionalmente, um movimento de rotação da Terra em torno do próprio eixo. Esse é um efeito indesejado, pois queremos que o movimento de rotação e o orbital sejam independentes um do outro.
+
+Se quisermos implementar corretamente a rotação da Terra em torno de um eixo fixo, temos que compensar essa rotação espúria. Caso contrário, a direção do eixo ficará girando em torno da perpendicular à órbita em um movimento conhecido como precessão[^5].
+
+Para reverter essa rotação indesejada, podemos utilizar uma `animation` de rotação no sentido contrário `dir: reverse` em uma nova entidade `a-entity rev_terra` dentro da `a-entity pos_terra`. Ficando da seguinte forma:
+
+```html
+<a-entity id="orb_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear">
+    
+    <a-entity id="pos_terra" position="1.5 0.0 0">  
+
+        <a-entity id="rev_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse">
+
+            <a-entity id="terra"
+                geometry="primitive: sphere; radius: 0.15"
+                material="src: #mapa_terra">
+            </a-entity>
+
+        </a-entity>
+
+    </a-entity>               
+
+</a-entity>
+```
+
+Esse código resulta no movimento orbital da Terra sem o movimento espúrio de rotação em torno do próprio eixo, conforme vemos no vídeo abaixo.
+
+![Ilustração do movimento orbital da Terra com a compensação da rotação espúria em torno do próprio eixo usando um `animation` com rotação no sentido contrário. A cada órbita completa, a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico).](movimento_orbital_livre.mp4){loop="true"}
+
+
+### Movimento de rotação
+
+Agora vamos implementar o movimento desejado de rotação da Terra em torno do próprio eixo.
+
+Fazemos isso incluindo o componente `animation` na `a-entity terra`:
+
+```html
+<a-entity id="terra"
+    geometry="primitive: sphere"
+    material="src: #mapa_terra"
+    animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"> <!-- <1> -->
+</a-entity>
+```
+1. Componente `animation` para rotação da Terra.
+
+Assim, deveremos observar a Terra girando *ad aeternum* (`loop: true`) com velocidade constante (`easing: linear`) e executando uma revolução (`to: 0 360 0`) a cada 10 segundos (`dur: 10000`). O vídeo a seguir ilustra esse movimento isoladamente (sem o movimento orbital).
+
+![Terra em movimento de rotação com o componente `animation`.](terra_girando.mp4){loop="true"}
+
+
+### Movimento completo
+
+8. Implementado os movimentos de rotação e orbital discutidos acima no sistema Sol-Terra-Lua completo temos o seguinte código que substitui o código 7:
 
     ```html
-        <a-entity id="ref_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"><a-entity position="1.5 0.0 0">
+    <a-entity id="pos_sol" position="0 0 0">
+        
+        <a-entity id="sol"
+            geometry="primitive: sphere; radius: 0.3"
+            material="src: #mapa_sol"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 50000; easing: linear">
+        </a-entity>
+        
+        <a-entity id="orb_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear">
+
+            <a-entity id="pos_terra" position="1.5 0.0 0">  
+
+                <a-entity id="rev_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse">
+                
+                    <a-entity id="terra"
+                        geometry="primitive: sphere; radius: 0.15"
+                        material="src: #mapa_terra"
+                        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear">
+                    </a-entity>
+
+                </a-entity>            
+
+                <a-entity id="orb_lua" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear">
+
+                    <a-entity id="pos_lua" position="0 0.0 0.5">                
+
+                        <a-entity id="lua"
+                            geometry="primitive: sphere; radius: 0.05"
+                            material="src: #mapa_lua">
+                        </a-entity>
+                
+                    </a-entity>                
+                </a-entity>                
+            </a-entity>        
+        </a-entity>        
+    </a-entity>
     ```
 
-Assim, deveremos observar a Terra orbitando em torno do Sol *ad aeternum* (`loop: true`) com velocidade constante (`easing: linear`) e executando uma revolução (`to: 0 360 0`) a cada 300 segundos (`dur: 300000`).
+Há algo importante a observar no código acima. Não implementamos o `a-entity rev_lua` relacionado à compensação da rotação espúria causada pelo movimento orbital da Lua e nem o `animation` de rotação da Lua em torno do próprio eixo no `a-entity lua`. Sabemos que devido ao efeito de "travamento" gravitacional pelas forças de maré atuando ao longo de milhões de anos, a Lua orbita com a mesma face voltada para Terra. Isso implica que o período de translação coincide com o de rotação. Portanto, nesse caso, a rotação espúria do `a-entity orb_lua` já nos forneceu de brinde a rotação da Lua em torno do próprio eixo. 
+
+
 
 12. Aplicando as animações correspondentes à Lua, o sistema STL completo fica da seguinte forma:
 
@@ -337,13 +428,19 @@ Há algo importante a observar no código acima. Não implementamos o `animation
 ![Sistema Sol-Terra-Lua com todos os movimentos -- de rotação e orbital -- implementados.](stl_animado.mp4){loop="true"}
 
 
+
+MANTER ISSO:
+Recarregue a página de preview e entre no modo de inspeção (`<ctrl><alt>i`). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão ▶ (*resume scene*) no canto superior esquerdo. 
+
+
+
 ## Refinando o sistema
 
-Se quisermos explorar conceitos como estações do ano, fases da Lua e eclipses, existem certos detalhes do movimento dos astros que podemos abrir mão, como a excentricidade das órbitas, o movimento em torno do centro de massa ao invés do centro do astro, movimento de precessão e nutação, entre outros. Mas alguns são essenciais e estão na origem e geram as especificidades importantes daqueles fenômenos. São eles: (i) a inclinação do eixo de rotação da Terra e (ii) a inclinação do plano da órbita da Lua em torno da Terra em relação ao plano da órbita da Terra em torno do Sol.
+Se quisermos explorar conceitos como estações do ano, fases da Lua e eclipses, existem certos detalhes do movimento dos astros que podemos abrir mão, como a excentricidade das órbitas, o movimento em torno do centro de massa, movimento de precessão e nutação, entre outros. Mas alguns são essenciais para aqueles fenômenos. São eles: (i) a inclinação do eixo de rotação da Terra e (ii) a inclinação do plano da órbita da Lua.
 
 ### Inclinação do eixo de rotação da Terra
 
-Conforme explicamos na seção @sec-movimento_orbital, a rotação de uma `a-entity` fora de centro no A-Frame ocorre de forma "travada". Isso significa que uma volta completa do astro em torno do centro também causa uma volta completa do astro em torno do próprio eixo. Para entender melhor esse efeito, observe o vídeo 1 em que a Terra é vista orbitando o Sol de perfil aplicando `animation` somente à `a-entity ref-terra` e sem aplicar `animation` de rotação em torno do próprio eixo:
+Conforme explicamos na @sec-movimento_orbital, a rotação de uma `a-entity` fora de centro no A-Frame ocorre de forma "travada". Isso significa que uma volta completa do astro em torno do centro também causa uma volta completa do astro em torno do próprio eixo. Para entender melhor esse efeito, observe o vídeo abaixo em que a Terra é vista orbitando o Sol de perfil aplicando `animation` somente à `a-entity ref-terra` e sem aplicar `animation` de rotação em torno do próprio eixo:
 
 ```html        
     <a-entity id="ref_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"><a-entity position="1.5 0.0 0">
@@ -356,7 +453,40 @@ Conforme explicamos na seção @sec-movimento_orbital, a rotação de uma `a-ent
     </a-entity></a-entity>
 ```
 
-![Ilustração do movimento orbital da Terra usando somente o `animation` da `a-entity ref-terra`. A cada volta na órbita a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.](movimento_orbital_travado.mp4){loop="true"}
+![Ilustração do movimento orbital da Terra usando somente o `animation` da `a-entity ref-terra`. A cada órbita completa, a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.](movimento_orbital_travado.mp4){loop="true"}
+
+Se quisermos implementar corretamente a rotação da Terra em torno de um eixo fixo, temos que compensar essa rotação espúria. Caso contrário, a direção do eixo ficará girando em torno da perpendicular à órbita em um movimento conhecido como precessão[^5].
+
+Podemos realizar essa compensação aplicando uma `animation` de rotação no sentido contrário `dir: reverse` na `a-entity` que produz o deslocamento (`position`) do astro em relação ao centro. Além disso, precisamos incluir uma nova `a-entity` para inclinar a Terra (`rotation`) de um ângulo de 23,4°:
+
+```html        
+    <a-entity id="ref_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear">
+        <a-entity position="1.5 0.0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse">    
+            <a-entity rotation="23.4 0 0">
+                <a-entity id="terra"
+                    geometry="primitive: sphere; radius: 0.15"
+                    material="src: #mapa_terra">
+                </a-entity>
+            </a-entity>                            
+        </a-entity>
+    </a-entity>
+```
+
+Com isso, temos o resultado esperado (ainda sem aplicar a `animation` de rotação em torno do próprio eixo) como mostrado no vídeo abaixo.
+
+![Ilustração do movimento orbital da Terra com a compensação da rotação espúria usando um `animation` com rotação no sentido contrário. A cada órbita completa, a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.](movimento_orbital_livre.mp4){loop="true"}
+
+Em resumo, temos a seguinte hierarquia de entidades:
+
+- `a-entity` 5: animação da rotação do referencial da Terra para implementar o movimento de translação.
+    - `a-entity` 4: posicionamento da Terra no raio da órbita.
+        - `a-entity` 3: animação de rotação contrária a da `a-entity 1` para compensar a rotação indesejada da Terra ao longo do movimento de translação.
+            - `a-entity` 2: rotação para inclinação do eixo da Terra de 23,4°.
+                - `a-entity` 1: animação de rotação da Terra em torno do próprio eixo.
+
+13. Segue o código completo com a inclinação do eixo da Terra e os movimentos de rotação e translação:
+
+
 
 [^1]:
     Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.
@@ -369,3 +499,6 @@ Conforme explicamos na seção @sec-movimento_orbital, a rotação de uma `a-ent
 
 [^4]:
     O período do Sol se refere à rotação em relação às estrelas distantes, também chamado de período sideral. O período da Terra e da Lua correspondem ao período sinódico que é o período para que o astro volte à mesma posição em relação ao astro que ele orbita. 
+
+[^5]:
+    O movimento de precessão do eixo de rotação terrestre realmente existe e é conhecido como precessão dos equinócios. Mas é um efeito muito lento, em que uma precessão completa leva 26 mil anos para ocorrer e é causada pela interação gravitacional da Terra oblata principalmente com o Sol e a Lua.

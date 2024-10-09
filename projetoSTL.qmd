@@ -362,7 +362,7 @@ Assim, deveremos observar a Terra girando *ad aeternum* (`loop: true`) com veloc
             <a-entity id="pos_terra" position="1.5 0.0 0">  
 
                 <a-entity id="rev_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse">
-                
+                                    
                     <a-entity id="terra"
                         geometry="primitive: sphere; radius: 0.15"
                         material="src: #mapa_terra"
@@ -387,43 +387,7 @@ Assim, deveremos observar a Terra girando *ad aeternum* (`loop: true`) com veloc
     </a-entity>
     ```
 
-Há algo importante a observar no código acima. Não implementamos o `a-entity rev_lua` relacionado à compensação da rotação espúria causada pelo movimento orbital da Lua e nem o `animation` de rotação da Lua em torno do próprio eixo no `a-entity lua`. Sabemos que devido ao efeito de "travamento" gravitacional pelas forças de maré atuando ao longo de milhões de anos, a Lua orbita com a mesma face voltada para Terra. Isso implica que o período de translação coincide com o de rotação. Portanto, nesse caso, a rotação espúria do `a-entity orb_lua` já nos forneceu de brinde a rotação da Lua em torno do próprio eixo. 
-
-
-
-12. Aplicando as animações correspondentes à Lua, o sistema STL completo fica da seguinte forma:
-
-    ```html
-        <a-entity id="ref_sol" position="0 0 0">
-            
-            <a-entity id="sol"
-                geometry="primitive: sphere; radius: 0.3"
-                material="src: #mapa_sol">
-            </a-entity>
-            
-            <a-entity id="ref_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"><a-entity position="1.5 0.0 0">
-            
-                <a-entity id="terra"
-                    geometry="primitive: sphere; radius: 0.15"
-                    material="src: #mapa_terra"
-                    animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear">
-                </a-entity>
-                
-                <a-entity id="ref_lua" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear"><a-entity position="0 0.0 0.5">
-                    
-                    <a-entity id="lua"
-                        geometry="primitive: sphere; radius: 0.05"
-                        material="src: #mapa_lua">
-                    </a-entity>
-                
-                </a-entity></a-entity>
-            
-            </a-entity></a-entity>
-
-        </a-entity>
-    ```
-
-Há algo importante a observar no código acima. Não implementamos o `animation` associado à rotação da Lua em torno do próprio eixo. Isso significa que essa rotação não existe? Existe sim! Sabemos que devido ao efeito de "travamento" gravitacional pelas forças de maré atuando ao longo de milhões de anos, a Lua orbita com a mesma face voltada para Terra. Isso implica que o período de translação coincide com o de rotação. Quando fazemos a rotação de um sistema de referência no A-Frame, esse "travamento" ocorre por padrão, por isso que não precisamos incluir a `animation` correspondente. 
+Há algo importante a observar no código acima. Não implementamos a `a-entity rev_lua` relacionada à compensação da rotação espúria causada pelo movimento orbital da Lua e nem o `animation` de rotação da Lua em torno do próprio eixo na `a-entity lua`. Sabemos que devido ao efeito de "travamento gravitacional" pelas forças de maré atuando ao longo de milhões de anos, a Lua orbita com a mesma face voltada para Terra. Isso implica que o período de translação coincide com o de rotação. Portanto, nesse caso, a rotação espúria da `a-entity orb_lua` já nos fornece, de brinde, a rotação da Lua em torno do próprio eixo. 
 
 ![Sistema Sol-Terra-Lua com todos os movimentos -- de rotação e orbital -- implementados.](stl_animado.mp4){loop="true"}
 
@@ -439,6 +403,50 @@ Recarregue a página de preview e entre no modo de inspeção (`<ctrl><alt>i`). 
 Se quisermos explorar conceitos como estações do ano, fases da Lua e eclipses, existem certos detalhes do movimento dos astros que podemos abrir mão, como a excentricidade das órbitas, o movimento em torno do centro de massa, movimento de precessão e nutação, entre outros. Mas alguns são essenciais para aqueles fenômenos. São eles: (i) a inclinação do eixo de rotação da Terra e (ii) a inclinação do plano da órbita da Lua.
 
 ### Inclinação do eixo de rotação da Terra
+
+
+Como sabemos, o eixo de rotação da Terra possui uma inclinação de 23,4° em relação à direção perpendicular ao plano da órbita. Em nosso sistema, podemos implementar essa inclinação em uma nova `a-entity inc_terra` colocada imediatamente acima da `a-entity terra`, usando o componente `rotation`:
+
+```html        
+<a-entity id="inc_terra" rotation="23.4 0 0">
+    <a-entity id="terra"
+        geometry="primitive: sphere; radius: 0.15"
+        material="src: #mapa_terra"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear">
+    </a-entity>
+</a-entity>    
+```
+
+Repare que a rotação se dá na direção $x$, uma vez que a perpendicular da órbita está na direção $y$.
+
+
+### Inclinação do plano orbital da Lua
+
+O plano da órbita da Lua em torno da Terra possui uma inclinação de 5,14° em relação ao plano da órbita da Terra em torno do Sol. Apesar de não ser uma inclinação tão alta, é ela que faz com que não tenhamos um eclipse em cada lua nova (Lua entre o Sol e a Terra) ou em cada lua cheia (Terra entre o Sol e a Lua) -- ou seja, um eclipse solar e outro lunar todo mês.
+
+Como não estamos utilizando uma escala de tamanhos e distâncias proporcionais ao tamanho real dos astros, precisamos usar uma inclinação maior para reproduzir o correto efeito dos eclipses em nosso sistema. Adotaremos uma inclinação de 25°.
+
+```html
+<a-entity id="orb_lua" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear">
+
+    <a-entity id="inc_orb_lua" rotation="25 0 0">
+
+        <a-entity id="rev_orb_lua" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear; dir: reverse">
+
+            <a-entity id="pos_lua" position="0 0.0 0.5">                
+
+                <a-entity id="lua"
+                    geometry="primitive: sphere; radius: 0.05"
+                    material="src: #mapa_lua">
+                </a-entity>
+            </a-entity>
+        </a-entity>            
+    </a-entity>            
+</a-entity>                
+``` 
+
+
+
 
 Conforme explicamos na @sec-movimento_orbital, a rotação de uma `a-entity` fora de centro no A-Frame ocorre de forma "travada". Isso significa que uma volta completa do astro em torno do centro também causa uma volta completa do astro em torno do próprio eixo. Para entender melhor esse efeito, observe o vídeo abaixo em que a Terra é vista orbitando o Sol de perfil aplicando `animation` somente à `a-entity ref-terra` e sem aplicar `animation` de rotação em torno do próprio eixo:
 

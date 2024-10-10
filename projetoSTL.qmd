@@ -292,36 +292,34 @@ Por exemplo, considerando somente o movimento orbital da Terra, teríamos o segu
 
 Com ele, deveremos observar a Terra orbitando em torno do Sol *ad aeternum* (`loop: true`) com velocidade constante (`easing: linear`) e executando uma revolução (`to: 0 360 0`) a cada 300 segundos (`dur: 300000`). Vide vídeo abaixo.
 
-![Ilustração do movimento orbital da Terra usando o `animation` da `a-entity orb_terra`. A cada órbita completa, a Terra dá, também, uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.](movimento_orbital_travado.mp4){loop="true"}
+![Ilustração do movimento orbital da Terra usando o `animation` da `a-entity orb_terra`. A cada órbita completa, a Terra dá, também, uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico). (10x faster)](movimento_orbital_travado.mp4){loop="true"}
 
 Com isso, conseguimos implementar o movimento orbital da Terra. Entretanto, essa `animation` produz, adicionalmente, um movimento de rotação da Terra em torno do próprio eixo. Esse é um efeito indesejado, pois queremos que o movimento de rotação e o orbital sejam independentes um do outro.
 
-Se quisermos implementar corretamente a rotação da Terra em torno de um eixo fixo, temos que compensar essa rotação espúria. Caso contrário, a direção do eixo ficará girando em torno da perpendicular à órbita em um movimento conhecido como precessão[^5].
+Se quisermos implementar corretamente a rotação da Terra e da Lua em torno de um eixo fixo, temos que compensar essa rotação espúria. Caso contrário, a direção do eixo ficará girando em torno da perpendicular à órbita em um movimento conhecido como precessão[^5].
 
-Para reverter essa rotação indesejada, podemos utilizar uma `animation` de rotação no sentido contrário `dir: reverse` em uma nova entidade `a-entity rev_terra` dentro da `a-entity pos_terra`. Ficando da seguinte forma:
+Para reverter essa rotação indesejada, podemos utilizar uma `animation` de rotação no sentido contrário `dir: reverse` em uma nova entidade `a-entity rev_rot_terra` dentro da `a-entity pos_terra`. Ficando da seguinte forma:
 
 ```html
 <a-entity id="orb_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear">
-    
+
     <a-entity id="pos_terra" position="1.5 0.0 0">  
 
-        <a-entity id="rev_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse">
-
+        <a-entity id="rev_rot_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse">
+                            
             <a-entity id="terra"
                 geometry="primitive: sphere; radius: 0.15"
                 material="src: #mapa_terra">
-            </a-entity>
+            </a-entity>                            
 
-        </a-entity>
-
-    </a-entity>               
-
+        </a-entity>               
+    </a-entity>        
 </a-entity>
 ```
 
 Esse código resulta no movimento orbital da Terra sem o movimento espúrio de rotação em torno do próprio eixo, conforme vemos no vídeo abaixo.
 
-![Ilustração do movimento orbital da Terra com a compensação da rotação espúria em torno do próprio eixo usando um `animation` com rotação no sentido contrário. A cada órbita completa, a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico).](movimento_orbital_livre.mp4){loop="true"}
+![Ilustração do movimento orbital da Terra com a compensação da rotação espúria em torno do próprio eixo usando um `animation` com rotação no sentido contrário. Nesse caso, a Terra não gira em torno do próprio eixo, estando as Américas sempre voltadas para a câmera. (10x faster)](movimento_orbital_livre.mp4){loop="true"}
 
 
 ### Movimento de rotação
@@ -361,27 +359,26 @@ Assim, deveremos observar a Terra girando *ad aeternum* (`loop: true`) com veloc
 
             <a-entity id="pos_terra" position="1.5 0.0 0">  
 
-                <a-entity id="rev_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse">
+                <a-entity id="rev_rot_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse">
                                     
                     <a-entity id="terra"
                         geometry="primitive: sphere; radius: 0.15"
                         material="src: #mapa_terra"
                         animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear">
-                    </a-entity>
+                    </a-entity>                            
 
-                </a-entity>            
+                    <a-entity id="orb_lua" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear">
 
-                <a-entity id="orb_lua" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear">
+                        <a-entity id="pos_lua" position="0 0.0 0.5">                
 
-                    <a-entity id="pos_lua" position="0 0.0 0.5">                
-
-                        <a-entity id="lua"
-                            geometry="primitive: sphere; radius: 0.05"
-                            material="src: #mapa_lua">
-                        </a-entity>
-                
-                    </a-entity>                
-                </a-entity>                
+                            <a-entity id="lua"
+                                geometry="primitive: sphere; radius: 0.05"
+                                material="src: #mapa_lua">
+                            </a-entity>
+                    
+                        </a-entity>                
+                    </a-entity> 
+                </a-entity>               
             </a-entity>        
         </a-entity>        
     </a-entity>
@@ -424,12 +421,12 @@ Repare que a rotação se dá na direção $x$, uma vez que a perpendicular da �
 
 O plano da órbita da Lua em torno da Terra possui uma inclinação de 5,14° em relação ao plano da órbita da Terra em torno do Sol. Apesar de não ser uma inclinação tão alta, é ela que faz com que não tenhamos um eclipse em cada lua nova (Lua entre o Sol e a Terra) ou em cada lua cheia (Terra entre o Sol e a Lua) -- ou seja, um eclipse solar e outro lunar todo mês.
 
-Como não estamos utilizando uma escala de tamanhos e distâncias proporcionais ao tamanho real dos astros, precisamos usar uma inclinação maior para reproduzir o correto efeito dos eclipses em nosso sistema. Adotaremos uma inclinação de 25°.
+Como não estamos utilizando uma escala de tamanhos e distâncias proporcionais ao tamanho real dos astros, precisamos usar uma inclinação maior para reproduzir o correto efeito dos eclipses em nosso sistema. Adotaremos uma inclinação de 25°. Faremos isso aplicando o componente `rotation` na nova entidade `a-entity inc_orb_lua` imediatamente acima da `a-entity orb_lua`, conforme o código a seguir:
 
 ```html
-<a-entity id="orb_lua" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear">
+<a-entity id="inc_orb_lua" rotation="-25 0 0">
 
-    <a-entity id="inc_orb_lua" rotation="25 0 0">
+    <a-entity id="orb_lua" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear">    
 
         <a-entity id="rev_orb_lua" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear; dir: reverse">
 
@@ -439,13 +436,84 @@ Como não estamos utilizando uma escala de tamanhos e distâncias proporcionais 
                     geometry="primitive: sphere; radius: 0.05"
                     material="src: #mapa_lua">
                 </a-entity>
+
             </a-entity>
         </a-entity>            
     </a-entity>            
 </a-entity>                
 ``` 
 
+### The dark side of the Moon
 
+Embora não implique em qualquer efeito prático importante, orientar a Lua com a face correta voltada para a Terra é uma questão simples de resolver e dá mais realismo ao sistema. Verificamos que uma simples rotação de 90° na `a-entity lua` resolve a questão:
+
+```html
+<a-entity id="lua"
+    geometry="primitive: sphere; radius: 0.05"
+    material="src: #mapa_lua"
+    rotation="0 90 0">
+</a-entity>
+```
+
+
+## Fiat lux
+
+Para finalizar o sistema STL, precisamos iluminar corretamente a cena. Primeiramente, precisamos que a fonte de luz principal esteja na posição do Sol, simulando a sua irradiação. Para isso utilizaremos o componente `light` na `a-entity sol`:
+
+```html
+light="type: point; color: white; intensity: 2.5; castShadow: true"
+```
+
+O A-Frame possui vários tipos de luz como `ambient`, `directional`, `hemisphere`, `point`, `spot` e `probe`, mas nenhuma delas corresponde a uma fonte de luz extensa para simular melhor a irradiação solar. Ainda assim, o tipo `point`, em que a luz é emitida igualmente em todas as direções a partir de um ponto, reproduz bem os efeitos astronômicos que queremos explorar. Utilizamos o atributo `castShadow: true` pois, por padrão, para poupar processamento, o A-Frame não renderiza sombras entre as entidades da cena.
+
+É interessante também substituirmos a iluminação padrão da `a-scene` por uma luz ambiente fraca para obtermos um bom contraste entre a face dos astros iluminada pelo Sol e a face escura. Para isso, utilizaremos o tipo de luz `ambient` em uma nova `a-entity` logo no início da `a-scene`:
+
+```html
+<a-entity>
+    light="type: ambient; color: white; intensity: 0.005"
+</a-entity>
+```
+
+Essa luz iluminará igualmente todos os objetos sem produzir sombras entre eles. Repare na diferença de intensidade (`intensity`) entre as duas luzes de forma a produzir o contraste desejado. De fato, essa luz ambiente praticamente não existe nos astros reais, mas uma pequena iluminação na face escura da Terra e da Lua facilita a percepção dos fenômenos. 
+
+Precisamos também informar que as duas entidades, `a-entity terra` e `a-entity lua` precisam ser configuradas para receber e produzir sombras com o componente:
+
+```html
+shadow="receive: true; cast: true"
+```
+
+Por fim, iremos definir a propriedade `roughness` (rugosidade) dos materiais da Terra e da Lua para o valor máximo de 1 (o padrão é 0,5):
+
+```html
+material="src: #mapa_terra; roughness: 1"
+```
+
+Essa propriedade define o quão difusa é a reflexão na superfície do material. Um `roughness` baixo produz um efeito espelhado e um valor alto um efeito fosco. 
+
+
+## Elementos gráficos de referência
+
+O nosso projeto STL está completo. Temos os movimentos de rotação e translação, as inclinações do eixo de rotação da Terra e do plano da órbita da Lua e a iluminação que reproduz a luz solar.
+
+Embora esses elementos já sejam suficientes para trabalharmos os conceitos relevantes de astronomia, podemos incluir elementos gráficos auxiliares que facilitam a percepção dos fenômenos. São eles:
+
+- Uma seta para ao longo do eixo de rotação terrestre
+- Um plano para a órbita da Terra
+- Um plano para a órbita da Lua
+
+### Seta do eixo de rotação terrestre
+
+Implementaremos a seta indicativa do eixo de rotação terrestre usando as geometrias `cylinder` e `cone` em uma nova entidade `a-entity eixo_terra`, a qual será inserida paralelamente à `a-entity terra`, da seguinte forma:
+
+```html
+<a-entity
+    geometry="primitive: cylinder; height: 0.30; radius: 0.02"
+    position="">
+</a-entity>
+```
+
+
+-------------------------
 
 
 Conforme explicamos na @sec-movimento_orbital, a rotação de uma `a-entity` fora de centro no A-Frame ocorre de forma "travada". Isso significa que uma volta completa do astro em torno do centro também causa uma volta completa do astro em torno do próprio eixo. Para entender melhor esse efeito, observe o vídeo abaixo em que a Terra é vista orbitando o Sol de perfil aplicando `animation` somente à `a-entity ref-terra` e sem aplicar `animation` de rotação em torno do próprio eixo:
@@ -509,4 +577,4 @@ Em resumo, temos a seguinte hierarquia de entidades:
     O período do Sol se refere à rotação em relação às estrelas distantes, também chamado de período sideral. O período da Terra e da Lua correspondem ao período sinódico que é o período para que o astro volte à mesma posição em relação ao astro que ele orbita. 
 
 [^5]:
-    O movimento de precessão do eixo de rotação terrestre realmente existe e é conhecido como precessão dos equinócios. Mas é um efeito muito lento, em que uma precessão completa leva 26 mil anos para ocorrer e é causada pela interação gravitacional da Terra oblata principalmente com o Sol e a Lua.
+    O movimento de precessão do eixo de rotação terrestre realmente existe e é conhecido como precessão dos equinócios. Mas é um movimento muito lento, em que uma precessão completa dura 26 mil anos e é causada pela interação gravitacional da Terra oblata principalmente com o Sol e a Lua.

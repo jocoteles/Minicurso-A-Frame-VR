@@ -497,7 +497,7 @@ O nosso projeto STL está completo. Temos os movimentos de rotação e translaç
 
 Embora esses elementos já sejam suficientes para trabalharmos os conceitos relevantes de astronomia, podemos incluir elementos gráficos auxiliares que facilitam a percepção dos fenômenos. São eles:
 
-- Uma seta para ao longo do eixo de rotação terrestre
+- Uma seta ao longo do eixo de rotação terrestre
 - Um plano para a órbita da Terra
 - Um plano para a órbita da Lua
 

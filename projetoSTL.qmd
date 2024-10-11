@@ -500,69 +500,191 @@ Embora esses elementos já sejam suficientes para trabalharmos os conceitos rele
 - Uma seta ao longo do eixo de rotação terrestre
 - Um plano para a órbita da Terra
 - Um plano para a órbita da Lua
+- Um mapa de fundo do céu noturno
 
 ### Seta do eixo de rotação terrestre
 
-Implementaremos a seta indicativa do eixo de rotação terrestre usando as geometrias `cylinder` e `cone` em uma nova entidade `a-entity eixo_terra`, a qual será inserida paralelamente à `a-entity terra`, da seguinte forma:
+Implementaremos a seta indicativa do eixo de rotação terrestre usando as geometrias `cylinder` e `cone` em uma nova entidade `a-entity eixo_terra`, a qual será inserida dentro da `a-entity terra`, da seguinte forma:
 
 ```html
-<a-entity
-    geometry="primitive: cylinder; height: 0.30; radius: 0.02"
-    position="">
+<a-entity id="eixo_terra">
+    <a-entity
+        geometry="primitive: cylinder; height: 0.60; radius: 0.007"
+        material="color: blue"
+    ></a-entity>
+    <a-entity
+        geometry="primitive: cone; radiusBottom: 0.03; radiusTop: 0; height: 0.1; segmentsRadial: 4; segmentsHeight: 4"
+        material="color: blue"
+        position="0 0.30 0"
+    ></a-entity>
 </a-entity>
 ```
 
+### Planos orbitais
 
--------------------------
+Faremos os planos orbitais com a geometria `circle`.
 
+O plano orbital da Terra é estático e ficará ao lado das entidades `a-entity terra` e `a-entity lua`:
 
-Conforme explicamos na @sec-movimento_orbital, a rotação de uma `a-entity` fora de centro no A-Frame ocorre de forma "travada". Isso significa que uma volta completa do astro em torno do centro também causa uma volta completa do astro em torno do próprio eixo. Para entender melhor esse efeito, observe o vídeo abaixo em que a Terra é vista orbitando o Sol de perfil aplicando `animation` somente à `a-entity ref-terra` e sem aplicar `animation` de rotação em torno do próprio eixo:
+```html
+<a-entity
+    id="plano_terra"
+    geometry="primitive: circle; radius: 2"
+    material="side: double; opacity: 0.1; emissiveIntensity: 20; emissive: blue"
+    rotation="90 0 0"
+></a-entity>
+``` 
 
-```html        
-    <a-entity id="ref_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"><a-entity position="1.5 0.0 0">
-    
-        <a-entity id="terra"
-            geometry="primitive: sphere; radius: 0.15"
-            material="src: #mapa_terra">
-        </a-entity>
-                            
-    </a-entity></a-entity>
+O plano orbital da Lua ficará dentro da `a-entity inc_orb_lua` pois terá que seguir essa inclinação:
+
+```html
+<a-entity
+    id="plano_lua"
+    geometry="primitive: circle; radius: 0.5"
+    material="side: double; opacity: 0.1; emissiveIntensity: 20; emissive: white"
+    rotation="90 0 0"
+></a-entity>
 ```
 
-![Ilustração do movimento orbital da Terra usando somente o `animation` da `a-entity ref-terra`. A cada órbita completa, a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.](movimento_orbital_travado.mp4){loop="true"}
+### Mapa do céu noturno
 
-Se quisermos implementar corretamente a rotação da Terra em torno de um eixo fixo, temos que compensar essa rotação espúria. Caso contrário, a direção do eixo ficará girando em torno da perpendicular à órbita em um movimento conhecido como precessão[^5].
+Para dar mais realismo, vamos inserir um mapa do céu noturno. O procedimento é semelhante aos mapas das superfícies dos astros, exceto que existe uma entidade específica para isso no A-Frame:
 
-Podemos realizar essa compensação aplicando uma `animation` de rotação no sentido contrário `dir: reverse` na `a-entity` que produz o deslocamento (`position`) do astro em relação ao centro. Além disso, precisamos incluir uma nova `a-entity` para inclinar a Terra (`rotation`) de um ângulo de 23,4°:
+```html
+    <a-entity id="pos_sol" position="0 0 0">
+```
 
-```html        
-    <a-entity id="ref_terra" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear">
-        <a-entity position="1.5 0.0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse">    
-            <a-entity rotation="23.4 0 0">
-                <a-entity id="terra"
-                    geometry="primitive: sphere; radius: 0.15"
-                    material="src: #mapa_terra">
+Sendo que a imagem `skymap` utilizada deve ser incluída em `assets` da mesma forma que os demais mapas dos astros:
+
+```html
+<img id="skymap" src="https://i.postimg.cc/fzD0BmTC/Tycho-Skymap-t4-04096x02048.jpg"/>
+```
+
+Essa imagem foi obtida do [catálogo estelar Tycho](https://svs.gsfc.nasa.gov/3442/) e colocada temporariamente no *postimg* para que pudesse ser carregada online pelo a-Frame.
+
+
+## Resultado final
+
+O vídeo abaixo apresenta a renderização completa do projeto STL.
+
+
+
+::: {.callout-tip title="Aqui está o código completo do projeto STL" collapse="true"}
+```html
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-orbit-controls@1.3.2/dist/aframe-orbit-controls.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene>
+      <a-entity
+        camera
+        look-controls="enabled: false"
+        orbit-controls="target: 0 0 0; minDistance: 0; maxDistance: 180; initialPosition: 0 3 5; rotateSpeed: 1.5"
+      ></a-entity>
+
+      <a-assets>
+        <img
+          id="mapa_sol"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Map_of_the_full_sun.jpg/1280px-Map_of_the_full_sun.jpg"
+        />
+        <img
+          id="mapa_terra"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png"
+        />
+        <img
+          id="mapa_lua"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Solarsystemscope_texture_8k_moon.jpg/1280px-Solarsystemscope_texture_8k_moon.jpg"
+        />
+      </a-assets>
+
+      <a-entity
+        light="type: ambient; color: #ffffff; intensity: 0.005"
+      ></a-entity>
+      <a-entity id="pos_sol" position="0 0 0">
+        <a-entity
+          id="sol"
+          geometry="primitive: sphere; radius: 0.2"
+          material="src: #mapa_sol; emissiveIntensity: 0.5; emissive: #f7e927"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 50000; easing: linear"
+          light="type: point; color: white; intensity: 2.5; castShadow:true"
+        >
+        </a-entity>
+
+        <a-entity
+          id="plano_terra"
+          geometry="primitive: circle; radius: 2.3"
+          material="side: double; opacity: 0.1; emissiveIntensity: 20; emissive: blue"
+          rotation="90 0 0"
+        ></a-entity>
+
+        <a-entity
+          id="orb_terra"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"
+        >
+          <a-entity id="pos_terra" position="1.5 0.0 0">
+            <a-entity
+              id="rev_terra"
+              animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse"
+            >
+              <a-entity id="inc_terra" rotation="23.4 0 0">
+                <a-entity
+                  id="terra"
+                  geometry="primitive: sphere; radius: 0.15"
+                  material="src: #mapa_terra; roughness: 1"
+                  animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"
+                  shadow="receive: true; cast: true"
+                >
+                  <a-entity id="eixo_terra">
+                    <a-entity
+                      geometry="primitive: cylinder; height: 0.60; radius: 0.007"
+                      material="color: blue"
+                    ></a-entity>
+                    <a-entity
+                      geometry="primitive: cone; radiusBottom: 0.03; radiusTop: 0; height: 0.1; segmentsRadial: 4; segmentsHeight: 4"
+                      material="color: blue"
+                      position="0 0.30 0"
+                    ></a-entity>
+                  </a-entity>
                 </a-entity>
-            </a-entity>                            
+              </a-entity>
+
+              <a-entity id="inc_orb_lua" rotation="-25 0 0">
+                <a-entity
+                  id="plano_lua"
+                  geometry="primitive: circle; radius: 0.8"
+                  material="side: double; opacity: 0.1; emissiveIntensity: 20; emissive: white"
+                  rotation="90 0 0"
+                ></a-entity>
+                <a-entity
+                  id="orb_lua"
+                  animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear"
+                >
+                  <a-entity id="pos_lua" position="0 0.0 0.8">
+                    <a-entity
+                      id="lua"
+                      geometry="primitive: sphere; radius: 0.05"
+                      material="src: #mapa_lua; roughness: 1"
+                      rotation="0 90 0"
+                      shadow="receive: true; cast: true"
+                    >
+                    </a-entity>
+                  </a-entity>
+                </a-entity>
+              </a-entity>
+            </a-entity>
+          </a-entity>
         </a-entity>
-    </a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
 ```
-
-Com isso, temos o resultado esperado (ainda sem aplicar a `animation` de rotação em torno do próprio eixo) como mostrado no vídeo abaixo.
-
-![Ilustração do movimento orbital da Terra com a compensação da rotação espúria usando um `animation` com rotação no sentido contrário. A cada órbita completa, a Terra dá uma volta em torno do próprio eixo (quando próxima à câmera, apresenta a África voltada para nós, quando longe, apresenta o Pacífico.](movimento_orbital_livre.mp4){loop="true"}
-
-Em resumo, temos a seguinte hierarquia de entidades:
-
-- `a-entity` 5: animação da rotação do referencial da Terra para implementar o movimento de translação.
-    - `a-entity` 4: posicionamento da Terra no raio da órbita.
-        - `a-entity` 3: animação de rotação contrária a da `a-entity 1` para compensar a rotação indesejada da Terra ao longo do movimento de translação.
-            - `a-entity` 2: rotação para inclinação do eixo da Terra de 23,4°.
-                - `a-entity` 1: animação de rotação da Terra em torno do próprio eixo.
-
-13. Segue o código completo com a inclinação do eixo da Terra e os movimentos de rotação e translação:
-
-
+:::
 
 [^1]:
     Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.

@@ -386,7 +386,7 @@ Assim, deveremos observar a Terra girando *ad aeternum* (`loop: true`) com veloc
 
 Há algo importante a observar no código acima. Não implementamos a `a-entity rev_lua` relacionada à compensação da rotação espúria causada pelo movimento orbital da Lua e nem o `animation` de rotação da Lua em torno do próprio eixo na `a-entity lua`. Sabemos que devido ao efeito de "travamento gravitacional" pelas forças de maré atuando ao longo de milhões de anos, a Lua orbita com a mesma face voltada para Terra. Isso implica que o período de translação coincide com o de rotação. Portanto, nesse caso, a rotação espúria da `a-entity orb_lua` já nos fornece, de brinde, a rotação da Lua em torno do próprio eixo. 
 
-![Sistema Sol-Terra-Lua com todos os movimentos -- de rotação e orbital -- implementados.](stl_animado.mp4){loop="true"}
+![Sistema Sol-Terra-Lua com todos os movimentos -- de rotação e orbital -- implementados, visto de cima.](stl_animado.mp4){loop="true"}
 
 
 
@@ -455,6 +455,7 @@ Embora não implique em qualquer efeito prático importante, orientar a Lua com 
 </a-entity>
 ```
 
+![Sistema Sol-Terra-Lua com todos os movimentos e inclinações do eixo da Terra e da órbita da Lua, visto de perfil.](movimento-completo-com-inclinacoes.mp4){loop="true"}
 
 ## Fiat lux
 
@@ -564,10 +565,6 @@ Essa imagem foi obtida do [catálogo estelar Tycho](https://svs.gsfc.nasa.gov/34
 
 
 ## Resultado final
-
-O vídeo abaixo apresenta a renderização completa do projeto STL.
-
-
 
 ::: {.callout-tip title="Aqui está o código completo do projeto STL" collapse="true"}
 ```html
@@ -685,6 +682,8 @@ O vídeo abaixo apresenta a renderização completa do projeto STL.
 </html>
 ```
 :::
+
+![Imagem da renderização Sistema Sol-Terra-Lua do projeto completo incluindo os elementos gráficos de referência, visto de cima.](screenshot_projeto_completo.png){loop="true"}
 
 [^1]:
     Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.

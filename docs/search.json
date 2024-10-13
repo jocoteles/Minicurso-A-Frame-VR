@@ -1,5 +1,15 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Minicurso A-Frame VR para Ensino de Física e Astronomia",
+    "section": "",
+    "text": "1 Apresentação\nEste minicurso visa introduzir os participantes ao desenvolvimento de aplicações de RV para o ensino de astronomia utilizando a plataforma A-Frame, com base na linguagem HTML/Javascript. Ao final do curso, vocês será capaz de construir um sistema solar virtual simplificado, com o Sol, a Terra e a Lua, incluindo movimento orbital e de rotação. O curso aborda os conceitos básicos de modelagem 3D, animação, iluminação e interação no ambiente A-Frame. Devido ao tempo limitado, o curso não explora programação avançada em Javascript, a criação de componentes personalizados nem a integração com a biblioteca Three.js, tópicos que podem ser aprofundados em estudos posteriores.\nAs tecnologias de realidade virtual (RV) têm experimentado avanços notáveis tanto em hardware (headsets) quanto em software (plataformas de desenvolvimento). Dispositivos como o Meta Quest, com processamento, rastreamento e baterias integrados, proporcionam experiências imersivas e portáteis. Paralelamente, plataformas de desenvolvimento como Unity, Unreal Engine e A-Frame oferecem ferramentas poderosas para criar aplicações de RV cada vez mais sofisticadas. Apesar desse progresso, o potencial da RV para o ensino ainda é pouco explorado, especialmente em áreas como a astronomia, que se beneficiariam enormemente de sua capacidade de representar conceitos complexos em um ambiente tridimensional interativo.\nA realidade virtual oferece grande potencial para o ensino de ciências, Física e Astronomia. Ao permitir visualizações de objetos celestes, simulação de fenômenos astronômicos básicos como eclipses e estações do ano e a interação direta com o ambiente virtual, a RV proporciona experiências de aprendizagem imersivas e envolventes que podem aumentar a compreensão, a motivação e o engajamento dos alunos. A possibilidade de visualizar e manipular objetos 3D virtuais com as próprias mãos, em contraste com representações bidimensionais tradicionais, facilita a compreensão de conceitos abstratos e a construção de modelos mentais mais precisos.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Apresentação</span>"
+    ]
+  },
+  {
     "objectID": "htmlbasico.html",
     "href": "htmlbasico.html",
     "title": "2  HTML/Javascript básico",
@@ -30,8 +40,8 @@
     ]
   },
   {
-    "objectID": "htmlbasico.html#disponibilizando-páginas-web-diretamente-na-internet-com-glitch",
-    "href": "htmlbasico.html#disponibilizando-páginas-web-diretamente-na-internet-com-glitch",
+    "objectID": "htmlbasico.html#sec-glitch",
+    "href": "htmlbasico.html#sec-glitch",
     "title": "2  HTML/Javascript básico",
     "section": "2.3 Disponibilizando páginas web diretamente na Internet com Glitch",
     "text": "2.3 Disponibilizando páginas web diretamente na Internet com Glitch\nExistem diversas plataformas gratuitas que permitem a hospedagem de páginas web. Entre elas, podemos destacar:\n\nReplit\nCodeSandbox\nGitHub Pages\nGlitch\n\nNeste minicurso usaremos o Glitch.\nGlitch é uma plataforma online para desenvolvimento e hospedagem de aplicações web, permitindo edição colaborativa em tempo real diretamente no navegador. Páginas criadas no Glitch são disponibilizadas quase que instantaneamente em um endereço de internet de acesso público.\nVamos começar a partir de um projeto básico que criamos para este minicurso.\n\nAcesse: https://glitch.com/edit/#!/fishy-foil-technosaurus\n\nAo acessar esse projeto, você deverá observar a tela abaixo.\n\n\n\nPrint da tela do projeto fishy-foil-technosaurus no Glitch\n\n\nA tela apresenta basicamente dois painéis:\n\nO painel de arquivos e configurações à esquerda.\nO painel de código à direita que mostra o conteúdo do arquivo escolhido no painel de arquivo.\n\nNo canto inferior direito há o botão de preview, que renderiza (gera/compila) a página index.html que será mostrada para quem acessar a página no endereço público do projeto.\n\nAgora, antes de começar a editar e trabalhar em projetos no Glitch, é importante criar uma conta nele, pois isso permitirá acessar os projetos posteriormente.\nApós criar a conta, acesse novamente a edição do projeto fishy-foil-technosaurus e clique no botão Remix do Edit localizado no canto superior direito.\n\n\n\n\n\n\n\nTarefa\n\n\n\n\nA partir do fishy-foil-technosaurus remixado, implemente o botão contador de clicadas que fizemos anteriormente no editor de texto.\n\n\n\nClicando em Settings no painel de arquivos e configurações você pode alterar o nome do projeto.\nPara finalizar, com o botão Share você pode compartilhar o seu projeto de três formas diferentes:\n\nPágina web final (Live site): https://fishy-foil-technosaurus.glitch.me\nEdição do código [Code]: https://glitch.com/edit/#!/fishy-foil-technosaurus\nApresentação do Projeto [Project Page]: https://glitch.com/~fishy-foil-technosaurus\n\n\nAprender mais sobre o Glitch\n\n\n\n\n\nSilva, Nelson Canzian da. 2016. Física com JavaScript. Depto de Física - UFSC. https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf.",
@@ -110,36 +120,6 @@
     ]
   },
   {
-    "objectID": "projetoSTL.html#footnotes",
-    "href": "projetoSTL.html#footnotes",
-    "title": "3  O projeto Sol-Terra-Lua",
-    "section": "",
-    "text": "Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.↩︎\nNa verdade, a Lua não gira em tono da Terra, mas em torno do centro de massa do sistema Terra-Lua, assim como a própria Terra. Por motivos didáticos, usaremos o sistema de referência centrado na Terra para implementar o movimento orbital da Lua. Essa aproximação não é tão ruim, uma vez que o centro de massa do sistema está bem mais próximo da Terra do que da Lua.↩︎\nA expressão em italiano que significa “E, no entanto, ela se move” teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.↩︎\nO movimento de precessão do eixo de rotação terrestre realmente existe e é conhecido como precessão dos equinócios. Mas é um movimento muito lento, em que uma precessão completa dura 26 mil anos e é causada pela interação gravitacional da Terra oblata principalmente com o Sol e a Lua.↩︎",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O projeto Sol-Terra-Lua</span>"
-    ]
-  },
-  {
-    "objectID": "referencias.html",
-    "href": "referencias.html",
-    "title": "4  Referências",
-    "section": "",
-    "text": "Silva, Nelson Canzian da. 2016. Física Com JavaScript. Depto de\nFísica - UFSC. https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Referências</span>"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Minicurso A-Frame VR para Ensino de Física e Astronomia",
-    "section": "",
-    "text": "1 Realidade Virtual em páginas e aplicativos web\n\nAs vantagens, flexibilidade, alcance e potencial de aplicações web baseadas em HTML5/JS/CSS.\nRealidade Virtual em smartphones versus VR headsets. Focaremos no segundo.\nA API (Interface de Programação de Aplicativos) WebXR utilizada pelos headsets VR nas páginas web.\nExemplos de Plataformas Web que utilizam WebXR:\n\nThree.js\nBabylon.js\nA-Frame\n\n\n\n\n2 Principais características do A-Frame\n\nFilosofia\nObjetivos\nUsos\n\n\n\n3 Breve introdução ao HTML/Javascript\n\nComo se estrutura um arquivo HTML/Javascript básico\nFormas de rodar o arquivo HTML:\n\nPágina local (editor de texto txt). Usaremos apenas para mostrar os passos iniciais do HTML/Javascript.\nServidor web (usaremos o Glitch, mas existem inúmeros outros). Será usado para o desenvolvimento de todo o aplicativo deste minicurso.\nServidor local (apenas mostraremos, ao final do minicurso, o caminho que estamos adotando em nossos projetos).\n\n\n\n\n4 Aplicativo Sol-Terra-Lua em VR com o A-Frame\nVamos aprender a usar o A-Frame através de um processo mão na massa de construção de um aplicativo VR para visualização da dinâmica do sistema Sol-Terra-Lua (STL).",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Resumo</span>"
-    ]
-  },
-  {
     "objectID": "projetoSTL.html#fiat-lux",
     "href": "projetoSTL.html#fiat-lux",
     "title": "3  O projeto Sol-Terra-Lua",
@@ -170,16 +150,6 @@
     ]
   },
   {
-    "objectID": "projetoSTL.html#um-olho-no-sol-e-outro-na-terra",
-    "href": "projetoSTL.html#um-olho-no-sol-e-outro-na-terra",
-    "title": "3  O projeto Sol-Terra-Lua",
-    "section": "3.10 Um olho no Sol e outro na Terra",
-    "text": "3.10 Um olho no Sol e outro na Terra\nAté agora não mexemos na posição da câmera. Ela permaneceu fixa no sistema uma a-entity a parte, fora do sistema de referência do Sol. Mas podemos colocar a câmera onde quisermos, inclusive fixa na superfície da Terra. Para isso, basta colocarmos a câmera dentro da a-entity terra:\n&lt;a-entity\n    id=\"terra\"                  \n    geometry=\"primitive: sphere; radius: 1.5; segmentsWidth:180; segmentsHeight:360\"\n    material=\"src: #mapa_terra; roughness: 1\"\n    animation=\"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear\"\n    shadow=\"receive: true; cast: true\"\n    &gt;\n    &lt;a-entity camera look-controls position=\"1.35 0.755 0\" fov=\"80\"&gt;&lt;/a-entity&gt;    \n&lt;/a-entity&gt;\nEssa posição da câmera produz a visualização o efeito mostrado no vídeo abaixo.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O projeto Sol-Terra-Lua</span>"
-    ]
-  },
-  {
     "objectID": "projetoSTL.html#aprimoramentos",
     "href": "projetoSTL.html#aprimoramentos",
     "title": "3  O projeto Sol-Terra-Lua",
@@ -190,13 +160,73 @@
     ]
   },
   {
-    "objectID": "htmlbasico.html#sec-glitch",
-    "href": "htmlbasico.html#sec-glitch",
-    "title": "2  HTML/Javascript básico",
-    "section": "2.3 Disponibilizando páginas web diretamente na Internet com Glitch",
-    "text": "2.3 Disponibilizando páginas web diretamente na Internet com Glitch\nExistem diversas plataformas gratuitas que permitem a hospedagem de páginas web. Entre elas, podemos destacar:\n\nReplit\nCodeSandbox\nGitHub Pages\nGlitch\n\nNeste minicurso usaremos o Glitch.\nGlitch é uma plataforma online para desenvolvimento e hospedagem de aplicações web, permitindo edição colaborativa em tempo real diretamente no navegador. Páginas criadas no Glitch são disponibilizadas quase que instantaneamente em um endereço de internet de acesso público.\nVamos começar a partir de um projeto básico que criamos para este minicurso.\n\nAcesse: https://glitch.com/edit/#!/fishy-foil-technosaurus\n\nAo acessar esse projeto, você deverá observar a tela abaixo.\n\n\n\nPrint da tela do projeto fishy-foil-technosaurus no Glitch\n\n\nA tela apresenta basicamente dois painéis:\n\nO painel de arquivos e configurações à esquerda.\nO painel de código à direita que mostra o conteúdo do arquivo escolhido no painel de arquivo.\n\nNo canto inferior direito há o botão de preview, que renderiza (gera/compila) a página index.html que será mostrada para quem acessar a página no endereço público do projeto.\n\nAgora, antes de começar a editar e trabalhar em projetos no Glitch, é importante criar uma conta nele, pois isso permitirá acessar os projetos posteriormente.\nApós criar a conta, acesse novamente a edição do projeto fishy-foil-technosaurus e clique no botão Remix do Edit localizado no canto superior direito.\n\n\n\n\n\n\n\nTarefa\n\n\n\n\nA partir do fishy-foil-technosaurus remixado, implemente o botão contador de clicadas que fizemos anteriormente no editor de texto.\n\n\n\nClicando em Settings no painel de arquivos e configurações você pode alterar o nome do projeto.\nPara finalizar, com o botão Share você pode compartilhar o seu projeto de três formas diferentes:\n\nPágina web final (Live site): https://fishy-foil-technosaurus.glitch.me\nEdição do código [Code]: https://glitch.com/edit/#!/fishy-foil-technosaurus\nApresentação do Projeto [Project Page]: https://glitch.com/~fishy-foil-technosaurus\n\n\nAprender mais sobre o Glitch\n\n\n\n\n\nSilva, Nelson Canzian da. 2016. Física com JavaScript. Depto de Física - UFSC. https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf.",
+    "objectID": "projetoSTL.html#footnotes",
+    "href": "projetoSTL.html#footnotes",
+    "title": "3  O projeto Sol-Terra-Lua",
+    "section": "",
+    "text": "Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.↩︎\nNa verdade, a Lua não gira em tono da Terra, mas em torno do centro de massa do sistema Terra-Lua, assim como a própria Terra. Por motivos didáticos, usaremos o sistema de referência centrado na Terra para implementar o movimento orbital da Lua. Essa aproximação não é tão ruim, uma vez que o centro de massa do sistema está bem mais próximo da Terra do que da Lua.↩︎\nA expressão em italiano que significa “E, no entanto, ela se move” teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.↩︎\nO movimento de precessão do eixo de rotação terrestre realmente existe e é conhecido como precessão dos equinócios. Mas é um movimento muito lento, em que uma precessão completa dura 26 mil anos e é causada pela interação gravitacional da Terra oblata principalmente com o Sol e a Lua.↩︎",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>HTML/Javascript básico</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O projeto Sol-Terra-Lua</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#realidade-virtual-em-páginas-e-aplicativos-web",
+    "href": "index.html#realidade-virtual-em-páginas-e-aplicativos-web",
+    "title": "Minicurso A-Frame VR para Ensino de Física e Astronomia",
+    "section": "",
+    "text": "As vantagens, flexibilidade, alcance e potencial de aplicações web baseadas em HTML5/JS/CSS.\nRealidade Virtual em smartphones versus VR headsets. Focaremos no segundo.\nA API (Interface de Programação de Aplicativos) WebXR utilizada pelos headsets VR nas páginas web.\nExemplos de Plataformas Web que utilizam WebXR:\n\nThree.js\nBabylon.js\nA-Frame\n\n\n\n0.1.1 Vantagens das Aplicações Web em Realidade Virtual\nO desenvolvimento de aplicações de Realidade Virtual (RV) em páginas e aplicativos web, utilizando tecnologias como HTML5, Javascript e CSS, oferece uma série de vantagens significativas em termos de flexibilidade, alcance e potencial. A natureza aberta e universal da web permite que aplicações desenvolvidas nessas linguagens sejam acessadas em uma ampla gama de dispositivos, desde computadores desktop e notebooks até smartphones, tablets e headsets de RV, sem a necessidade de compilações específicas para cada plataforma.\nAlém da portabilidade, a web oferece uma infraestrutura robusta para o desenvolvimento e distribuição de aplicações, com ferramentas de desenvolvimento acessíveis, bibliotecas gráficas poderosas como o Three.js e frameworks como o A-Frame que simplificam o processo de criação de experiências imersivas. A vasta comunidade de desenvolvedores web também contribui para a disponibilidade de recursos, tutoriais e exemplos de código, facilitando a aprendizagem e o desenvolvimento de aplicações.\n\n\n0.1.2 Realidade Virtual em Headsets versus Smartphones\nEmbora a RV em smartphones ofereça acessibilidade e conveniência, os headsets de RV proporcionam experiências imersivas mais completas, com maior campo de visão, rastreamento de movimento mais preciso, visão estereoscópica, e a capacidade de isolar o usuário do ambiente externo, aumentando a sensação de presença no mundo virtual.\n\n\n0.1.3 WebXR: A API para Realidade Virtual na Web\nA WebXR é uma Interface de Programação de Aplicativos (API) que permite a criação de experiências de RV e Realidade Aumentada (RA) diretamente em páginas web, acessíveis através de navegadores de internet. A WebXR fornece uma camada de abstração entre o código da aplicação e os diferentes dispositivos de RV e RA, permitindo que os desenvolvedores criem experiências imersivas sem se preocupar com as especificidades de cada hardware.\nA API WebXR oferece funcionalidades para rastreamento de posição e orientação do headset e dos controladores, renderização de cenas 3D, interação com objetos virtuais e acesso a sensores do dispositivo.\n\n\n0.1.4 Plataformas Web para Realidade Virtual com WebXR\nExistem diversas plataformas e bibliotecas Javascript que utilizam a API WebXR para facilitar o desenvolvimento de aplicações de RV em páginas web. Algumas das mais populares incluem:\n\nThree.js: Uma biblioteca gráfica 3D completa e versátil, amplamente utilizada para a criação de jogos, animações e experiências interativas na web. O Three.js oferece uma ampla gama de funcionalidades para modelagem 3D, materiais, iluminação, animação e renderização, além de suporte à WebXR para a criação de experiências imersivas.\nBabylon.js: Outra biblioteca gráfica 3D popular, com foco na criação de jogos e experiências interativas de alto desempenho. O Babylon.js oferece uma interface amigável, um sistema de física integrado e suporte à WebXR.\nA-Frame: Um framework web para a criação de experiências de RV de forma declarativa, utilizando HTML. O A-Frame simplifica o desenvolvimento de RV, abstraindo a complexidade da biblioteca Three.js e permitindo a criação de cenas 3D com tags HTML. O A-Frame utiliza a WebXR para integrar as experiências imersivas com dispositivos compatíveis.\n\n\n\n0.1.5 Principais características do A-Frame\n\nFilosofia\nObjetivos\nUsos",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Apresentação</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#vantagens-das-aplicações-web-em-realidade-virtual",
+    "href": "index.html#vantagens-das-aplicações-web-em-realidade-virtual",
+    "title": "Minicurso A-Frame VR para Ensino de Física e Astronomia",
+    "section": "1.1 Vantagens das Aplicações Web em Realidade Virtual",
+    "text": "1.1 Vantagens das Aplicações Web em Realidade Virtual\nO desenvolvimento de aplicações de Realidade Virtual (RV) em páginas e aplicativos web, utilizando tecnologias como HTML5, Javascript e CSS, oferece uma série de vantagens significativas em termos de flexibilidade, alcance e potencial. A natureza aberta e universal da web permite que aplicações desenvolvidas nessas linguagens sejam acessadas em uma ampla gama de dispositivos, desde computadores desktop e notebooks até smartphones, tablets e headsets de RV, sem a necessidade de compilações específicas para cada plataforma.\nAlém da portabilidade, a web oferece uma infraestrutura robusta para o desenvolvimento e distribuição de aplicações, com ferramentas de desenvolvimento acessíveis, bibliotecas gráficas poderosas como o Three.js e frameworks como o A-Frame que simplificam o processo de criação de experiências imersivas. A vasta comunidade de desenvolvedores web também contribui para a disponibilidade de recursos, tutoriais e exemplos de código, facilitando a aprendizagem e o desenvolvimento de aplicações.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Apresentação</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#realidade-virtual-em-headsets-versus-smartphones",
+    "href": "index.html#realidade-virtual-em-headsets-versus-smartphones",
+    "title": "Minicurso A-Frame VR para Ensino de Física e Astronomia",
+    "section": "1.2 Realidade Virtual em Headsets versus Smartphones",
+    "text": "1.2 Realidade Virtual em Headsets versus Smartphones\nEmbora a RV em smartphones ofereça acessibilidade e conveniência, os headsets de RV proporcionam experiências imersivas mais completas, com maior campo de visão, rastreamento de movimento mais preciso, visão estereoscópica, e a capacidade de isolar o usuário do ambiente externo, aumentando a sensação de presença no mundo virtual.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Apresentação</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#webxr-a-api-para-realidade-virtual-na-web",
+    "href": "index.html#webxr-a-api-para-realidade-virtual-na-web",
+    "title": "Minicurso A-Frame VR para Ensino de Física e Astronomia",
+    "section": "1.3 WebXR: A API para Realidade Virtual na Web",
+    "text": "1.3 WebXR: A API para Realidade Virtual na Web\nA WebXR é uma Interface de Programação de Aplicativos (API) que permite a criação de experiências de RV e Realidade Aumentada (RA) diretamente em páginas web, acessíveis através de navegadores de internet. A WebXR fornece uma camada de abstração entre o código da aplicação e os diferentes dispositivos de RV e RA, permitindo que os desenvolvedores criem experiências imersivas sem se preocupar com as especificidades de cada hardware.\nA API WebXR oferece funcionalidades para rastreamento de posição e orientação do headset e dos controladores, renderização de cenas 3D, interação com objetos virtuais e acesso a sensores do dispositivo.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Apresentação</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#plataformas-web-para-realidade-virtual-com-webxr",
+    "href": "index.html#plataformas-web-para-realidade-virtual-com-webxr",
+    "title": "Minicurso A-Frame VR para Ensino de Física e Astronomia",
+    "section": "1.4 Plataformas Web para Realidade Virtual com WebXR",
+    "text": "1.4 Plataformas Web para Realidade Virtual com WebXR\nExistem diversas plataformas e bibliotecas Javascript que utilizam a API WebXR para facilitar o desenvolvimento de aplicações de RV em páginas web. Algumas das mais populares incluem:\n\nThree.js: Uma biblioteca gráfica 3D completa e versátil, amplamente utilizada para a criação de jogos, animações e experiências interativas na web. O Three.js oferece uma ampla gama de funcionalidades para modelagem 3D, materiais, iluminação, animação e renderização, além de suporte à WebXR para a criação de experiências imersivas.\nBabylon.js: Outra biblioteca gráfica 3D popular, com foco na criação de jogos e experiências interativas de alto desempenho. O Babylon.js oferece uma interface amigável, um sistema de física integrado e suporte à WebXR.\nA-Frame: Um framework web para a criação de experiências de RV de forma declarativa, utilizando HTML. O A-Frame simplifica o desenvolvimento de RV, abstraindo a complexidade da biblioteca Three.js e permitindo a criação de cenas 3D com tags HTML. O A-Frame utiliza a WebXR para integrar as experiências imersivas com dispositivos compatíveis.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Apresentação</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#principais-características-do-a-frame",
+    "href": "index.html#principais-características-do-a-frame",
+    "title": "Minicurso A-Frame VR para Ensino de Física e Astronomia",
+    "section": "1.5 Principais características do A-Frame",
+    "text": "1.5 Principais características do A-Frame\nO A-Frame adota a filosofia de simplificar o desenvolvimento de experiências de RV na web, tornando-o acessível a um público mais amplo, incluindo desenvolvedores web com pouca ou nenhuma experiência em computação gráfica 3D. O A-Frame se baseia na ideia de que a web é a plataforma ideal para RV, devido à sua natureza aberta, universal e acessível a partir de uma ampla gama de dispositivos.\nA filosofia do A-Frame se reflete em sua abordagem declarativa, que permite a criação de cenas 3D utilizando tags HTML, familiar aos desenvolvedores web. Essa abordagem abstrai a complexidade da biblioteca gráfica subjacente (Three.js), permitindo que os desenvolvedores se concentrem na estrutura e no conteúdo da experiência de RV.\nO A-Frame também se baseia no conceito “Entidade-Componente-Sistema” (ECS), que promove a modularidade e reutilização de código. As entidades representam os objetos na cena 3D, os componentes definem suas propriedades e funcionalidades, e os sistemas gerenciam o comportamento global da cena. Essa estrutura modular torna o código mais organizado, legível e fácil de manter.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Apresentação</span>"
     ]
   }
 ]

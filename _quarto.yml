@@ -5,7 +5,7 @@ project:
 book:
   title: "Minicurso A-Frame VR para Ensino de Física e Astronomia"  
   author: "João Teles"
-  date: "17/10/2024"
+  date: "10/17/2024"
   search: true
   repo-url: https://jocoteles.github.io/Minicurso-A-Frame-VR/
   repo-actions: [edit]
@@ -16,6 +16,16 @@ book:
     - htmlbasico.qmd
     - projetoSTL.qmd
     - referencias.qmd  
+
+crossref:
+  custom:
+    - kind: float
+      reference-prefix: Vídeo
+      key: vid
+    - kind: float
+      reference-prefix: Código
+      key: cod
+
 
 bibliography: references.bib
 

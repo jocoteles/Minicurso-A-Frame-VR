@@ -175,7 +175,7 @@ Podemos criar arquivos txt para cada um dos três arquivos e abrir o arquivo HTM
 
 
 
-## Disponibilizando páginas web diretamente na Internet com Glitch
+## Disponibilizando páginas web diretamente na Internet com Glitch {#sec-glitch}
 
 Existem diversas plataformas gratuitas que permitem a hospedagem de páginas web. Entre elas, podemos destacar:
 

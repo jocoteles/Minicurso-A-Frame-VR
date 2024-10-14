@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Minicurso A-Frame VR para Ensino de Física e Astronomia"  
+  title: "Minicurso: Realidade Virtual com A-Frame para Ensino de Física e Astronomia"  
   author: "João Teles"
   date: "10/17/2024"
   search: true

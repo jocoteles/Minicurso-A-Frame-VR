@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; O projeto Sol-Terra-Lua – Minicurso A-Frame VR para Ensino de Física e Astronomia</title>
+<title>3&nbsp; O projeto Sol-Terra-Lua – Minicurso: Realidade Virtual com A-Frame para Ensino de Física e Astronomia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./referencias.html" rel="next">
 <link href="./htmlbasico.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -103,6 +102,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -130,20 +158,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Minicurso A-Frame VR para Ensino de Física e Astronomia</a> 
+      <a href="./">Minicurso: Realidade Virtual com A-Frame para Ensino de Física e Astronomia</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://jocoteles.github.io/Minicurso-A-Frame-VR/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
     <div class="dropdown">
       <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Minicurso-A-Frame-VR-para-Ensino-de-Física-e-Astronomia.pdf">
+            <a class="dropdown-item sidebar-tools-main-item" href="./Minicurso--Realidade-Virtual-com-A-Frame-para-Ensino-de-Física-e-Astronomia.pdf">
               <i class="bi bi-file-pdf pe-1"></i>
             Download PDF
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Minicurso-A-Frame-VR-para-Ensino-de-Física-e-Astronomia.epub">
+            <a class="dropdown-item sidebar-tools-main-item" href="./Minicurso--Realidade-Virtual-com-A-Frame-para-Ensino-de-Física-e-Astronomia.epub">
               <i class="bi bi-journal pe-1"></i>
             Download ePub
             </a>
@@ -180,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Resumo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Apresentação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -195,12 +223,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O projeto Sol-Terra-Lua</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Referências</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -213,9 +235,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#elementos-html-do-a-frame" id="toc-elementos-html-do-a-frame" class="nav-link active" data-scroll-target="#elementos-html-do-a-frame"><span class="header-section-number">3.1</span> Elementos HTML do A-Frame</a></li>
   <li><a href="#carregando-arquivos-externos-em-nosso-projeto-stl" id="toc-carregando-arquivos-externos-em-nosso-projeto-stl" class="nav-link" data-scroll-target="#carregando-arquivos-externos-em-nosso-projeto-stl"><span class="header-section-number">3.2</span> Carregando arquivos externos em nosso projeto STL</a></li>
-  <li><a href="#animando-as-coisas" id="toc-animando-as-coisas" class="nav-link" data-scroll-target="#animando-as-coisas"><span class="header-section-number">3.3</span> Animando as coisas</a></li>
-  <li><a href="#sistemas-de-coordenadas-no-a-frame" id="toc-sistemas-de-coordenadas-no-a-frame" class="nav-link" data-scroll-target="#sistemas-de-coordenadas-no-a-frame"><span class="header-section-number">3.4</span> Sistemas de coordenadas no A-Frame</a></li>
-  <li><a href="#cada-astro-em-seu-lugar" id="toc-cada-astro-em-seu-lugar" class="nav-link" data-scroll-target="#cada-astro-em-seu-lugar"><span class="header-section-number">3.5</span> Cada astro em seu lugar</a></li>
+  <li><a href="#sistemas-de-coordenadas-no-a-frame" id="toc-sistemas-de-coordenadas-no-a-frame" class="nav-link" data-scroll-target="#sistemas-de-coordenadas-no-a-frame"><span class="header-section-number">3.3</span> Sistemas de coordenadas no A-Frame</a></li>
+  <li><a href="#cada-astro-em-seu-lugar" id="toc-cada-astro-em-seu-lugar" class="nav-link" data-scroll-target="#cada-astro-em-seu-lugar"><span class="header-section-number">3.4</span> Cada astro em seu lugar</a></li>
+  <li><a href="#animando-as-coisas" id="toc-animando-as-coisas" class="nav-link" data-scroll-target="#animando-as-coisas"><span class="header-section-number">3.5</span> Animando as coisas</a>
+  <ul class="collapse">
+  <li><a href="#sec-movimento_orbital" id="toc-sec-movimento_orbital" class="nav-link" data-scroll-target="#sec-movimento_orbital"><span class="header-section-number">3.5.1</span> Movimento orbital</a></li>
+  <li><a href="#movimento-de-rotação" id="toc-movimento-de-rotação" class="nav-link" data-scroll-target="#movimento-de-rotação"><span class="header-section-number">3.5.2</span> Movimento de rotação</a></li>
+  <li><a href="#movimento-completo" id="toc-movimento-completo" class="nav-link" data-scroll-target="#movimento-completo"><span class="header-section-number">3.5.3</span> Movimento completo</a></li>
+  </ul></li>
+  <li><a href="#refinando-o-sistema" id="toc-refinando-o-sistema" class="nav-link" data-scroll-target="#refinando-o-sistema"><span class="header-section-number">3.6</span> Refinando o sistema</a>
+  <ul class="collapse">
+  <li><a href="#inclinação-do-eixo-de-rotação-da-terra" id="toc-inclinação-do-eixo-de-rotação-da-terra" class="nav-link" data-scroll-target="#inclinação-do-eixo-de-rotação-da-terra"><span class="header-section-number">3.6.1</span> Inclinação do eixo de rotação da Terra</a></li>
+  <li><a href="#inclinação-do-plano-orbital-da-lua" id="toc-inclinação-do-plano-orbital-da-lua" class="nav-link" data-scroll-target="#inclinação-do-plano-orbital-da-lua"><span class="header-section-number">3.6.2</span> Inclinação do plano orbital da Lua</a></li>
+  <li><a href="#the-dark-side-of-the-moon" id="toc-the-dark-side-of-the-moon" class="nav-link" data-scroll-target="#the-dark-side-of-the-moon"><span class="header-section-number">3.6.3</span> The dark side of the Moon</a></li>
+  </ul></li>
+  <li><a href="#fiat-lux" id="toc-fiat-lux" class="nav-link" data-scroll-target="#fiat-lux"><span class="header-section-number">3.7</span> Fiat lux</a></li>
+  <li><a href="#elementos-gráficos-de-referência" id="toc-elementos-gráficos-de-referência" class="nav-link" data-scroll-target="#elementos-gráficos-de-referência"><span class="header-section-number">3.8</span> Elementos gráficos de referência</a>
+  <ul class="collapse">
+  <li><a href="#seta-do-eixo-de-rotação-terrestre" id="toc-seta-do-eixo-de-rotação-terrestre" class="nav-link" data-scroll-target="#seta-do-eixo-de-rotação-terrestre"><span class="header-section-number">3.8.1</span> Seta do eixo de rotação terrestre</a></li>
+  <li><a href="#planos-orbitais" id="toc-planos-orbitais" class="nav-link" data-scroll-target="#planos-orbitais"><span class="header-section-number">3.8.2</span> Planos orbitais</a></li>
+  <li><a href="#mapa-do-céu-noturno" id="toc-mapa-do-céu-noturno" class="nav-link" data-scroll-target="#mapa-do-céu-noturno"><span class="header-section-number">3.8.3</span> Mapa do céu noturno</a></li>
+  </ul></li>
+  <li><a href="#resultado-final" id="toc-resultado-final" class="nav-link" data-scroll-target="#resultado-final"><span class="header-section-number">3.9</span> Resultado final</a></li>
+  <li><a href="#aprimoramentos" id="toc-aprimoramentos" class="nav-link" data-scroll-target="#aprimoramentos"><span class="header-section-number">3.10</span> Aprimoramentos</a>
+  <ul class="collapse">
+  <li><a href="#com-os-pés-no-chão" id="toc-com-os-pés-no-chão" class="nav-link" data-scroll-target="#com-os-pés-no-chão"><span class="header-section-number">3.10.1</span> Com os pés no chão</a></li>
+  <li><a href="#interação-com-os-objetos" id="toc-interação-com-os-objetos" class="nav-link" data-scroll-target="#interação-com-os-objetos"><span class="header-section-number">3.10.2</span> Interação com os objetos</a></li>
+  <li><a href="#configurando-a-aplicação-web-para-uso-offline" id="toc-configurando-a-aplicação-web-para-uso-offline" class="nav-link" data-scroll-target="#configurando-a-aplicação-web-para-uso-offline"><span class="header-section-number">3.10.3</span> Configurando a aplicação web para uso offline</a></li>
+  </ul></li>
+  <li><a href="#palavras-finais" id="toc-palavras-finais" class="nav-link" data-scroll-target="#palavras-finais"><span class="header-section-number">3.11</span> Palavras finais</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://jocoteles.github.io/Minicurso-A-Frame-VR/edit/main/projetoSTL.qmd" class="toc-action"><i class="bi bi-git"></i>Editar essa página</a></li></ul></div></nav>
     </div>
@@ -249,27 +297,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Estabelecer os tamanhos e posições dos astros de forma pertinente aos objetivos didáticos de uma atividade educacional.</li>
 <li>Implementar o movimento de rotação de cada astro em torno do próprio eixo.</li>
 <li>Definir o plano orbital da Terra e da Lua.</li>
-<li>Implementar o movimento orbital da Terra e da Lua.</li>
+<li>Implementar o movimento orbital de translação da Terra e da Lua.</li>
 <li>Dar interatividade aos objetos celestes.</li>
 </ul>
 <section id="elementos-html-do-a-frame" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="elementos-html-do-a-frame"><span class="header-section-number">3.1</span> Elementos HTML do A-Frame</h2>
-<p>Todo o desenvolvimento do projeto será realizado no <a href="./htmlbasico.html#disponibilizando-páginas-web-diretamente-na-internet-com-glitch">Glitch</a>.</p>
-<ol type="1">
+<p>Todo o desenvolvimento do projeto será realizado no <a href="./htmlbasico.html#disponibilizando-páginas-web-diretamente-na-internet-com-glitch">Glitch</a>. Vide <a href="htmlbasico.html#sec-glitch" class="quarto-xref"><span>Seção 2.3</span></a>.</p>
+<ol class="example" type="1">
 <li>Faça o login na sua conta do Glitch e remixe o projeto <a href="https://glitch.com/edit/#!/aframe-minicurso-vr">aframe-minicurso-vr</a></li>
 </ol>
 <p>Repare que o projeto está bastante vazio, com apenas o arquivo <code>index.html</code> e sem qualquer código Javascript explícito. Entretanto, temos dentro do <code>head</code> a inclusão do arquivo online:</p>
 <p><code>https://aframe.io/releases/1.6.0/aframe.min.js</code>.</p>
 <p>É esse arquivo, acessado remotamente, que disponibilizará o núcleo de funcionalidades do A-Frame.</p>
-<ol type="1">
-<li><p>O elemento HTML básico e obrigatório do A-Frame é o <code>&lt;a-scene&gt;</code> (<a href="https://aframe.io/docs/1.6.0/core/scene.html">Cena</a>), o qual temos que incluir dentro do elemento <code>&lt;body&gt;</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<ol start="2" class="example" type="1">
+<li>O elemento HTML básico e obrigatório do A-Frame é o <code>a-scene</code> (<a href="https://aframe.io/docs/1.6.0/core/scene.html">Cena</a>), o qual temos que incluir dentro do elemento <code>body</code> conforme o <a href="#cod-scene" class="quarto-xref">Código&nbsp;<span>3.1</span></a>.</li>
 </ol>
-<p>Dentro do <code>&lt;a-scene&gt;</code> todos os elementos espaciais do projeto serão incluídos. Esses elementos recebem o nome de <code>&lt;a-entity&gt;</code> (<a href="https://aframe.io/docs/1.6.0/core/entity.html">Entidades</a>). Cada entidade, por sua vez, terá uma série de propriedades, chamadas de <em>components</em> (<a href="https://aframe.io/docs/1.6.0/core/component.html">Componentes</a>). Por fim, cada componente terá <em>atributos</em> que definirão as aparências e funcionalidades da entidade.</p>
-<p>Esse tipo de estruturação segue o modelo ECS (Entity-Component-System) que é alternativo ao modelo de classes e objetos. Ele se opõe ao sistema de hierarquização da programação orientada a objetos ao permitir maior modularização e inter-operacionalização dos componentes que podem ser aplicados diretamente em diferentes entidades.</p>
+<div id="cod-scene" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-cod figure">
+<div aria-describedby="cod-scene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="cod-scene"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cod-scene-1"><a href="#cod-scene-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cod-scene-2"><a href="#cod-scene-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
+<span id="cod-scene-3"><a href="#cod-scene-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
+<span id="cod-scene-4"><a href="#cod-scene-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-cod" id="cod-scene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.1: O elemento básico, <code>a-scene</code>, de uma página HTML com A-Frame.
+</figcaption>
+</figure>
+</div>
+<p>Dentro do <code>a-scene</code> todos os elementos espaciais do projeto serão incluídos. Esses elementos recebem o nome de <code>a-entity</code> (<a href="https://aframe.io/docs/1.6.0/core/entity.html">Entidades</a>). Cada entidade, por sua vez, terá uma série de propriedades, chamadas de <em>components</em> (<a href="https://aframe.io/docs/1.6.0/core/component.html">Componentes</a>). Por fim, cada componente terá <em>atributos</em> que definirão as aparências e funcionalidades da entidade.</p>
+<p>Esse tipo de estruturação segue o modelo ECS (<a href="https://aframe.io/docs/1.6.0/introduction/entity-component-system.html">Entity-Component-System</a>) que é alternativo ao modelo de classes e objetos. Ele se opõe ao sistema de hierarquização da programação orientada a objetos ao permitir maior modularização e inter-operacionalização dos componentes que podem ser aplicados diretamente em diferentes entidades.</p>
 <p>De forma abstrata, uma estrutura ECS no A-Frame poderia ser algo assim:</p>
 <p><strong>Cena:</strong></p>
 <ul>
@@ -298,13 +355,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>material = "cor: vermelho; metalicidade: 0.8"</code></li>
 </ul></li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="carro_e_moto.jpg" class="img-fluid figure-img"></p>
-<figcaption>Ilustração das <em>Entidades</em> carro e moto com seus <em>componentes</em> e <em>atributos</em> específicos (feita com DALL-E)</figcaption>
+<div id="fig-fuscamoto" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fuscamoto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="carro_e_moto.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fuscamoto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.1: Ilustração das <em>Entidades</em> carro e moto com seus <em>componentes</em> e <em>atributos</em> específicos (feita com DALL-E)
+</figcaption>
 </figure>
 </div>
-<p>Nesse exemplo, <em>carro</em> e <em>moto</em> são <strong><em>entidades</em></strong> distintas, mas <em>rodas</em> e <em>material</em> são <strong><em>componentes</em></strong> que podem ser compartilhados pelas diferentes entidades. Esses componentes irão se diferenciar por possuírem valores diferentes para os seus <strong><em>atributos</em></strong> (e.g.&nbsp;rodas com <code>quantidade : 2</code> ou <code>quantidade : 4</code>) e por estarem atrelados a diferentes entidades. Uma das vantages dessa abordagem ECS é que eu preciso programar o componente <em>rodas</em> somente uma vez e ele pode ser usado em diferentes veículos.</p>
+<p>Nesse exemplo, <em>carro</em> e <em>moto</em> são <strong><em>entidades</em></strong> distintas, mas <em>rodas</em> e <em>material</em> são <strong><em>componentes</em></strong> que podem ser usados pelas diferentes entidades. Esses componentes irão se diferenciar por possuírem valores diferentes para os seus <strong><em>atributos</em></strong> (e.g.&nbsp;rodas com <code>quantidade : 2</code> ou <code>quantidade : 4</code>) e por estarem atrelados a diferentes entidades. Uma das vantages dessa abordagem ECS é que eu preciso programar o componente <em>rodas</em> somente uma vez e ele pode ser usado em diferentes veículos.</p>
 <p>Entidades podem ser aninhadas. Por exemplo, ao invés de tratar as rodas como sendo componentes, poderíamos considerar mais apropriado implementá-las na forma de uma entidade:</p>
 <p><strong>a-scene:</strong></p>
 <ul>
@@ -323,157 +384,973 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <p>Vamos então criar nossa primeira entidade: o planeta Terra.</p>
-<ol start="2" type="1">
-<li><p>Coloque a entidade abaixo dentro do elemento a-scene:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"color: blue"</span><span class="dt">&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<ol start="3" class="example" type="1">
+<li>Coloque a entidade do <a href="#cod-terra" class="quarto-xref">Código&nbsp;<span>3.2</span></a> dentro do elemento a-scene do <a href="#cod-scene" class="quarto-xref">Código&nbsp;<span>3.1</span></a>.</li>
 </ol>
-<p>Se fizermos o preview lateral para tentarmos observar o resultado, provavelmente não veremos nada. Isso ocorre, pois não estamos usando os óculos de realidade virtual. A melhor forma de interagir com a página gerada na tela do computador é escolhendo a opção <em>Preview in a new window</em>. Na página que foi aberta, devemos entrar no modo de inspeção (<a href="https://aframe.io/docs/1.6.0/introduction/visual-inspector-and-dev-tools.html#a-frame-inspector">Visual inspector</a>) ao digitar a combinação de teclas <code>&lt;ctrl&gt;</code> + <code>&lt;alt&gt;</code> + <code>i</code>.</p>
-<p>Cada botão do mouse quando mantido apertado permite rotacionar, transladar e aproximar/afastar a visão da cena. Ao clicar em uma entidade é possível também aferir e alterar os valores dos seus atributos. É possível até mesmo criar entidades novas e atribuir componentes no <em>Visual inspector</em>. Ao apertar a tecla <code>h</code> (<em>help</em>), temos acesso a todas as teclas de atalho.</p>
+<div id="cod-terra" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-cod figure">
+<div aria-describedby="cod-terra-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="cod-terra"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cod-terra-1"><a href="#cod-terra-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cod-terra-2"><a href="#cod-terra-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
+<span id="cod-terra-3"><a href="#cod-terra-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"color: blue"</span><span class="dt">&gt;</span></span>
+<span id="cod-terra-4"><a href="#cod-terra-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-cod" id="cod-terra-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.2: Início da criação do planeta Terra – uma esfera azul por enquanto.
+</figcaption>
+</figure>
+</div>
+<p>Se fizermos o preview da cena no Glitch poderemos observar a esfera de diferentes ângulos usando o mouse. Mas não conseguiremos dar zoom ou deslocamentos laterais na imagem. Isso ocorre pois não estamos usando os óculos de realidade virtual. A melhor forma de interagir com a página gerada na tela do computador, sem os óculos, é escolhendo a opção <em>Preview in a new window</em> no Glitch. Na página que foi aberta, devemos entrar no modo de inspeção (<a href="https://aframe.io/docs/1.6.0/introduction/visual-inspector-and-dev-tools.html#a-frame-inspector">Visual inspector</a>) ao digitar a combinação de teclas <code>&lt;ctrl&gt;</code> + <code>&lt;alt&gt;</code> + <code>i</code>.</p>
+<p>Nesse modo, cada botão do mouse, quando mantido apertado, permite rotacionar, transladar e aproximar/afastar a visão da cena. Ao clicar em uma entidade é possível também aferir e alterar os valores dos seus atributos. É possível até mesmo criar entidades novas e atribuir componentes no <em>Visual inspector</em>. Ao apertar a tecla <code>h</code> (<em>help</em>), temos acesso a todas as teclas de atalho.</p>
 <p>Voltando à Terra, vamos “dar um talento” em nosso <em>pale blue dot</em>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Para isso, usaremos uma imagem planificada da superfície da Terra para projetá-la na esfera. Por sorte, o A-Frame faz isso muito diretamente para a gente. Vejamos como.</p>
 </section>
 <section id="carregando-arquivos-externos-em-nosso-projeto-stl" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="carregando-arquivos-externos-em-nosso-projeto-stl"><span class="header-section-number">3.2</span> Carregando arquivos externos em nosso projeto STL</h2>
-<p>O A-Frame possui um elemento chamado <code>&lt;a-asset&gt;</code> para pré-carregar todos os recursos (imagens, áudios, vídeos, etc) que sejam usados na página. Existem duas formas para fazer isso:</p>
+<p>O A-Frame possui um elemento chamado <code>a-asset</code> para pré-carregar todos os recursos (imagens, áudios, vídeos, etc) que sejam usados na página. Existem duas formas para fazer isso:</p>
 <ul>
 <li>Carregando o recurso dentro do Glitch via <em>Files</em> no menu lateral de arquivos.</li>
 <li>Indicando o endereço de internet (URL) do recurso caso ele esteja disponível.</li>
 </ul>
-<p>No momento, vamos usar a segunda opção.</p>
-<ol start="3" type="1">
+<p>Neste minicurso, vamos usar somente a segunda opção.</p>
+<ol start="4" class="example" type="1">
 <li>Clique com o botão direito do mouse sobre o mapa da Terra abaixo e copie o seu link.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="1280px-Blue_Marble_2002.png" class="img-fluid figure-img"></p>
-<figcaption><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png">Mapa terrestre planificado. Fonte: https://upload.wikimedia.org/</a></figcaption>
+<figcaption><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png">Mapa terrestre em projeção cilíndrica (<em>equirectangular</em>). Fonte: Wikimedia</a></figcaption>
 </figure>
 </div>
-<ol start="4" type="1">
-<li><p>Dentro do <code>&lt;a-scene&gt;</code> inclua o elemento:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_terra"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"substitua_isto_pelo_endereço_da_imagem"</span><span class="dt">&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Em seguida substitua o atributo <em>color</em> por <em>src</em> no componente <em>material</em> da entidade <code>terra</code>, usando como valor a <code>id</code> do mapa da Terra:</p>
-<div class="sourceCode" id="annotated-cell-4"><pre class="sourceCode html code-annotation-code code-with-copy code-annotated"><code class="sourceCode html"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
-<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
-<span id="annotated-cell-4-4"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="3" data-code-annotation="1">Atributo <code>src</code> no lugar de <code>color</code>.</span>
-</dd>
-</dl></li>
+<ol start="5" class="example" type="1">
+<li>Dentro do elemento <code>a-scene</code> inclua o elemento <code>img</code> conform e o <a href="#cod-asset" class="quarto-xref">Código&nbsp;<span>3.3</span></a>.</li>
 </ol>
+<div id="cod-asset" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-cod figure">
+<div aria-describedby="cod-asset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="cod-asset"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cod-asset-1"><a href="#cod-asset-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span>
+<span id="cod-asset-2"><a href="#cod-asset-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_terra"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"substitua_isto_pelo_endereço_da_imagem"</span><span class="dt">&gt;</span></span>
+<span id="cod-asset-3"><a href="#cod-asset-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-cod" id="cod-asset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.3: Inclusão de imagens e outros recursos via elemento <code>a-asset</code>.
+</figcaption>
+</figure>
+</div>
+<ol start="6" class="example" type="1">
+<li>Em seguida substitua o atributo <em>color</em> por <em>src</em> no componente <em>material</em> da entidade <code>terra</code>, usando como valor a <code>id</code> do mapa da Terra, resultando no <a href="#cod-terra-com-mapa" class="quarto-xref">Código&nbsp;<span>3.4</span></a></li>
+</ol>
+<div id="cod-terra-com-mapa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-cod figure">
+<div aria-describedby="cod-terra-com-mapa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="cod-terra-com-mapa"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cod-terra-com-mapa-1"><a href="#cod-terra-com-mapa-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cod-terra-com-mapa-2"><a href="#cod-terra-com-mapa-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
+<span id="cod-terra-com-mapa-3"><a href="#cod-terra-com-mapa-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
+<span id="cod-terra-com-mapa-4"><a href="#cod-terra-com-mapa-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-cod" id="cod-terra-com-mapa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.4: Entidade <code>terra</code>com atributo <code>src</code> no lugar de <code>color</code>.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dica de navegabilidade
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Além do Visual Inspector, o A-Frame possui um componente para navegação mais facilitada na cena quando não estamos usando os óculos de Realidade Virtual. Para incluí-lo no projeto basta incluir o script abaixo dentro element <code>head</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://unpkg.com/aframe-orbit-controls@1.3.2/dist/aframe-orbit-controls.min.js"</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>E incluir a seguinte <code>a-entity</code> de câmera dentro do elemento <code>a-scene</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> camera look-controls</span><span class="op">=</span><span class="st">"enabled: false"</span><span class="ot"> orbit-controls</span><span class="op">=</span><span class="st">"target: 0 0 0; minDistance: 0; maxDistance: 180; initialPosition: 0 3 5; rotateSpeed: 1.5"</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="animando-as-coisas" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="animando-as-coisas"><span class="header-section-number">3.3</span> Animando as coisas</h2>
-<p>Como já dizia o sábio Galileu, “<em>Eppur si muove</em>”.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Vamos então pôr o mundo a girar.</p>
+<section id="sistemas-de-coordenadas-no-a-frame" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sistemas-de-coordenadas-no-a-frame"><span class="header-section-number">3.3</span> Sistemas de coordenadas no A-Frame</h2>
+<p>Um conceito fácil de implementar no A-Frame são os sistemas de coordenadas locais (também chamados de referenciais), que são produzidos quando você aninha uma <code>a-entity</code> dentro de outra.</p>
+<p>Pense que cada entidade tem seu próprio sistema de coordenadas (x, y, z), que define sua posição, rotação e escala. Quando uma <code>a-entity</code> está dentro de outra, dizemos que a entidade interna usa o sistema de referência local da entidade que a contém. Isso significa que qualquer transformação (movimento, rotação) aplicada à entidade “pai” afeta todas as suas “filhas” de forma relativa. Ou seja, quando criamos uma <code>a-entity</code>, não definimos apenas as propriedades do objeto 3D pelas suas componentes, mas também, implicitamente, criamos um sistema de coordenadas local.</p>
+<p>Podemos, ainda, criar uma <code>a-entity</code> sem componentes geométricos ou atributos. Nesse caso, ela serve exclusivamente como um sistema de coordenadas de referência para todas as outras entidades que sejam aninhadas dentro dela.</p>
+<p>E o nosso projeto Sol-Terra-Lua se beneficia diretamente desse recurso. Vamos considerar uma <code>a-entity</code> que representa, exclusivamente, o referencial Terra (<code>ref_terra</code>) e dentro dela outra <code>a-entity</code> que representa a Lua. Se você mover ou rotacionar o referencial Terra (a entidade “pai”), a Lua (a entidade “filha”) será movida junto, mas ela ainda pode orbitar ao redor do referencial Terra se aplicarmos uma rotação à Lua individualmente. Assim, a Lua se move de duas maneiras: ela orbita o Sol ao “seguir” a Terra (movimento da entidade “pai”) e orbita a Terra (movimento da entidade “filha”).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> O <a href="#vid-ref" class="quarto-xref">Vídeo&nbsp;<span>3.1</span></a> ilustra esse conceito.</p>
+<div id="vid-ref" class="quarto-float quarto-figure quarto-figure-center anchored" loop="true">
+<figure class="quarto-float quarto-float-vid figure">
+<div aria-describedby="vid-ref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<video src="referencial_terra.mp4" class="img-fluid" loop="true" controls=""><a href="referencial_terra.mp4">Video</a></video>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-vid" id="vid-ref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Vídeo&nbsp;3.1: Ao deslocar a <code>a-entity ref-Terra</code> (referencial “pai”), a <code>a-entity lua</code> (entidade filha) desloca-se conjuntamente. Ao deslocar a <code>a-entity lua</code>, a <code>a-entity ref_Terra</code> permanece inalterada.
+</figcaption>
+</figure>
+</div>
+<p>Portanto, o A-Frame é muito prático para simular cenários em que o movimento de um objeto depende de outro, como no caso de planetas em órbita, satélites, ou até objetos conectados em uma cadeia de eventos. Ao invés de ter que recalcular constantemente as posições de todos os objetos manualmente, o A-Frame faz isso automaticamente ao respeitar as hierarquias de aninhamento.</p>
+</section>
+<section id="cada-astro-em-seu-lugar" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="cada-astro-em-seu-lugar"><span class="header-section-number">3.4</span> Cada astro em seu lugar</h2>
+<p>Neste ponto, temos todos os elementos para a construção do sistema Sol-Terra-Lua.</p>
+<ol start="7" class="example" type="1">
+<li>Primeiramente, vamos atualizar os nossos assets com as imagens das superfícies do Sol e da Lua conforme o <a href="#cod-assets-sol-terra-lua" class="quarto-xref">Código&nbsp;<span>3.5</span></a>.</li>
+</ol>
+<div id="cod-assets-sol-terra-lua" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-cod figure">
+<div aria-describedby="cod-assets-sol-terra-lua-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="cod-assets-sol-terra-lua"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cod-assets-sol-terra-lua-1"><a href="#cod-assets-sol-terra-lua-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span>
+<span id="cod-assets-sol-terra-lua-2"><a href="#cod-assets-sol-terra-lua-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_sol"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Map_of_the_full_sun.jpg/1280px-Map_of_the_full_sun.jpg"</span><span class="dt">&gt;</span></span>
+<span id="cod-assets-sol-terra-lua-3"><a href="#cod-assets-sol-terra-lua-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_terra"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png"</span><span class="dt">&gt;</span></span>
+<span id="cod-assets-sol-terra-lua-4"><a href="#cod-assets-sol-terra-lua-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_lua"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Solarsystemscope_texture_8k_moon.jpg/1280px-Solarsystemscope_texture_8k_moon.jpg"</span><span class="dt">&gt;</span></span>
+<span id="cod-assets-sol-terra-lua-5"><a href="#cod-assets-sol-terra-lua-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-cod" id="cod-assets-sol-terra-lua-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.5: Imagens dos mapas em projeção cilíndrica de todos os astros do projeto incluídos como assets.
+</figcaption>
+</figure>
+</div>
+<p>Vamos agora inserir cada astro em seu devido lugar e com o seu devido tamanho. Poderíamos respeitar a escala relativa de tamanhos, mas como o Sol é muito maior que a Terra (cerca de 100 vezes), vamos adotar uma escala alternativa para fins didáticos. O mesmo vale para as distâncias entre os astros (a distância Sol-Terra é quae 400 vezes maior que a Terra-Lua).</p>
+<p>A <a href="#tbl-dimensoes" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> contém os tamanhos (raios esféricos) e distâncias ao astro “pai” (raios orbitais) dos astros do projeto.</p>
+<div id="tbl-dimensoes" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dimensoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.1: Dimensões dos astros em valores reais (real) e com os valores utilizados (util) no projeto.
+</figcaption>
+<div aria-describedby="tbl-dimensoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 30%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Astro</th>
+<th style="text-align: left;">Raio esférico</th>
+<th style="text-align: left;">Raio orbital</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sol</td>
+<td style="text-align: left;"><ul>
+<li>real: 700 mil km</li>
+<li>util: 30 cm</li>
+</ul></td>
+<td style="text-align: left;"><ul>
+<li>não se aplica</li>
+<li>não se aplica</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Terra</td>
+<td style="text-align: left;"><ul>
+<li>real: 6,4 mil km</li>
+<li>util: 15 cm</li>
+</ul></td>
+<td style="text-align: left;"><ul>
+<li>real: 150 milhões km</li>
+<li>util: 1,5 m</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Lua</td>
+<td style="text-align: left;"><ul>
+<li>real: 1,7 mil km</li>
+<li>util: 5 cm</li>
+</ul></td>
+<td style="text-align: left;"><ul>
+<li>real: 384 mil km</li>
+<li>util: 0,5 m</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Vamos criar o sistema de coordenadas de cada astro a uma distância do astro “pai” igual aos raios orbitais (util) da <a href="#tbl-dimensoes" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a>. O Sol será a entidade que comporá o sistema de coordenadas pai. Dentro dele, criaremos uma entidade para o referencial Terra e, dentro deste, o referencial Lua.</p>
+<p>Teremos, portanto, o seguinte aninhamento de sistemas de coordenadas:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_sol"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_terra"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_lua"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0.5"</span><span class="dt">&gt;</span>        </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>    </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Repare que para as distâncias usamos o componente <code>position</code> cujo atributo é uma trinca de coordenadas <code>x, y, z</code>.</p>
+<p>Agora, vamos colocar a entidade que representa a esfera de cada astro dentro dos respectivos referenciais. Para isso, substitua o <a href="#cod-terra-com-mapa" class="quarto-xref">Código&nbsp;<span>3.4</span></a> pelo <a href="#cod-astros-com-mapa" class="quarto-xref">Código&nbsp;<span>3.6</span></a>.</p>
+<div id="cod-astros-com-mapa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-cod figure">
+<div aria-describedby="cod-astros-com-mapa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="cod-astros-com-mapa"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cod-astros-com-mapa-1"><a href="#cod-astros-com-mapa-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_sol"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cod-astros-com-mapa-2"><a href="#cod-astros-com-mapa-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cod-astros-com-mapa-3"><a href="#cod-astros-com-mapa-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"sol"</span></span>
+<span id="cod-astros-com-mapa-4"><a href="#cod-astros-com-mapa-4" aria-hidden="true" tabindex="-1"></a><span class="ot">        geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.3"</span></span>
+<span id="cod-astros-com-mapa-5"><a href="#cod-astros-com-mapa-5" aria-hidden="true" tabindex="-1"></a><span class="ot">        material</span><span class="op">=</span><span class="st">"src: #mapa_sol"</span><span class="dt">&gt;</span></span>
+<span id="cod-astros-com-mapa-6"><a href="#cod-astros-com-mapa-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cod-astros-com-mapa-7"><a href="#cod-astros-com-mapa-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cod-astros-com-mapa-8"><a href="#cod-astros-com-mapa-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_terra"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span>  </span>
+<span id="cod-astros-com-mapa-9"><a href="#cod-astros-com-mapa-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-astros-com-mapa-10"><a href="#cod-astros-com-mapa-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cod-astros-com-mapa-11"><a href="#cod-astros-com-mapa-11" aria-hidden="true" tabindex="-1"></a><span class="ot">            geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cod-astros-com-mapa-12"><a href="#cod-astros-com-mapa-12" aria-hidden="true" tabindex="-1"></a><span class="ot">            material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
+<span id="cod-astros-com-mapa-13"><a href="#cod-astros-com-mapa-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>            </span>
+<span id="cod-astros-com-mapa-14"><a href="#cod-astros-com-mapa-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-astros-com-mapa-15"><a href="#cod-astros-com-mapa-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_lua"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0.0 0.5"</span><span class="dt">&gt;</span>                </span>
+<span id="cod-astros-com-mapa-16"><a href="#cod-astros-com-mapa-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-astros-com-mapa-17"><a href="#cod-astros-com-mapa-17" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"lua"</span></span>
+<span id="cod-astros-com-mapa-18"><a href="#cod-astros-com-mapa-18" aria-hidden="true" tabindex="-1"></a><span class="ot">                geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.05"</span></span>
+<span id="cod-astros-com-mapa-19"><a href="#cod-astros-com-mapa-19" aria-hidden="true" tabindex="-1"></a><span class="ot">                material</span><span class="op">=</span><span class="st">"src: #mapa_lua"</span><span class="dt">&gt;</span></span>
+<span id="cod-astros-com-mapa-20"><a href="#cod-astros-com-mapa-20" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cod-astros-com-mapa-21"><a href="#cod-astros-com-mapa-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cod-astros-com-mapa-22"><a href="#cod-astros-com-mapa-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>                </span>
+<span id="cod-astros-com-mapa-23"><a href="#cod-astros-com-mapa-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>        </span>
+<span id="cod-astros-com-mapa-24"><a href="#cod-astros-com-mapa-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-cod" id="cod-astros-com-mapa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.6: Todos os astros com seus respectivos mapas de superfície aninhado em seus respectivos referenciais (entidades).
+</figcaption>
+</figure>
+</div>
+<p>Repare que para o raio esférico de cada astro usamos o atributo <code>radius</code> do componente <code>geometry</code>. Outra observação é que todas as dimensões são informadas ao A-Frame sem explicitar as unidades, pois o A-Frame considera todas elas em metros por padrão. A <a href="#fig-geometria" class="quarto-xref">Figura&nbsp;<span>3.2</span></a> mostra a disposição geométrica do sistema.</p>
+<div id="fig-geometria" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-geometria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="STL_visto_de_cima.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-geometria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.2: Sol-Terra-Lua gerado pelo código 7 e visto de cima. Cada divisão do grid (em cinza claro) corresponde a 0,5 metros. As setas correspondem às direções x (vermelha à direita), y (verde saindo da tela) e z (azul para baixo).
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="animando-as-coisas" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="animando-as-coisas"><span class="header-section-number">3.5</span> Animando as coisas</h2>
+<p>Como já dizia o sábio Galileu, “<em>Eppur si muove</em>”.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Vamos então pôr o mundo a girar.</p>
 <p>O A-Frame possui várias possibilidades de animação <em>built in</em> através do componente <code>animation</code>. Os atributos principais desse componente são:</p>
 <ul>
 <li><code>property</code>: a propriedade da entidade que será animada, e.g.&nbsp;ângulo de rotação, posição, grau de transparência, etc.</li>
 <li><code>from</code>: o valor inicial da propriedade (default: o valor atual).</li>
 <li><code>to</code>: o valor final da propriedade ao término da animação.</li>
 <li><code>dur</code>: duração da animação em milissegundos.</li>
-<li><code>loop</code>: se a animação deve ser reiniciada automaticamente após <code>dur</code> ms (<code>ture</code>ou <code>false</code>).</li>
+<li><code>loop</code>: se a animação deve ser reiniciada automaticamente (<code>true</code> ou <code>false</code>).</li>
 <li><code>easing</code>: a taxa de variação da propriedade (default: aumento quadrático = aceleração constante).</li>
+<li><code>dir</code>: sentido da animação (<code>normal</code> ou <code>reverse</code>).</li>
 </ul>
-<p>Comecemos implementando a rotação da Terra em torno do próprio eixo.</p>
-<ol start="6" type="1">
-<li><p>Para isso inclua o seguinte componente <code>animation</code> na entidade <code>terra</code>:</p>
-<div class="sourceCode" id="annotated-cell-5"><pre class="sourceCode html code-annotation-code code-with-copy code-annotated"><code class="sourceCode html"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
-<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
-<span id="annotated-cell-5-3"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 10000, easing: linear"</span><span class="dt">&gt;</span></span>
-<span id="annotated-cell-5-5"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="1">Componente <code>animation</code> para rotação da Terra.</span>
-</dd>
-</dl></li>
-<li><p>Recarregue a página de preview e entre no modo de inspeção (<code>&lt;ctrl&gt;&lt;alt&gt;i</code>). A Terra ainda estará parada. Isso ocorre pois devemos acionar o botão ▶ (<em>resume scene</em>) no canto superior esquerdo.</p></li>
-</ol>
-<p>Assim, deveremos observar a Terra girando <em>ad eternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução a cada 10 segundos (<code>dur: 10000</code>).</p>
-<p><video src="terra_girando.mp4" class="img-fluid" loop="true" controls=""><a href="terra_girando.mp4">Video</a></video></p>
-</section>
-<section id="sistemas-de-coordenadas-no-a-frame" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="sistemas-de-coordenadas-no-a-frame"><span class="header-section-number">3.4</span> Sistemas de coordenadas no A-Frame</h2>
-<p>Uma característica muito poderosa no A-Frame, é o conceito de sistemas de referências locais (referenciais), que é fácil de implementar quando você aninha uma <code>&lt;a-entity&gt;</code> dentro de outra.</p>
-<p>Pense que cada entidade tem seu próprio sistema de coordenadas (x, y, z), que define sua posição, rotação e escala. Quando uma <code>&lt;a-entity&gt;</code> está dentro de outra, dizemos que a entidade interna usa o sistema de referência local da entidade que a contém. Isso significa que qualquer transformação (movimento, rotação) aplicada à entidade “pai” afeta todas as suas “filhas” de forma relativa. Ou seja, quando criamos uma <code>&lt;a-entity&gt;</code>, não definimos apenas as propriedades do objeto 3D pelas suas componentes, mas também, implicitamente, criamos um sistema de coordenadas local.</p>
-<p>Podemos, ainda, criar uma <code>&lt;a-entity&gt;</code> “vazia”, ou seja, sem componentes geométricos “plugados” nela. Nesse caso, ela serve exclusivamente como um sistema de coordenadas de referência para todas outras entidades que sejam aninhadas dentro dela.</p>
-<p>E o nosso projeto Sol-Terra-Lua se beneficia diretamente desse recurso. Vamos considerar uma <code>&lt;a-entity&gt;</code> que representa, exclusivamente, o referencial Terra e dentro dela outra <code>&lt;a-entity&gt;</code> que representa a Lua. Se você mover ou rotacionar o referencial Terra (a entidade “pai”), a Lua (a entidade “filha”) será movida junto, mas ela ainda pode orbitar ao redor do referencial Terra se aplicarmos uma rotação à Lua individualmente. Assim, a Lua se move de duas maneiras: ela orbita o Sol ao “seguir” a Terra (movimento da entidade “pai”) e orbita a Terra (movimento da entidade “filha”).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><video src="referencial_terra.mp4" class="img-fluid" loop="true" controls=""><a href="referencial_terra.mp4">Video</a></video></p>
-<figcaption>Ao deslocar a <code>a-entity ref-Terra</code> (referencial “pai”), a <code>a-entity lua</code> desloca-se conjuntamente. Ao deslocar a <code>a-entity lua</code>, a <code>a-entity ref-Terra</code> permanece inalterada.</figcaption>
+<section id="sec-movimento_orbital" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="sec-movimento_orbital"><span class="header-section-number">3.5.1</span> Movimento orbital</h3>
+<p>O movimento orbital, também conhecido por movimento de translação, será implementado por uma entidade específica (e.g.&nbsp;<code>orb_terra</code>) colocada acima da entidade do raio orbital (e.g.&nbsp;<code>pos_terra</code>). Essa entidade terá o componente <code>animation</code> que rotacionará a <code>a-entity pos_terra</code> que por sua vez está deslocada do centro pelo raio orbital especificado na componente <code>position</code>.</p>
+<p>Da mesma forma que fizemos com as dimensões espaciais, não seremos fieis às proporções temporais da dinâmica dos astros. A <a href="#tbl-periodos" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a> contém os períodos de rotação e orbital que escolhemos para os três astros.</p>
+<div id="tbl-periodos" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-periodos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.2: Períodos dos astros em valores reais (real) e com os valores utilizados no projeto (util)
+</figcaption>
+<div aria-describedby="tbl-periodos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 29%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Astro</th>
+<th style="text-align: left;">Período de rotação</th>
+<th style="text-align: left;">Período orbital</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sol</td>
+<td style="text-align: left;"><ul>
+<li>real: 30 dias</li>
+<li>util: 50 s</li>
+</ul></td>
+<td style="text-align: left;"><ul>
+<li>não se aplica</li>
+<li>não se aplica</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Terra</td>
+<td style="text-align: left;"><ul>
+<li>real: 24 horas</li>
+<li>util: 10 s</li>
+</ul></td>
+<td style="text-align: left;"><ul>
+<li>real: 365,3 dias</li>
+<li>util: 300 s</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Lua</td>
+<td style="text-align: left;"><ul>
+<li>real: 29,5 dias</li>
+<li>util: 30 s</li>
+</ul></td>
+<td style="text-align: left;"><ul>
+<li>real: 29,5 dias</li>
+<li>util: 30 s</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
 </div>
-<p>Portanto, o A-Frame é muito prático para simular cenários em que o movimento de um objeto depende de outro, como no caso de planetas em órbita, satélites, ou até objetos conectados em uma cadeia de eventos. Ao invés de ter que recalcular constantemente as posições de todos os objetos manualmente, o A-Frame faz isso automaticamente ao respeitar as hierarquias de aninhamento.</p>
+<p>Por exemplo, considerando somente o movimento orbital da Terra, teríamos o seguinte código:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"orb_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_terra"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span>  </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ot">            geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ot">            material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>               </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Com ele, deveremos observar a Terra orbitando em torno do Sol <em>ad aeternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução (<code>to: 0 360 0</code>) a cada 300 segundos (<code>dur: 300000</code>) conforme <a href="#vid-orbita-terra-travada" class="quarto-xref">Vídeo&nbsp;<span>3.2</span></a>.</p>
+<div id="vid-orbita-terra-travada" class="quarto-float quarto-figure quarto-figure-center anchored" loop="true">
+<figure class="quarto-float quarto-float-vid figure">
+<div aria-describedby="vid-orbita-terra-travada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<video src="movimento_orbital_travado.mp4" class="img-fluid" loop="true" controls=""><a href="movimento_orbital_travado.mp4">Video</a></video>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-vid" id="vid-orbita-terra-travada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Vídeo&nbsp;3.2: Ilustração do movimento orbital da Terra usando o <code>animation</code> da <code>a-entity orb_terra</code>. A cada órbita completa a Terra dá, também, uma volta em torno do próprio eixo (quando próxima à câmera apresenta a África voltada para nós, quando longe apresenta o Pacífico). (10x faster)
+</figcaption>
+</figure>
+</div>
+<p>Com isso, conseguimos implementar o movimento orbital da Terra. Entretanto, essa <code>animation</code> produz, adicionalmente, um movimento de rotação da Terra em torno do próprio eixo. Esse é um efeito indesejado, pois queremos que o movimento de rotação e o orbital sejam independentes um do outro.</p>
+<p>Se quisermos implementar corretamente a rotação da Terra e da Lua em torno de um eixo fixo, temos que compensar essa rotação espúria. Caso contrário, a direção do eixo ficará girando em torno da perpendicular à órbita em um movimento conhecido como precessão.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Para reverter essa rotação indesejada, podemos utilizar uma <code>animation</code> de rotação no sentido contrário <code>dir: reverse</code> em uma nova entidade <code>a-entity rev_rot_terra</code> dentro da <code>a-entity pos_terra</code>. Ficando da seguinte forma:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"orb_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_terra"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span>  </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"rev_rot_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse"</span><span class="dt">&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                            </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ot">                geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ot">                material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>                            </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>               </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>        </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esse código resulta no movimento orbital da Terra sem o movimento espúrio de rotação em torno do próprio eixo, conforme vemos no <a href="#vid-orbita-terra-corrigida" class="quarto-xref">Vídeo&nbsp;<span>3.3</span></a>.</p>
+<div id="vid-orbita-terra-corrigida" class="quarto-float quarto-figure quarto-figure-center anchored" loop="true">
+<figure class="quarto-float quarto-float-vid figure">
+<div aria-describedby="vid-orbita-terra-corrigida-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<video src="movimento_orbital_livre.mp4" class="img-fluid" loop="true" controls=""><a href="movimento_orbital_livre.mp4">Video</a></video>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-vid" id="vid-orbita-terra-corrigida-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Vídeo&nbsp;3.3: Ilustração do movimento orbital da Terra com a compensação da rotação espúria em torno do próprio eixo usando um <code>animation</code> com rotação no sentido contrário <code>dir:reverse</code>. Nesse caso, a Terra não gira em torno do próprio eixo, estando as Américas sempre voltadas para a câmera. (10x faster)
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="cada-astro-em-seu-lugar" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="cada-astro-em-seu-lugar"><span class="header-section-number">3.5</span> Cada astro em seu lugar</h2>
-<p>Neste ponto, temos todos os elementos para a construção do sistema Sol-Terra-Lua.</p>
-<ol start="8" type="1">
-<li><p>Primeiramente, vamos atualizar os nossos assets com as imagens das superfícies do Sol e da Lua:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_sol"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Map_of_the_full_sun.jpg/1280px-Map_of_the_full_sun.jpg"</span><span class="dt">&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_terra"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png"</span><span class="dt">&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_lua"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Solarsystemscope_texture_8k_moon.jpg/1280px-Solarsystemscope_texture_8k_moon.jpg"</span><span class="dt">&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<section id="movimento-de-rotação" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="movimento-de-rotação"><span class="header-section-number">3.5.2</span> Movimento de rotação</h3>
+<p>Agora vamos implementar o movimento desejado de rotação da Terra em torno do próprio eixo.</p>
+<p>Fazemos isso incluindo o componente <code>animation</code> na <code>a-entity terra</code>:</p>
+<div class="sourceCode" id="annotated-cell-4"><pre class="sourceCode html code-annotation-code code-with-copy code-annotated"><code class="sourceCode html"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere"</span></span>
+<span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-4" class="code-annotation-target"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="annotated-cell-4-5"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="4" data-code-annotation="1">Componente <code>animation</code> para rotação da Terra.</span>
+</dd>
+</dl>
+<p>Assim, deveremos observar a Terra girando <em>ad aeternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução (<code>to: 0 360 0</code>) a cada 10 segundos (<code>dur: 10000</code>). O <a href="#vid-terra-rotacao" class="quarto-xref">Vídeo&nbsp;<span>3.4</span></a> mostra esse movimento isoladamente (sem o movimento orbital).</p>
+<div id="vid-terra-rotacao" class="quarto-float quarto-figure quarto-figure-center anchored" loop="true">
+<figure class="quarto-float quarto-float-vid figure">
+<div aria-describedby="vid-terra-rotacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<video src="terra_girando.mp4" class="img-fluid" loop="true" controls=""><a href="terra_girando.mp4">Video</a></video>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-vid" id="vid-terra-rotacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Vídeo&nbsp;3.4: Terra em movimento de rotação com o componente <code>animation</code>.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="movimento-completo" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="movimento-completo"><span class="header-section-number">3.5.3</span> Movimento completo</h3>
+<ol start="8" class="example" type="1">
+<li>Implementado os movimentos de rotação e orbital discutidos acima no sistema Sol-Terra-Lua completo temos o <a href="#cod-stl-orbital" class="quarto-xref">Código&nbsp;<span>3.7</span></a> que substitui o <a href="#cod-astros-com-mapa" class="quarto-xref">Código&nbsp;<span>3.6</span></a></li>
 </ol>
-<p>Vamos criar os sistemas de coordenadas. O Sol será a entidade que comporá o sistema de coordenadas pai. Dentro dele, criaremos uma entidade para o referencial Terra e dentro deste o referencial Lua.</p>
-<ol start="9" type="1">
-<li><p>Teremos, portanto, o seguinte aninhamento de sistemas de coordenadas:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_sol"</span><span class="dt">&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_terra"</span><span class="dt">&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_lua"</span><span class="dt">&gt;</span>        </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>    </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ol>
-<p>Vamos agora inserir cada astro em seu devido lugar e com o seu devido tamanho. Poderíamos respeitar a escala relativa de tamanhos, mas como o Sol é muito maior que a Terra (cerca de 100 vezes), vamos adotar uma escala intermediária para fins didáticos. O mesmo vale para as distâncias entre os astros (a distância Sol-Terra é cerca de 500 vezes maior que Terra-Lua).</p>
-<p>Usaremos as seguintes dimensões:</p>
+<div id="cod-stl-orbital" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-cod figure">
+<div aria-describedby="cod-stl-orbital-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="cod-stl-orbital"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cod-stl-orbital-1"><a href="#cod-stl-orbital-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_sol"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-orbital-2"><a href="#cod-stl-orbital-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cod-stl-orbital-3"><a href="#cod-stl-orbital-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"sol"</span></span>
+<span id="cod-stl-orbital-4"><a href="#cod-stl-orbital-4" aria-hidden="true" tabindex="-1"></a><span class="ot">        geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.3"</span></span>
+<span id="cod-stl-orbital-5"><a href="#cod-stl-orbital-5" aria-hidden="true" tabindex="-1"></a><span class="ot">        material</span><span class="op">=</span><span class="st">"src: #mapa_sol"</span></span>
+<span id="cod-stl-orbital-6"><a href="#cod-stl-orbital-6" aria-hidden="true" tabindex="-1"></a><span class="ot">        animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 50000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-orbital-7"><a href="#cod-stl-orbital-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-orbital-8"><a href="#cod-stl-orbital-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cod-stl-orbital-9"><a href="#cod-stl-orbital-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"orb_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-orbital-10"><a href="#cod-stl-orbital-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-stl-orbital-11"><a href="#cod-stl-orbital-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_terra"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span>  </span>
+<span id="cod-stl-orbital-12"><a href="#cod-stl-orbital-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-stl-orbital-13"><a href="#cod-stl-orbital-13" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"rev_rot_terra"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear; dir: reverse"</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-orbital-14"><a href="#cod-stl-orbital-14" aria-hidden="true" tabindex="-1"></a>                                </span>
+<span id="cod-stl-orbital-15"><a href="#cod-stl-orbital-15" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cod-stl-orbital-16"><a href="#cod-stl-orbital-16" aria-hidden="true" tabindex="-1"></a><span class="ot">                    geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cod-stl-orbital-17"><a href="#cod-stl-orbital-17" aria-hidden="true" tabindex="-1"></a><span class="ot">                    material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span></span>
+<span id="cod-stl-orbital-18"><a href="#cod-stl-orbital-18" aria-hidden="true" tabindex="-1"></a><span class="ot">                    animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-orbital-19"><a href="#cod-stl-orbital-19" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>                            </span>
+<span id="cod-stl-orbital-20"><a href="#cod-stl-orbital-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-stl-orbital-21"><a href="#cod-stl-orbital-21" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"orb_lua"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear"</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-orbital-22"><a href="#cod-stl-orbital-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-stl-orbital-23"><a href="#cod-stl-orbital-23" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_lua"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0.0 0.5"</span><span class="dt">&gt;</span>                </span>
+<span id="cod-stl-orbital-24"><a href="#cod-stl-orbital-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-stl-orbital-25"><a href="#cod-stl-orbital-25" aria-hidden="true" tabindex="-1"></a>                        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"lua"</span></span>
+<span id="cod-stl-orbital-26"><a href="#cod-stl-orbital-26" aria-hidden="true" tabindex="-1"></a><span class="ot">                            geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.05"</span></span>
+<span id="cod-stl-orbital-27"><a href="#cod-stl-orbital-27" aria-hidden="true" tabindex="-1"></a><span class="ot">                            material</span><span class="op">=</span><span class="st">"src: #mapa_lua"</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-orbital-28"><a href="#cod-stl-orbital-28" aria-hidden="true" tabindex="-1"></a>                        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-orbital-29"><a href="#cod-stl-orbital-29" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cod-stl-orbital-30"><a href="#cod-stl-orbital-30" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>                </span>
+<span id="cod-stl-orbital-31"><a href="#cod-stl-orbital-31" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span> </span>
+<span id="cod-stl-orbital-32"><a href="#cod-stl-orbital-32" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>               </span>
+<span id="cod-stl-orbital-33"><a href="#cod-stl-orbital-33" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>        </span>
+<span id="cod-stl-orbital-34"><a href="#cod-stl-orbital-34" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>        </span>
+<span id="cod-stl-orbital-35"><a href="#cod-stl-orbital-35" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-cod" id="cod-stl-orbital-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.7: Sistema STL com movimento orbital e de rotação da Terra.
+</figcaption>
+</figure>
+</div>
+<p>Há algo importante a observar no código acima. Não implementamos a <code>a-entity rev_lua</code> relacionada à compensação da rotação espúria causada pelo movimento orbital da Lua e nem o <code>animation</code> de rotação da Lua em torno do próprio eixo na <code>a-entity lua</code>. Sabemos que devido ao efeito de “travamento gravitacional” produzido pelas forças de maré atuando ao longo de milhões de anos, a Lua orbita com a mesma face voltada para a Terra. Isso implica que o período de translação coincide com o de rotação. Portanto, nesse caso, a rotação espúria da <code>a-entity orb_lua</code> já nos fornece, de brinde, a rotação da Lua em torno do próprio eixo.</p>
+<div id="vid-terra-orbitando" class="quarto-float quarto-figure quarto-figure-center anchored" loop="true">
+<figure class="quarto-float quarto-float-vid figure">
+<div aria-describedby="vid-terra-orbitando-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<video src="stl_animado.mp4" class="img-fluid" loop="true" controls=""><a href="stl_animado.mp4">Video</a></video>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-vid" id="vid-terra-orbitando-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Vídeo&nbsp;3.5: Sistema Sol-Terra-Lua com todos os movimentos – de rotação e orbital – implementados, visto de cima. (10x faster)
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ao entrar no modo de inspeção (<code>&lt;ctrl&gt;&lt;alt&gt;i</code>), a Terra ainda estará parada. Isso ocorre pois devemos acionar o botão ▶ (<em>resume scene</em>) no canto superior esquerdo.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="refinando-o-sistema" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="refinando-o-sistema"><span class="header-section-number">3.6</span> Refinando o sistema</h2>
+<p>Se quisermos explorar conceitos como estações do ano, fases da Lua e eclipses, existem certos detalhes do movimento dos astros que podemos abrir mão, como a excentricidade das órbitas, o movimento em torno do centro de massa, movimento de precessão e nutação, entre outros. Mas alguns são essenciais para aqueles fenômenos. São eles:</p>
 <ul>
-<li>Distância Terra-Sol: 1,5 metros</li>
-<li>Distância Terra-Lua: 0,5 metros</li>
-<li>Diâmetro do Sol: 30 cm</li>
-<li>Diâmetro da Terra: 15 cm</li>
-<li>Diâmetro da Lua: 5 cm</li>
+<li>a inclinação do eixo de rotação da Terra e</li>
+<li>a inclinação do plano da órbita da Lua.</li>
 </ul>
-<p>Para os diâmetros, usamos o atributo <code>radius</code> do componente <code>geometry</code> e para as distâncias usamos o componente <code>position</code>.</p>
-<ol start="10" type="1">
-<li><p>As entidades de cada astro nos seus respectivos referenciais fica da seguinte forma:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_sol"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0"</span><span class="dt">&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"sol"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ot">        geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.3"</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ot">        material</span><span class="op">=</span><span class="st">"src: #mapa_sol"</span><span class="dt">&gt;</span></span>
+<section id="inclinação-do-eixo-de-rotação-da-terra" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="inclinação-do-eixo-de-rotação-da-terra"><span class="header-section-number">3.6.1</span> Inclinação do eixo de rotação da Terra</h3>
+<p>Como sabemos, o eixo de rotação da Terra possui uma inclinação de 23,4° em relação à direção perpendicular ao plano da órbita. Em nosso sistema, podemos implementar essa inclinação em uma nova <code>a-entity inc_terra</code> colocada imediatamente acima da <code>a-entity terra</code>, usando o componente <code>rotation</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"inc_terra"</span><span class="ot"> rotation</span><span class="op">=</span><span class="st">"23.4 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ot">        geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ot">        material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ot">        animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"</span><span class="dt">&gt;</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_terra"</span><span class="ot">  position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ot">            geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ot">            material</span><span class="op">=</span><span class="st">"src: #mapa_terra"</span><span class="dt">&gt;</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ref_lua"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0.0 0.5"</span><span class="dt">&gt;</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"lua"</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="ot">                geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.05"</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="ot">                material</span><span class="op">=</span><span class="st">"src: #mapa_lua"</span><span class="dt">&gt;</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ol>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>    </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Repare que a rotação se dá na direção <span class="math inline">\(x\)</span>, uma vez que a perpendicular da órbita está na direção <span class="math inline">\(y\)</span>.</p>
+</section>
+<section id="inclinação-do-plano-orbital-da-lua" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="inclinação-do-plano-orbital-da-lua"><span class="header-section-number">3.6.2</span> Inclinação do plano orbital da Lua</h3>
+<p>O plano da órbita da Lua em torno da Terra possui uma inclinação de 5,14° em relação ao plano da órbita da Terra em torno do Sol.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Apesar de não ser uma inclinação tão alta, é ela que faz com que não tenhamos um eclipse em cada lua nova (Lua entre o Sol e a Terra) ou em cada lua cheia (Terra entre o Sol e a Lua) – ou seja, um eclipse solar e outro lunar todo mês.</p>
+<p>Como não estamos utilizando uma escala de tamanhos e distâncias proporcionais ao tamanho real dos astros, precisamos usar uma inclinação maior para reproduzir, aproximadamente, efeito dos eclipses em nosso sistema. Adotaremos uma inclinação de 25°. Faremos isso aplicando o componente <code>rotation</code> na nova entidade <code>a-entity inc_orb_lua</code> imediatamente acima da <code>a-entity orb_lua</code>, conforme o código a seguir.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"inc_orb_lua"</span><span class="ot"> rotation</span><span class="op">=</span><span class="st">"-25 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"orb_lua"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear"</span><span class="dt">&gt;</span>    </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"rev_orb_lua"</span><span class="ot"> animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear; dir: reverse"</span><span class="dt">&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_lua"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0.0 0.5"</span><span class="dt">&gt;</span>                </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"lua"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ot">                    geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.05"</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ot">                    material</span><span class="op">=</span><span class="st">"src: #mapa_lua"</span><span class="dt">&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>            </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>            </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>                </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-dark-side-of-the-moon" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="the-dark-side-of-the-moon"><span class="header-section-number">3.6.3</span> The dark side of the Moon</h3>
+<p>Embora não implique em qualquer efeito prático importante, orientar a Lua com a face correta voltada para a Terra é uma questão simples de resolver e dá mais realismo ao sistema. Verificamos que uma simples rotação de 90° na <code>a-entity lua</code> resolve a questão:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"lua"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.05"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_lua"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    rotation</span><span class="op">=</span><span class="st">"0 90 0"</span><span class="dt">&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Com isso temos todos os movimentos desejados para as nossas finalidades didáticas conforme mostrado no <a href="#vid-ovimento-completo-com-inclinacoes" class="quarto-xref">Vídeo&nbsp;<span>3.6</span></a>.</p>
+<div id="vid-ovimento-completo-com-inclinacoes" class="quarto-float quarto-figure quarto-figure-center anchored" loop="true">
+<figure class="quarto-float quarto-float-vid figure">
+<div aria-describedby="vid-ovimento-completo-com-inclinacoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<video src="movimento-completo-com-inclinacoes.mp4" class="img-fluid" loop="true" controls=""><a href="movimento-completo-com-inclinacoes.mp4">Video</a></video>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-vid" id="vid-ovimento-completo-com-inclinacoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Vídeo&nbsp;3.6: Sistema Sol-Terra-Lua com todos os movimentos e inclinações do eixo da Terra e da órbita da Lua, visto de perfil. (10x faster)
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="fiat-lux" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="fiat-lux"><span class="header-section-number">3.7</span> Fiat lux</h2>
+<p>Para finalizar o sistema STL, precisamos iluminar corretamente a cena. Primeiramente, precisamos que a fonte de luz principal esteja na posição do Sol, simulando a sua irradiação. Para isso utilizaremos o componente <code>light</code> na <code>a-entity sol</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>light="type: point; color: white; intensity: 2.5; castShadow: true"</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O A-Frame possui vários tipos de luz como <code>ambient</code>, <code>directional</code>, <code>hemisphere</code>, <code>point</code>, <code>spot</code> e <code>probe</code>, mas nenhuma delas corresponde a uma fonte de luz extensa para simular melhor a iluminação solar. Ainda assim, o tipo <code>point</code>, em que a luz é emitida igualmente em todas as direções a partir de um ponto, reproduz os efeitos astronômicos que queremos explorar. Utilizamos o atributo <code>castShadow: true</code> pois, por padrão, para poupar processamento, o A-Frame não renderiza sombras entre as entidades da cena.</p>
+<p>É interessante também substituirmos a iluminação padrão da <code>a-scene</code> por uma luz ambiente fraca para obtermos um bom contraste entre a face dos astros iluminada pelo Sol e a face escura. Para isso, utilizaremos o tipo de luz <code>ambient</code> em uma nova <code>a-entity</code> logo no início da <code>a-scene</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    light="type: ambient; color: white; intensity: 0.005"</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Essa luz iluminará igualmente todos os objetos sem produzir sombras entre eles. Repare na diferença de intensidade (<code>intensity</code>) entre as duas luzes de forma a produzir o contraste desejado. De fato, essa luz ambiente praticamente não existe nos astros reais, mas uma pequena iluminação na face escura da Terra e da Lua facilita a percepção dos fenômenos.</p>
+<p>Precisamos também informar que as duas entidades, <code>a-entity terra</code> e <code>a-entity lua</code>, precisam ser configuradas para receber e produzir sombras com o componente <code>shadow</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>shadow="receive: true; cast: true"</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Por fim, iremos definir a propriedade <code>roughness</code> (rugosidade) dos materiais da Terra e da Lua para o valor máximo de 1 (o padrão é 0,5):</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>material="src: #mapa_terra; roughness: 1"</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Essa propriedade define o quão difusa é a reflexão na superfície do material. Um <code>roughness</code> baixo produz um efeito espelhado e um valor alto um efeito fosco.</p>
+</section>
+<section id="elementos-gráficos-de-referência" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="elementos-gráficos-de-referência"><span class="header-section-number">3.8</span> Elementos gráficos de referência</h2>
+<p>O nosso projeto STL está praticamente completo. Temos os movimentos de rotação e translação, as inclinações do eixo de rotação da Terra e do plano da órbita da Lua e a iluminação que reproduz a luz solar.</p>
+<p>Embora esses elementos já sejam suficientes para trabalharmos os conceitos básicos de astronomia, podemos incluir elementos gráficos auxiliares que facilitam a percepção dos fenômenos. São eles:</p>
+<ul>
+<li>Uma seta ao longo do eixo de rotação terrestre</li>
+<li>Um plano para a órbita da Terra</li>
+<li>Um plano para a órbita da Lua</li>
+<li>Um mapa de fundo do céu noturno</li>
+</ul>
+<section id="seta-do-eixo-de-rotação-terrestre" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="seta-do-eixo-de-rotação-terrestre"><span class="header-section-number">3.8.1</span> Seta do eixo de rotação terrestre</h3>
+<p>Implementaremos a seta indicativa do eixo de rotação terrestre usando as geometrias <code>cylinder</code> e <code>cone</code> em uma nova entidade <code>a-entity eixo_terra</code>, a qual será inserida dentro da <code>a-entity terra</code>, da seguinte forma:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"eixo_terra"</span><span class="dt">&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ot">        geometry</span><span class="op">=</span><span class="st">"primitive: cylinder; height: 0.60; radius: 0.007"</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ot">        material</span><span class="op">=</span><span class="st">"color: blue"</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ot">        geometry</span><span class="op">=</span><span class="st">"primitive: cone; radiusBottom: 0.03; radiusTop: 0; height: 0.1; segmentsRadial: 4; segmentsHeight: 4"</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ot">        material</span><span class="op">=</span><span class="st">"color: blue"</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="ot">        position</span><span class="op">=</span><span class="st">"0 0.30 0"</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="planos-orbitais" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="planos-orbitais"><span class="header-section-number">3.8.2</span> Planos orbitais</h3>
+<p>Faremos os planos orbitais com a geometria <code>circle</code>.</p>
+<p>O plano orbital da Terra é estático e ficará ao lado das entidades <code>a-entity terra</code> e <code>a-entity lua</code>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    id</span><span class="op">=</span><span class="st">"plano_terra"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: circle; radius: 2"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"side: double; opacity: 0.1; emissiveIntensity: 20; emissive: blue"</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    rotation</span><span class="op">=</span><span class="st">"90 0 0"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O plano orbital da Lua ficará dentro da <code>a-entity inc_orb_lua</code> pois terá que seguir essa inclinação:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    id</span><span class="op">=</span><span class="st">"plano_lua"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: circle; radius: 0.5"</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"side: double; opacity: 0.1; emissiveIntensity: 20; emissive: white"</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    rotation</span><span class="op">=</span><span class="st">"90 0 0"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Utilizamos o atributo <code>opacity</code> para que os planos sejam transparentes e não interfiram significativamente na visualização. Os atributos <code>emissiveIntensity</code> foram usados com valores altos para que os planos produzam uma luz própria e não sejam afetados pela luz solar atrapalhando a visualização.</p>
+</section>
+<section id="mapa-do-céu-noturno" class="level3" data-number="3.8.3">
+<h3 data-number="3.8.3" class="anchored" data-anchor-id="mapa-do-céu-noturno"><span class="header-section-number">3.8.3</span> Mapa do céu noturno</h3>
+<p>Para dar mais realismo, vamos inserir um mapa do céu noturno. O procedimento é semelhante aos mapas das superfícies dos astros, exceto que existe uma entidade específica para isso no A-Frame, chamada de <code>a-sky</code>. O mapa também precisa ser uma projeção cilíndrica equidistante (<em>equirectangular</em>). Vamos incluí-la dentro de uma <code>a-entity</code> que roda o mapa do céu de 23,4° de forma que os polos celestes da imagem coincidam com os polos celestes de rotação da Terra:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> rotation</span><span class="op">=</span><span class="st">"23.4 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-sky</span><span class="ot"> src</span><span class="op">=</span><span class="st">"#skymap"</span><span class="dt">&gt;&lt;/</span><span class="kw">a-sky</span><span class="dt">&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sendo que a imagem <code>skymap</code> utilizada deve ser incluída em <code>assets</code> da mesma forma que os demais mapas dos astros:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"skymap"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://i.postimg.cc/9mjwfS4J/Tycho-Skymap-16384x08192.jpg"</span><span class="dt">/&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Essa imagem (<a href="#fig-skymap" class="quarto-xref">Figura&nbsp;<span>3.3</span></a>) foi obtida do <a href="https://svs.gsfc.nasa.gov/3442/">catálogo estelar Tycho</a> e colocada temporariamente no <em>postimg</em> para que pudesse ser carregada online pelo a-Frame.</p>
+<div id="fig-skymap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-skymap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="TychoSkymap.t4_04096x02048.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-skymap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.3: Mapa estelar com estrelas dos catálogos <a href="https://svs.gsfc.nasa.gov/3442/">Tycho e Hipparcos</a>, em projeção cilíndrica equidistante (plate carrée) utilizando coordenadas celestes. Adequado para mapeamento em esferas em programas de animação. As estrelas são representadas como <em>Point Spread Functions</em> (PSF), com tamanho e intensidade correspondentes à sua luminosidade relativa.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="resultado-final" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="resultado-final"><span class="header-section-number">3.9</span> Resultado final</h2>
+<div id="cod-stl-completo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-cod figure">
+<div aria-describedby="cod-stl-completo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="callout callout-style-default callout-tip callout-titled" title="Clique para expandir">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Clique para expandir
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb18"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://aframe.io/releases/1.6.0/aframe.min.js"</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://unpkg.com/aframe-orbit-controls@1.3.2/dist/aframe-orbit-controls.min.js"</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="ot">        camera</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="ot">        look-controls</span><span class="op">=</span><span class="st">"enabled: false"</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="ot">        orbit-controls</span><span class="op">=</span><span class="st">"target: 0 0 0; minDistance: 0; maxDistance: 180; initialPosition: 0 3 5; rotateSpeed: 1.5"</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="ot">      </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">img</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="ot">          id</span><span class="op">=</span><span class="st">"mapa_sol"</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="ot">          src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Map_of_the_full_sun.jpg/1280px-Map_of_the_full_sun.jpg"</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">/&gt;</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">img</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="ot">          id</span><span class="op">=</span><span class="st">"mapa_terra"</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="ot">          src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png"</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">/&gt;</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">img</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="ot">          id</span><span class="op">=</span><span class="st">"mapa_lua"</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="ot">          src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Solarsystemscope_texture_8k_moon.jpg/1280px-Solarsystemscope_texture_8k_moon.jpg"</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">/&gt;</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">img</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="ot">          id</span><span class="op">=</span><span class="st">"skymap"</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="ot">          src</span><span class="op">=</span><span class="st">"https://i.postimg.cc/9mjwfS4J/Tycho-Skymap-16384x08192.jpg"</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">/&gt;</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="ot">        light</span><span class="op">=</span><span class="st">"type: ambient; color: #ffffff; intensity: 0.005"</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="ot">      </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> rotation</span><span class="op">=</span><span class="st">"23.4 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-sky</span><span class="ot"> src</span><span class="op">=</span><span class="st">"#skymap"</span><span class="dt">&gt;&lt;/</span><span class="kw">a-sky</span><span class="dt">&gt;</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_sol"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 1.2 0"</span><span class="dt">&gt;</span></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="ot">          id</span><span class="op">=</span><span class="st">"sol"</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="ot">          geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.2"</span></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="ot">          material</span><span class="op">=</span><span class="st">"src: #mapa_sol; emissiveIntensity: 0.5; emissive: #f7e927"</span></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="ot">          animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 50000; easing: linear"</span></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="ot">          light</span><span class="op">=</span><span class="st">"type: point; color: white; intensity: 2.5; castShadow:true"</span></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">&gt;</span></span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="ot">          id</span><span class="op">=</span><span class="st">"plano_terra"</span></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a><span class="ot">          geometry</span><span class="op">=</span><span class="st">"primitive: circle; radius: 2.3"</span></span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a><span class="ot">          material</span><span class="op">=</span><span class="st">"side: double; opacity: 0.1; emissiveIntensity: 20; emissive: blue"</span></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a><span class="ot">          rotation</span><span class="op">=</span><span class="st">"90 0 0"</span></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a><span class="ot">          id</span><span class="op">=</span><span class="st">"orb_terra"</span></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a><span class="ot">          animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear"</span></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">&gt;</span></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_terra"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0.0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a><span class="ot">              id</span><span class="op">=</span><span class="st">"rev_terra"</span></span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a><span class="ot">              animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear; dir: reverse"</span></span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a><span class="ot">            </span><span class="dt">&gt;</span></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>              <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"inc_terra"</span><span class="ot"> rotation</span><span class="op">=</span><span class="st">"23.4 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="ot">                  id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a><span class="ot">                  geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="ot">                  material</span><span class="op">=</span><span class="st">"src: #mapa_terra; roughness: 1"</span></span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="ot">                  animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 1000; easing: linear"</span></span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a><span class="ot">                  shadow</span><span class="op">=</span><span class="st">"receive: true; cast: true"</span></span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a><span class="ot">                </span><span class="dt">&gt;</span></span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"eixo_terra"</span><span class="dt">&gt;</span></span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a><span class="ot">                      geometry</span><span class="op">=</span><span class="st">"primitive: cylinder; height: 0.60; radius: 0.007"</span></span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a><span class="ot">                      material</span><span class="op">=</span><span class="st">"color: blue"</span></span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a><span class="ot">                    </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a><span class="ot">                      geometry</span><span class="op">=</span><span class="st">"primitive: cone; radiusBottom: 0.03; radiusTop: 0; height: 0.1; segmentsRadial: 4; segmentsHeight: 4"</span></span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a><span class="ot">                      material</span><span class="op">=</span><span class="st">"color: blue"</span></span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a><span class="ot">                      position</span><span class="op">=</span><span class="st">"0 0.30 0"</span></span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a><span class="ot">                    </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a>              <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>              <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"inc_orb_lua"</span><span class="ot"> rotation</span><span class="op">=</span><span class="st">"-25 0 0"</span><span class="dt">&gt;</span></span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a><span class="ot">                  id</span><span class="op">=</span><span class="st">"plano_lua"</span></span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a><span class="ot">                  geometry</span><span class="op">=</span><span class="st">"primitive: circle; radius: 0.8"</span></span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a><span class="ot">                  material</span><span class="op">=</span><span class="st">"side: double; opacity: 0.1; emissiveIntensity: 20; emissive: white"</span></span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a><span class="ot">                  rotation</span><span class="op">=</span><span class="st">"90 0 0"</span></span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a><span class="ot">                </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a><span class="ot">                  id</span><span class="op">=</span><span class="st">"orb_lua"</span></span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a><span class="ot">                  animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 3000; easing: linear"</span></span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a><span class="ot">                </span><span class="dt">&gt;</span></span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_lua"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0.0 0.8"</span><span class="dt">&gt;</span></span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a><span class="ot">                      id</span><span class="op">=</span><span class="st">"lua"</span></span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a><span class="ot">                      grabbable</span></span>
+<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a><span class="ot">                      geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.05"</span></span>
+<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="ot">                      material</span><span class="op">=</span><span class="st">"src: #mapa_lua; roughness: 1"</span></span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a><span class="ot">                      rotation</span><span class="op">=</span><span class="st">"0 90 0"</span></span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a><span class="ot">                      shadow</span><span class="op">=</span><span class="st">"receive: true; cast: true"</span></span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a><span class="ot">                    </span><span class="dt">&gt;</span></span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a>              <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-cod" id="cod-stl-completo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.8: Código completo do sistema STL.
+</figcaption>
+</figure>
+</div>
+<div id="vid-stl-completo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-vid figure">
+<div aria-describedby="vid-stl-completo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Xs07RB4W-kc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-vid" id="vid-stl-completo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Vídeo&nbsp;3.7: Sistema STL em movimento com câmera estática externa.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="aprimoramentos" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="aprimoramentos"><span class="header-section-number">3.10</span> Aprimoramentos</h2>
+<p>Vamos aprimorar nosso projeto de forma a incluir diversidade de visualizações e interatividade.</p>
+<section id="com-os-pés-no-chão" class="level3" data-number="3.10.1">
+<h3 data-number="3.10.1" class="anchored" data-anchor-id="com-os-pés-no-chão"><span class="header-section-number">3.10.1</span> Com os pés no chão</h3>
+<p>Até agora não mexemos na posição da câmera. Ela permaneceu fixa em uma <code>a-entity</code> a parte, fora do sistema de coordenadas do Sol. Mas podemos colocar a câmera onde quisermos, inclusive fixa na superfície da Terra de forma a reproduzir nossa visão do céu. Para isso, basta retirarmos a câmera original e colocarmos uma nova dentro da <code>a-entity terra</code>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    id</span><span class="op">=</span><span class="st">"terra"</span><span class="ot">                  </span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 1.5; segmentsWidth:180; segmentsHeight:360"</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra; roughness: 1"</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    animation</span><span class="op">=</span><span class="st">"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="ot">    shadow</span><span class="op">=</span><span class="st">"receive: true; cast: true"</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="dt">&gt;</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> camera look-controls position</span><span class="op">=</span><span class="st">"1.35 0.755 0"</span><span class="ot"> fov</span><span class="op">=</span><span class="st">"80"</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>    </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>No código acima, aumentamos a segmentação da esfera terrestre para uma superfície mais suave e aumentamos o seu raio para um horizonte menos curvo. Fora isso, o código é essencialmente o mesmo do <a href="#cod-stl-completo" class="quarto-xref">Código&nbsp;<span>3.8</span></a>.</p>
+<p>Essa posição da câmera produz a visualização mostrada no <a href="#vid-stl-na-terra" class="quarto-xref">Vídeo&nbsp;<span>3.8</span></a>.</p>
+<div id="vid-stl-na-terra" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-vid figure">
+<div aria-describedby="vid-stl-na-terra-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/J6ZFjDjrnjc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-vid" id="vid-stl-na-terra-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Vídeo&nbsp;3.8: Sistema STL visto por uma câmera colocada na superfície da Terra.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="interação-com-os-objetos" class="level3" data-number="3.10.2">
+<h3 data-number="3.10.2" class="anchored" data-anchor-id="interação-com-os-objetos"><span class="header-section-number">3.10.2</span> Interação com os objetos</h3>
+<p>No A-Frame é muito simples incluir interação com as mãos do usuário. Basta incluir o componente <code>hand-tracking-grab-controls</code> em uma <code>a-entity</code> para cada mão:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"leftHand"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    hand-tracking-grab-controls</span><span class="op">=</span><span class="st">"hand: left;"</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"rightHand"</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    hand-tracking-grab-controls</span><span class="op">=</span><span class="st">"hand: right;"</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>E incluir o componente <code>grabbable</code> nos objetos que poderão ser agarrados com as mãos. Por exemplo, para que a Terra seja “agarrável” incluímos o componente <code>grabbable</code> dentro da <code>a-entity</code> correspondente:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    grabbable</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_terra; roughness: 1"</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    position</span><span class="op">=</span><span class="st">"1 1.2 0"</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="ot">    shadow</span><span class="op">=</span><span class="st">"receive: true; cast: true"</span><span class="ot">                </span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O <a href="#cod-stl-grabbable" class="quarto-xref">Código&nbsp;<span>3.9</span></a> corresponde a um sistema STL alternativo mais simples em que os astros não são animados, mas apenas habilitados para serem “agarráveis” pelo usuário. Apesar dessa simplicidade, as condições de iluminação dentro desse ambiente virtual são difíceis de reproduzir em um ambiente real, possibilitando explorar com riqueza os fenômenos que mencionamos anteriormente envolvendo as fases da Lua, eclipses e estações do ano. Vide <a href="#vid-stl-grabbable" class="quarto-xref">Vídeo&nbsp;<span>3.9</span></a>.</p>
+<div id="cod-stl-grabbable" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-cod figure">
+<div aria-describedby="cod-stl-grabbable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="cod-stl-grabbable"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cod-stl-grabbable-1"><a href="#cod-stl-grabbable-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-2"><a href="#cod-stl-grabbable-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-stl-grabbable-3"><a href="#cod-stl-grabbable-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-4"><a href="#cod-stl-grabbable-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-5"><a href="#cod-stl-grabbable-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://aframe.io/releases/1.6.0/aframe.min.js"</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-6"><a href="#cod-stl-grabbable-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-7"><a href="#cod-stl-grabbable-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-stl-grabbable-8"><a href="#cod-stl-grabbable-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-9"><a href="#cod-stl-grabbable-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-10"><a href="#cod-stl-grabbable-10" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cod-stl-grabbable-11"><a href="#cod-stl-grabbable-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-12"><a href="#cod-stl-grabbable-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_sol"</span></span>
+<span id="cod-stl-grabbable-13"><a href="#cod-stl-grabbable-13" aria-hidden="true" tabindex="-1"></a><span class="ot">          src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Map_of_the_full_sun.jpg/1280px-Map_of_the_full_sun.jpg"</span></span>
+<span id="cod-stl-grabbable-14"><a href="#cod-stl-grabbable-14" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">/&gt;</span></span>
+<span id="cod-stl-grabbable-15"><a href="#cod-stl-grabbable-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_terra"</span></span>
+<span id="cod-stl-grabbable-16"><a href="#cod-stl-grabbable-16" aria-hidden="true" tabindex="-1"></a><span class="ot">          src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png"</span></span>
+<span id="cod-stl-grabbable-17"><a href="#cod-stl-grabbable-17" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">/&gt;</span></span>
+<span id="cod-stl-grabbable-18"><a href="#cod-stl-grabbable-18" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mapa_lua"</span></span>
+<span id="cod-stl-grabbable-19"><a href="#cod-stl-grabbable-19" aria-hidden="true" tabindex="-1"></a><span class="ot">          src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Solarsystemscope_texture_8k_moon.jpg/1280px-Solarsystemscope_texture_8k_moon.jpg"</span></span>
+<span id="cod-stl-grabbable-20"><a href="#cod-stl-grabbable-20" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">/&gt;</span></span>
+<span id="cod-stl-grabbable-21"><a href="#cod-stl-grabbable-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"skymap"</span></span>
+<span id="cod-stl-grabbable-22"><a href="#cod-stl-grabbable-22" aria-hidden="true" tabindex="-1"></a><span class="ot">          src</span><span class="op">=</span><span class="st">"https://i.postimg.cc/9mjwfS4J/Tycho-Skymap-16384x08192.jpg"</span></span>
+<span id="cod-stl-grabbable-23"><a href="#cod-stl-grabbable-23" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">/&gt;</span>        </span>
+<span id="cod-stl-grabbable-24"><a href="#cod-stl-grabbable-24" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;/</span><span class="kw">a-assets</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-25"><a href="#cod-stl-grabbable-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-stl-grabbable-26"><a href="#cod-stl-grabbable-26" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> camera look-controls position</span><span class="op">=</span><span class="st">"0.5 1.6 0.3"</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-27"><a href="#cod-stl-grabbable-27" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cod-stl-grabbable-28"><a href="#cod-stl-grabbable-28" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"leftHand"</span></span>
+<span id="cod-stl-grabbable-29"><a href="#cod-stl-grabbable-29" aria-hidden="true" tabindex="-1"></a><span class="ot">        hand-tracking-grab-controls</span><span class="op">=</span><span class="st">"hand: left;"</span></span>
+<span id="cod-stl-grabbable-30"><a href="#cod-stl-grabbable-30" aria-hidden="true" tabindex="-1"></a><span class="ot">      </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-31"><a href="#cod-stl-grabbable-31" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"rightHand"</span></span>
+<span id="cod-stl-grabbable-32"><a href="#cod-stl-grabbable-32" aria-hidden="true" tabindex="-1"></a><span class="ot">        hand-tracking-grab-controls</span><span class="op">=</span><span class="st">"hand: right;"</span></span>
+<span id="cod-stl-grabbable-33"><a href="#cod-stl-grabbable-33" aria-hidden="true" tabindex="-1"></a><span class="ot">      </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-34"><a href="#cod-stl-grabbable-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-stl-grabbable-35"><a href="#cod-stl-grabbable-35" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cod-stl-grabbable-36"><a href="#cod-stl-grabbable-36" aria-hidden="true" tabindex="-1"></a><span class="ot">        light</span><span class="op">=</span><span class="st">"type: ambient; color: #ffffff; intensity: 0.005"</span></span>
+<span id="cod-stl-grabbable-37"><a href="#cod-stl-grabbable-37" aria-hidden="true" tabindex="-1"></a><span class="ot">      </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-38"><a href="#cod-stl-grabbable-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-stl-grabbable-39"><a href="#cod-stl-grabbable-39" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a-sky</span><span class="ot"> src</span><span class="op">=</span><span class="st">"#skymap"</span><span class="dt">&gt;&lt;/</span><span class="kw">a-sky</span><span class="dt">&gt;</span>      </span>
+<span id="cod-stl-grabbable-40"><a href="#cod-stl-grabbable-40" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"sol"</span></span>
+<span id="cod-stl-grabbable-41"><a href="#cod-stl-grabbable-41" aria-hidden="true" tabindex="-1"></a><span class="ot">          grabbable</span></span>
+<span id="cod-stl-grabbable-42"><a href="#cod-stl-grabbable-42" aria-hidden="true" tabindex="-1"></a><span class="ot">          geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.1"</span></span>
+<span id="cod-stl-grabbable-43"><a href="#cod-stl-grabbable-43" aria-hidden="true" tabindex="-1"></a><span class="ot">          material</span><span class="op">=</span><span class="st">"src: #mapa_sol; emissiveIntensity: 0.5; emissive: #f7e927"</span></span>
+<span id="cod-stl-grabbable-44"><a href="#cod-stl-grabbable-44" aria-hidden="true" tabindex="-1"></a><span class="ot">          light</span><span class="op">=</span><span class="st">"type: point; color: white; intensity: 2.5; castShadow:true"</span></span>
+<span id="cod-stl-grabbable-45"><a href="#cod-stl-grabbable-45" aria-hidden="true" tabindex="-1"></a><span class="ot">          position</span><span class="op">=</span><span class="st">"0 1.2 0"</span></span>
+<span id="cod-stl-grabbable-46"><a href="#cod-stl-grabbable-46" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-47"><a href="#cod-stl-grabbable-47" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-48"><a href="#cod-stl-grabbable-48" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"terra"</span></span>
+<span id="cod-stl-grabbable-49"><a href="#cod-stl-grabbable-49" aria-hidden="true" tabindex="-1"></a><span class="ot">          grabbable</span></span>
+<span id="cod-stl-grabbable-50"><a href="#cod-stl-grabbable-50" aria-hidden="true" tabindex="-1"></a><span class="ot">          geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.15"</span></span>
+<span id="cod-stl-grabbable-51"><a href="#cod-stl-grabbable-51" aria-hidden="true" tabindex="-1"></a><span class="ot">          material</span><span class="op">=</span><span class="st">"src: #mapa_terra; roughness: 1"</span></span>
+<span id="cod-stl-grabbable-52"><a href="#cod-stl-grabbable-52" aria-hidden="true" tabindex="-1"></a><span class="ot">          position</span><span class="op">=</span><span class="st">"0.75 1.2 0"</span></span>
+<span id="cod-stl-grabbable-53"><a href="#cod-stl-grabbable-53" aria-hidden="true" tabindex="-1"></a><span class="ot">          shadow</span><span class="op">=</span><span class="st">"receive: true; cast: true"</span><span class="ot">                </span></span>
+<span id="cod-stl-grabbable-54"><a href="#cod-stl-grabbable-54" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-55"><a href="#cod-stl-grabbable-55" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"lua"</span></span>
+<span id="cod-stl-grabbable-56"><a href="#cod-stl-grabbable-56" aria-hidden="true" tabindex="-1"></a><span class="ot">          grabbable</span></span>
+<span id="cod-stl-grabbable-57"><a href="#cod-stl-grabbable-57" aria-hidden="true" tabindex="-1"></a><span class="ot">          geometry</span><span class="op">=</span><span class="st">"primitive: sphere; radius: 0.05"</span></span>
+<span id="cod-stl-grabbable-58"><a href="#cod-stl-grabbable-58" aria-hidden="true" tabindex="-1"></a><span class="ot">          material</span><span class="op">=</span><span class="st">"src: #mapa_lua; roughness: 1"</span></span>
+<span id="cod-stl-grabbable-59"><a href="#cod-stl-grabbable-59" aria-hidden="true" tabindex="-1"></a><span class="ot">          rotation</span><span class="op">=</span><span class="st">"0 90 0"</span></span>
+<span id="cod-stl-grabbable-60"><a href="#cod-stl-grabbable-60" aria-hidden="true" tabindex="-1"></a><span class="ot">          position</span><span class="op">=</span><span class="st">"1 1.2 0.5"</span></span>
+<span id="cod-stl-grabbable-61"><a href="#cod-stl-grabbable-61" aria-hidden="true" tabindex="-1"></a><span class="ot">          shadow</span><span class="op">=</span><span class="st">"receive: true; cast: true"</span></span>
+<span id="cod-stl-grabbable-62"><a href="#cod-stl-grabbable-62" aria-hidden="true" tabindex="-1"></a><span class="ot">        </span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-63"><a href="#cod-stl-grabbable-63" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>      </span>
+<span id="cod-stl-grabbable-64"><a href="#cod-stl-grabbable-64" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-scene</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-65"><a href="#cod-stl-grabbable-65" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cod-stl-grabbable-66"><a href="#cod-stl-grabbable-66" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-cod" id="cod-stl-grabbable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.9: Sistema STL simplificado sem animação, mas que permite que os objetos sejam agarráveis pelas mãos do usuário.
+</figcaption>
+</figure>
+</div>
+<div id="vid-stl-grabbable" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-vid figure">
+<div aria-describedby="vid-stl-grabbable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/v-wMky5iR70" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-vid" id="vid-stl-grabbable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Vídeo&nbsp;3.9: Vídeo mostrando a manipulação e os usos didáticos do sistema STL simplificado
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="configurando-a-aplicação-web-para-uso-offline" class="level3" data-number="3.10.3">
+<h3 data-number="3.10.3" class="anchored" data-anchor-id="configurando-a-aplicação-web-para-uso-offline"><span class="header-section-number">3.10.3</span> Configurando a aplicação web para uso offline</h3>
+<p>Ter que depender de uma conexão com a internet toda vez que necessitar fazer uma atividade em Realidade Virtual pode ser limitante, principalmente quando não se dispuser de uma infraestrutura robusta de internet por WiFi, o que é muito comum no ambiente escolar.</p>
+<p>Existe uma forma simples de resolver isso através do chamado <em>service worker</em> com <em>cache</em> estático. Ele é usado para interceptar as requisições e armazenar os recursos necessários no cache do navegador, permitindo que a página continue a funcionar mesmo sem conexão com a internet. É um caminho eficiente e moderno, especialmente quando se espera que os usuários usem a página offline.</p>
+<p>Para isso, são necessários dois passos. Primeiramente, deve-se incluir o script Javascript (<a href="#cod-script-offline" class="quarto-xref">Código&nbsp;<span>3.10</span></a>) dentro do elemento <code>body</code> do arquivo html principal.</p>
+<div id="cod-script-offline" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-cod figure">
+<div aria-describedby="cod-script-offline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="cod-script-offline"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cod-script-offline-1"><a href="#cod-script-offline-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cod-script-offline-2"><a href="#cod-script-offline-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="st">'serviceWorker'</span> <span class="kw">in</span> <span class="bu">navigator</span>) {</span>
+<span id="cod-script-offline-3"><a href="#cod-script-offline-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">window</span><span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">'load'</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cod-script-offline-4"><a href="#cod-script-offline-4" aria-hidden="true" tabindex="-1"></a>      <span class="bu">navigator</span><span class="op">.</span><span class="at">serviceWorker</span><span class="op">.</span><span class="fu">register</span>(<span class="st">'/service-worker.js'</span>)</span>
+<span id="cod-script-offline-5"><a href="#cod-script-offline-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">then</span>((registration) <span class="kw">=&gt;</span> {</span>
+<span id="cod-script-offline-6"><a href="#cod-script-offline-6" aria-hidden="true" tabindex="-1"></a>          <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Service Worker registrado com sucesso:'</span><span class="op">,</span> registration)<span class="op">;</span></span>
+<span id="cod-script-offline-7"><a href="#cod-script-offline-7" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cod-script-offline-8"><a href="#cod-script-offline-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">catch</span>((error) <span class="kw">=&gt;</span> {</span>
+<span id="cod-script-offline-9"><a href="#cod-script-offline-9" aria-hidden="true" tabindex="-1"></a>          <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Falha ao registrar o Service Worker:'</span><span class="op">,</span> error)<span class="op">;</span></span>
+<span id="cod-script-offline-10"><a href="#cod-script-offline-10" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cod-script-offline-11"><a href="#cod-script-offline-11" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cod-script-offline-12"><a href="#cod-script-offline-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cod-script-offline-13"><a href="#cod-script-offline-13" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-cod" id="cod-script-offline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.10: Script Javascript a ser incluído no <code>body</code> do arquivo html de forma a permitir que a aplicação continue acessível ao navegador mesmo estando offline.
+</figcaption>
+</figure>
+</div>
+<p>Por fim, deve-se criar um arquivo como o nome <code>service-worker.js</code> na mesma pasta do arquivo html principal com o com o conteúdo do <a href="#cod-service-worker" class="quarto-xref">Código&nbsp;<span>3.11</span></a>.</p>
+<div id="cod-service-worker" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-cod figure">
+<div aria-describedby="cod-service-worker-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="cod-service-worker"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cod-service-worker-1"><a href="#cod-service-worker-1" aria-hidden="true" tabindex="-1"></a><span class="co">// service-worker.js</span></span>
+<span id="cod-service-worker-2"><a href="#cod-service-worker-2" aria-hidden="true" tabindex="-1"></a>self<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">'install'</span><span class="op">,</span> (<span class="bu">event</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cod-service-worker-3"><a href="#cod-service-worker-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">event</span><span class="op">.</span><span class="fu">waitUntil</span>(</span>
+<span id="cod-service-worker-4"><a href="#cod-service-worker-4" aria-hidden="true" tabindex="-1"></a>    caches<span class="op">.</span><span class="fu">open</span>(<span class="st">'my-cache'</span>)<span class="op">.</span><span class="fu">then</span>((cache) <span class="kw">=&gt;</span> {</span>
+<span id="cod-service-worker-5"><a href="#cod-service-worker-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cache<span class="op">.</span><span class="fu">addAll</span>([</span>
+<span id="cod-service-worker-6"><a href="#cod-service-worker-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'/'</span><span class="op">,</span></span>
+<span id="cod-service-worker-7"><a href="#cod-service-worker-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'/index.html'</span><span class="op">,</span></span>
+<span id="cod-service-worker-8"><a href="#cod-service-worker-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'https://aframe.io/releases/1.6.0/aframe.min.js'</span></span>
+<span id="cod-service-worker-9"><a href="#cod-service-worker-9" aria-hidden="true" tabindex="-1"></a>      ])<span class="op">;</span></span>
+<span id="cod-service-worker-10"><a href="#cod-service-worker-10" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cod-service-worker-11"><a href="#cod-service-worker-11" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cod-service-worker-12"><a href="#cod-service-worker-12" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cod-service-worker-13"><a href="#cod-service-worker-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cod-service-worker-14"><a href="#cod-service-worker-14" aria-hidden="true" tabindex="-1"></a>self<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">'fetch'</span><span class="op">,</span> (<span class="bu">event</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cod-service-worker-15"><a href="#cod-service-worker-15" aria-hidden="true" tabindex="-1"></a>  <span class="bu">event</span><span class="op">.</span><span class="fu">respondWith</span>(</span>
+<span id="cod-service-worker-16"><a href="#cod-service-worker-16" aria-hidden="true" tabindex="-1"></a>    caches<span class="op">.</span><span class="fu">match</span>(<span class="bu">event</span><span class="op">.</span><span class="at">request</span>)<span class="op">.</span><span class="fu">then</span>((response) <span class="kw">=&gt;</span> {</span>
+<span id="cod-service-worker-17"><a href="#cod-service-worker-17" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> response <span class="op">||</span> <span class="fu">fetch</span>(<span class="bu">event</span><span class="op">.</span><span class="at">request</span>)<span class="op">;</span></span>
+<span id="cod-service-worker-18"><a href="#cod-service-worker-18" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cod-service-worker-19"><a href="#cod-service-worker-19" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cod-service-worker-20"><a href="#cod-service-worker-20" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-cod" id="cod-service-worker-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.11: Conteúdo do arquivo <code>service-worker.js</code> para acesso offline da aplicação web. Aqui estamos considerando que o arquivo principal chama-se <code>index.html</code>.
+</figcaption>
+</figure>
+</div>
+<p>Script Javascript a ser incluído no <code>body</code> do arquivo html de forma a permitir que a aplicação continue acessível ao navegador mesmo estando offline. :::</p>
+<p>É recomendado que o <code>service-worker</code> seja habilitado somente quando o projeto estiver pronto. Na fase de desenvolvimento, que requer que a página seja recarregada várias vezes, pode haver o cache indesejado de versões antigas da página html, causando confusão. Para garantir que a versão mais atual da página seja carregada com o <code>service-worker</code> ativo é necessário limpar o cache do navegador.</p>
+</section>
+</section>
+<section id="palavras-finais" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="palavras-finais"><span class="header-section-number">3.11</span> Palavras finais</h2>
+<p>Com isso, concluímos este minicurso. Apesar do A-Frame permitir a programação usando exclusivamente linguagem HTML, é possível usar todo o poder da linguagem Javascript para desenvolver aplicações mais sofisticadas. O modo correto de fazer isso no A-Frame é através da <a href="https://aframe.io/docs/1.6.0/introduction/writing-a-component.html">criação de novos <em>Components</em></a>, os quais receberão toda a lógica de programação em Javascript. Além disso, o A-Frame disponibiliza acesso a todas as funcionalidades da poderosa biblioteca gráfica <a href="https://threejs.org/">Three.js</a> (pois é uma abstração desta). E existe também as <a href="https://aframe.wiki/en/#!pages/component-directory.md">componentes criadas pela comunidade de desenvolvedores</a>, as quais abrangem uma boa diversidade de usos. Escolhemos não abordar essas possibilidades devido à curta duração deste minicurso.</p>
 
 
 </section>
@@ -481,8 +1358,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <ol>
 <li id="fn1"><p>Expressão cunhada pelo astrônomo e divulgador científico Carl Sagan ao descrever a imagem da Terra capturada pela sonda Voyager 1, a uma grande distância. No retrato, o planeta aparece como um minúsculo ponto azul. Sagan utilizou essa imagem para refletir sobre a humildade e a responsabilidade da humanidade em relação ao único lar conhecido.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>A expressão em italiano que significa “E, no entanto, ela se move” teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Na verdade, a Lua não gira em tono da Terra, mas em torno do centro de massa do sistema Terra-Lua, assim como a própria Terra. Por motivos didáticos, usaremos o sistema de referência centrado na Terra para implementar o movimento orbital da Lua. Essa aproximação não é tão ruim, uma vez que o centro de massa do sistema está bem mais próximo da Terra do que da Lua.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Na verdade, a Lua não gira em tono da Terra, mas em torno do centro de massa do sistema Terra-Lua, assim como a própria Terra. Por motivos didáticos, usaremos o sistema de referência centrado na Terra para implementar o movimento orbital da Lua. Essa aproximação não é tão ruim, uma vez que o centro de massa do sistema está bem mais próximo da Terra do que da Lua.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>A expressão em italiano que significa “E, no entanto, ela se move” teria sido dita por Galileu Galilei após ser forçado pela Inquisição a renegar sua defesa do heliocentrismo. Galileu teria murmurado a frase em desafio, reafirmando sua convicção, mesmo após a retratação oficial. Entretanto, não há evidências da vericidade dessa fala.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>O movimento de precessão do eixo de rotação terrestre realmente existe e é conhecido como precessão dos equinócios. Mas é um movimento muito lento, em que uma precessão completa dura 26 mil anos e é causada pela interação gravitacional da Terra oblata principalmente com o Sol e a Lua.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Neste projeto, iremos considerar que a normal ao plano da órbita da Lua possui uma direção fixa no espaço. Mas isso não é verdade, pois assim como o eixo de rotação da Terra, o plano orbital da Lua possui um movimento de precessão (<a href="https://en.wikipedia.org/wiki/Saros_(astronomy)#/media/File:Saros15122015.gif">semelhante ao movimento de um bambolê</a>) só que com um período bem mais curto de 18,6 anos. Apesar disso, representa uma alteração de direção em torno de 5% ao ano e não altera o fato de que temos dois momentos no ano em que ocorrem os eclipses separados por aproximadamente 6 meses. De um ano para o outro as datas dos eclipses vão se deslocando de 3 a 4 semanas devido a essa precessão. É esse movimento que determina o <a href="https://en.wikipedia.org/wiki/Saros_(astronomy)">ciclo de Saros</a> e sua causa se deve à força gravitacional diferencial que a Lua sofre do Sol ao longo da sua órbita em torno da Terra.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -914,9 +1793,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./referencias.html" class="pagination-link" aria-label="Referências">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Referências</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

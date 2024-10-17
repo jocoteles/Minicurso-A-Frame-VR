@@ -17,7 +17,7 @@ Os elementos HTML são incluídos com palavras reservadas na forma de **tags** H
 - Botões: `<button>Texto do botão</button>`
 - Inputs de texto: `<input>`
 
-1. Copie e cole o conteúdo abaixo em um editor de texto para arquivos txt (bloco de notas no Windows, gedit no Linux, etc).
+(@) Copie e cole o conteúdo abaixo em um editor de texto para arquivos txt (bloco de notas no Windows, gedit no Linux, etc).
 
     ```html
     <h1>Minha adorável página HTML</h1>
@@ -31,15 +31,15 @@ Os elementos HTML são incluídos com palavras reservadas na forma de **tags** H
     ```
     Em seguida, salve o arquivo com extensão html. Por exemplo: "arquivomeu.html".
 
-2. Abra o arquivo com o navegador de internet (Chrome, Bing, Firefox, Safari, etc.)
+(@) Abra o arquivo com o navegador de internet (Chrome, Bing, Firefox, Safari, etc.)
 
-3. Edite o arquivo para incluir elementos novos criados por você. Salve o arquivo, recarregue a página e veja que suas alterações foram atualizadas na página.
+(@) Edite o arquivo para incluir elementos novos criados por você. Salve o arquivo, recarregue a página e veja que suas alterações foram atualizadas na página.
 
 ### Adicionando lógica e programação com Javascript
 
 Para que coisas úteis aconteçam na página HTML, precisamos processar informação. Para isso, existe a linguagem Javascript que é incluída com a tag `<script></script>`.
 
-4. O código abaixo foi extraído de @silva2016. Salve-o em um arquivo HTML e carregue no seu navegador de internet para ver o resultado.
+(@) O código abaixo foi extraído de Silva (2016)[^1]. Salve-o em um arquivo HTML e carregue no seu navegador de internet para ver o resultado.
 
     ```html
     <script>
@@ -50,14 +50,14 @@ Para que coisas úteis aconteçam na página HTML, precisamos processar informa�
     </script>
     ```
 
-5. Modifique o script anterior para efetuar a multiplicação de dois números. A operação de multiplicação é implementada com o caractere "*" (asterisco).
+(@) Modifique o script anterior para efetuar a multiplicação de dois números. A operação de multiplicação é implementada com o caractere "*" (asterisco).
 
 
 ### Interagindo HTML com Javascript
 
 Para fazer com que elementos HTML específicos sejam modificados via código Javascript é necessário adicionar atributos a eles.
 
-6. No código abaixo, um elemento de parágrafo inicialmente vazio recebe o atributo de identificação `id` e o elemento de botão recebe o atributo `onclick`. Dessa forma, quando o botão é clicado, a função `processarClique()` é chamada em que ela atualiza o texto do parágrafo pela sua identificação.
+(@) No código abaixo, um elemento de parágrafo inicialmente vazio recebe o atributo de identificação `id` e o elemento de botão recebe o atributo `onclick`. Dessa forma, quando o botão é clicado, a função `processarClique()` é chamada em que ela atualiza o texto do parágrafo pela sua identificação.
 
     ```html
     <h1>Página dos apertadores de botão</h1>
@@ -81,7 +81,7 @@ Para fazer com que elementos HTML específicos sejam modificados via código Jav
 
     ```
 
-7. Salve o código acima em um arquivo .html e abra no seu navegador de internet para ver o resultado.
+(@) Salve o código acima em um arquivo .html e abra no seu navegador de internet para ver o resultado.
 
 ::: {.callout-tip title="Veja uma implementação mais precisa do código acima" collapse="true"}
 
@@ -175,7 +175,7 @@ Podemos criar arquivos txt para cada um dos três arquivos e abrir o arquivo HTM
 
 
 
-## Disponibilizando páginas web diretamente na Internet com Glitch
+## Disponibilizando páginas web diretamente na Internet com Glitch {#sec-glitch}
 
 Existem diversas plataformas gratuitas que permitem a hospedagem de páginas web. Entre elas, podemos destacar:
 
@@ -190,7 +190,7 @@ Glitch é uma plataforma online para desenvolvimento e hospedagem de aplicaçõe
 
 Vamos começar a partir de um projeto básico que criamos para este minicurso. 
 
-8. Acesse: 
+(@) Acesse: 
 [https://glitch.com/edit/#!/fishy-foil-technosaurus](https://glitch.com/edit/#!/fishy-foil-technosaurus)
 
 Ao acessar esse projeto, você deverá observar a tela abaixo.
@@ -205,12 +205,12 @@ A tela apresenta basicamente dois painéis:
 
 No canto inferior direito há o botão de *preview*, que renderiza (gera/compila) a página index.html que será mostrada para quem acessar a página no endereço público do projeto.
 
-9. Agora, antes de começar a editar e trabalhar em projetos no Glitch, é importante [criar uma conta](https://glitch.com/signin) nele, pois isso permitirá acessar os projetos posteriormente.
+(@) Agora, antes de começar a editar e trabalhar em projetos no Glitch, é importante [criar uma conta](https://glitch.com/signin) nele, pois isso permitirá acessar os projetos posteriormente.
 
-10. Após criar a conta, acesse novamente a edição do projeto [fishy-foil-technosaurus](https://glitch.com/edit/#!/fishy-foil-technosaurus) e clique no botão *Remix do Edit* localizado no canto superior direito.
+(@) Após criar a conta, acesse novamente a edição do projeto [fishy-foil-technosaurus](https://glitch.com/edit/#!/fishy-foil-technosaurus) e clique no botão *Remix do Edit* localizado no canto superior direito.
 
 ::: {.callout-note title="Tarefa"}
-11. A partir do *fishy-foil-technosaurus* remixado, implemente o botão contador de clicadas que fizemos anteriormente no editor de texto.
+(@) A partir do *fishy-foil-technosaurus* remixado, implemente o botão contador de clicadas que fizemos anteriormente no editor de texto.
 :::
 
 Clicando em *Settings* no painel de arquivos e configurações você pode alterar o nome do projeto.
@@ -224,3 +224,6 @@ Para finalizar, com o botão *Share* você pode compartilhar o seu projeto de tr
 
 <p style="text-align:right"><a href="https://help.glitch.com/hc/en-us">Aprender mais sobre o Glitch</a></p>
 
+[^1]:
+
+Silva, Nelson Canzian da. 2016. *Física Com JavaScript*. Depto de Física - UFSC. [https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf](https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf).

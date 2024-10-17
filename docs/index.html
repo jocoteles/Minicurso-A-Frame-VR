@@ -8,7 +8,7 @@
 
 <meta name="author" content="João Teles">
 
-<title>Minicurso A-Frame VR para Ensino de Física e Astronomia</title>
+<title>Apresentação</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Resumo</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Apresentação</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -96,20 +130,20 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Minicurso A-Frame VR para Ensino de Física e Astronomia</a> 
+      <a href="./">Minicurso: Realidade Virtual com A-Frame para Ensino de Física e Astronomia</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://jocoteles.github.io/Minicurso-A-Frame-VR/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
     <div class="dropdown">
       <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Minicurso-A-Frame-VR-para-Ensino-de-Física-e-Astronomia.pdf">
+            <a class="dropdown-item sidebar-tools-main-item" href="./Minicurso--Realidade-Virtual-com-A-Frame-para-Ensino-de-Física-e-Astronomia.pdf">
               <i class="bi bi-file-pdf pe-1"></i>
             Download PDF
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Minicurso-A-Frame-VR-para-Ensino-de-Física-e-Astronomia.epub">
+            <a class="dropdown-item sidebar-tools-main-item" href="./Minicurso--Realidade-Virtual-com-A-Frame-para-Ensino-de-Física-e-Astronomia.epub">
               <i class="bi bi-journal pe-1"></i>
             Download ePub
             </a>
@@ -146,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Resumo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Apresentação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -161,12 +195,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O projeto Sol-Terra-Lua</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Referências</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -177,10 +205,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#realidade-virtual-em-páginas-e-aplicativos-web" id="toc-realidade-virtual-em-páginas-e-aplicativos-web" class="nav-link active" data-scroll-target="#realidade-virtual-em-páginas-e-aplicativos-web"><span class="header-section-number">1</span> Realidade Virtual em páginas e aplicativos web</a></li>
-  <li><a href="#principais-características-do-a-frame" id="toc-principais-características-do-a-frame" class="nav-link" data-scroll-target="#principais-características-do-a-frame"><span class="header-section-number">2</span> Principais características do A-Frame</a></li>
-  <li><a href="#breve-introdução-ao-htmljavascript" id="toc-breve-introdução-ao-htmljavascript" class="nav-link" data-scroll-target="#breve-introdução-ao-htmljavascript"><span class="header-section-number">3</span> Breve introdução ao HTML/Javascript</a></li>
-  <li><a href="#aplicativo-sol-terra-lua-em-vr-com-o-a-frame" id="toc-aplicativo-sol-terra-lua-em-vr-com-o-a-frame" class="nav-link" data-scroll-target="#aplicativo-sol-terra-lua-em-vr-com-o-a-frame"><span class="header-section-number">4</span> Aplicativo Sol-Terra-Lua em VR com o A-Frame</a></li>
+  <li><a href="#vantagens-das-aplicações-web-em-realidade-virtual" id="toc-vantagens-das-aplicações-web-em-realidade-virtual" class="nav-link active" data-scroll-target="#vantagens-das-aplicações-web-em-realidade-virtual">Vantagens das Aplicações Web em Realidade Virtual</a></li>
+  <li><a href="#realidade-virtual-em-headsets-versus-smartphones" id="toc-realidade-virtual-em-headsets-versus-smartphones" class="nav-link" data-scroll-target="#realidade-virtual-em-headsets-versus-smartphones">Realidade Virtual em Headsets versus Smartphones</a></li>
+  <li><a href="#webxr-a-api-para-realidade-virtual-na-web" id="toc-webxr-a-api-para-realidade-virtual-na-web" class="nav-link" data-scroll-target="#webxr-a-api-para-realidade-virtual-na-web">WebXR: A API para Realidade Virtual na Web</a></li>
+  <li><a href="#plataformas-web-para-realidade-virtual-com-webxr" id="toc-plataformas-web-para-realidade-virtual-com-webxr" class="nav-link" data-scroll-target="#plataformas-web-para-realidade-virtual-com-webxr">Plataformas Web para Realidade Virtual com WebXR</a></li>
+  <li><a href="#principais-características-do-a-frame" id="toc-principais-características-do-a-frame" class="nav-link" data-scroll-target="#principais-características-do-a-frame">Principais características do A-Frame</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://jocoteles.github.io/Minicurso-A-Frame-VR/edit/main/index.qmd" class="toc-action"><i class="bi bi-git"></i>Editar essa página</a></li></ul></div></nav>
     </div>
@@ -189,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Minicurso A-Frame VR para Ensino de Física e Astronomia</h1>
+<h1 class="title">Apresentação</h1>
 </div>
 
 
@@ -206,7 +235,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">10 de maio de 2025</p>
+      <p class="date">17 de outubro de 2024</p>
     </div>
   </div>
   
@@ -218,43 +247,47 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="realidade-virtual-em-páginas-e-aplicativos-web" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Realidade Virtual em páginas e aplicativos web</h1>
+<p><img src="Logo-minicurso-AFrame-Astronomia.png" title="Minicurso: Realidade Virtual com A-Frame para Ensino de Física e Astronomia" class="quarto-cover-image img-fluid"></p>
+<p>As tecnologias de realidade virtual (RV) têm experimentado avanços notáveis tanto em hardware (headsets) quanto em software (plataformas de desenvolvimento). Dispositivos como o Meta Quest, com processamento, rastreamento e baterias integrados, proporcionam experiências imersivas e portáteis. Paralelamente, plataformas de desenvolvimento como Unity, Unreal Engine e A-Frame oferecem ferramentas poderosas para criar aplicações de RV cada vez mais sofisticadas. Apesar desse progresso, o potencial da RV para o ensino ainda é pouco explorado, especialmente em áreas como a astronomia, que se beneficiariam enormemente de sua capacidade de representar conceitos complexos em um ambiente tridimensional interativo.</p>
+<p>A realidade virtual oferece grande potencial para o ensino de ciências, Física e Astronomia. Ao permitir visualizações de objetos celestes, simulação de fenômenos astronômicos básicos como eclipses e estações do ano e a interação direta com o ambiente virtual, a RV proporciona experiências de aprendizagem imersivas e envolventes que podem aumentar a compreensão, a motivação e o engajamento dos alunos. A possibilidade de visualizar e manipular objetos 3D virtuais com as próprias mãos, em contraste com representações bidimensionais tradicionais, facilita a compreensão de conceitos abstratos e a construção de modelos mentais mais precisos.</p>
+<p>Este minicurso visa introduzir os participantes ao desenvolvimento de aplicações de RV para o ensino de astronomia utilizando a plataforma <a href="https://aframe.io/">A-Frame</a>, com base na linguagem HTML/Javascript. Ao final do curso, os participantes construirão um sistema solar virtual simplificado, com o Sol, a Terra e a Lua, incluindo movimento orbital e de rotação. O curso aborda os conceitos básicos de modelagem 3D, animação, iluminação e interação no ambiente A-Frame. Devido ao tempo limitado, o curso não explora programação avançada em Javascript, a criação de componentes personalizados nem a integração com a biblioteca <a href="https://threejs.org/">Three.js</a>, tópicos que podem ser aprofundados em estudos posteriores.</p>
+<section id="vantagens-das-aplicações-web-em-realidade-virtual" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="vantagens-das-aplicações-web-em-realidade-virtual">Vantagens das Aplicações Web em Realidade Virtual</h2>
+<p>O desenvolvimento de aplicações de Realidade Virtual (RV) em páginas e aplicativos web, utilizando tecnologias como HTML5, Javascript e CSS, oferece uma série de vantagens significativas em termos de flexibilidade, alcance e potencial. A natureza aberta e universal da web permite que aplicações desenvolvidas nessas linguagens sejam acessadas em uma ampla gama de dispositivos, desde computadores desktop e notebooks até smartphones, tablets e headsets de RV, sem a necessidade de compilações específicas para cada plataforma.</p>
+<p>Além da portabilidade, a web oferece uma infraestrutura robusta para o desenvolvimento e distribuição de aplicações, com ferramentas de desenvolvimento acessíveis, bibliotecas gráficas poderosas como o Three.js e frameworks como o A-Frame que simplificam o processo de criação de experiências imersivas. A vasta comunidade de desenvolvedores web também contribui para a disponibilidade de recursos, tutoriais e exemplos de código, facilitando a aprendizagem e o desenvolvimento de aplicações.</p>
+<p>Outra vantagem não menos importante é a dispensa de instalações dispendiosas que ocupam dezenas de gigabytes no disco e necessitam de instalações de diversos plugins e dependências. Basta carregar os arquivos de texto escritos em HTML/Javascript diretamente no navegador de internet para se obter resultados poderosos. Como exemplo, na plataforma A-Frame basta você incluir a seguinte declaração no seu arquivo de texto html:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://aframe.io/releases/1.6.0/aframe.min.js"</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>para ter acesso direto e imediato (sem nenhuma instalação, pré-configuração ou pré-compilações dispendiosas e demoradas adicionais) aos recursos de todo o espectro da Realidade Estendida. Para citar apenas alguns desses recursos, destacamos:</p>
 <ul>
-<li>As vantagens, flexibilidade, alcance e potencial de aplicações web baseadas em HTML5/JS/CSS.</li>
-<li>Realidade Virtual em smartphones versus VR headsets. Focaremos no segundo.</li>
-<li>A API (Interface de Programação de Aplicativos) WebXR utilizada pelos headsets VR nas páginas web.</li>
-<li>Exemplos de Plataformas Web que utilizam WebXR:
-<ul>
-<li>Three.js</li>
-<li>Babylon.js</li>
-<li>A-Frame</li>
-</ul></li>
+<li><strong>hand-controls</strong>: habilita o rastreamento das mãos e dispara eventos conforme movimentos específicos dos dedos</li>
+<li><strong>hand-tracking-grab-controls</strong>: permite que objetos sejam agarrados com as mãos virtuais e deslocados</li>
+<li><strong>laser-controls</strong>: funciona como um laser pointer virtual usado para indicar ou selecionar objetos virtuais.</li>
+<li><strong>sound</strong>: permite que fontes sonoras sejam atribuídas à localização de objetos virtuais específicos e promovendo estereoscopia auditiva.</li>
 </ul>
 </section>
-<section id="principais-características-do-a-frame" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Principais características do A-Frame</h1>
+<section id="realidade-virtual-em-headsets-versus-smartphones" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="realidade-virtual-em-headsets-versus-smartphones">Realidade Virtual em Headsets versus Smartphones</h2>
+<p>Embora a RV em smartphones ofereça acessibilidade e conveniência, os <em>headsets</em> de RV proporcionam experiências imersivas mais completas, com maior campo de visão, rastreamento de movimento mais preciso, visão estereoscópica, e a capacidade de isolar o usuário do ambiente externo, aumentando a sensação de presença no mundo virtual.</p>
+</section>
+<section id="webxr-a-api-para-realidade-virtual-na-web" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="webxr-a-api-para-realidade-virtual-na-web">WebXR: A API para Realidade Virtual na Web</h2>
+<p>A <a href="https://immersiveweb.dev/">WebXR</a> é uma Interface de Programação de Aplicativos (API) que permite a criação de experiências de RV e Realidade Aumentada (RA) diretamente em páginas web, acessíveis através de navegadores de internet. A WebXR fornece uma camada de abstração entre o código da aplicação e os diferentes dispositivos de RV e RA, permitindo que os desenvolvedores criem experiências imersivas sem se preocupar com as especificidades de cada hardware.</p>
+<p>A API WebXR oferece funcionalidades para rastreamento de posição e orientação do headset e dos controladores, renderização de cenas 3D, interação com objetos virtuais e acesso a sensores do dispositivo.</p>
+</section>
+<section id="plataformas-web-para-realidade-virtual-com-webxr" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="plataformas-web-para-realidade-virtual-com-webxr">Plataformas Web para Realidade Virtual com WebXR</h2>
+<p>Existem diversas plataformas e bibliotecas Javascript que utilizam a API WebXR para facilitar o desenvolvimento de aplicações de RV em páginas web. Algumas das mais populares incluem:</p>
 <ul>
-<li>Filosofia</li>
-<li>Objetivos</li>
-<li>Usos</li>
+<li><strong>Three.js:</strong> Uma biblioteca gráfica 3D completa e versátil, amplamente utilizada para a criação de jogos, animações e experiências interativas na web. O Three.js oferece uma ampla gama de funcionalidades para modelagem 3D, materiais, iluminação, animação e renderização, além de suporte à WebXR para a criação de experiências imersivas.</li>
+<li><strong>Babylon.js:</strong> Outra biblioteca gráfica 3D popular, com foco na criação de jogos e experiências interativas de alto desempenho. O Babylon.js oferece uma interface amigável, um sistema de física integrado e suporte à WebXR.</li>
+<li><strong>A-Frame:</strong> Um framework web para a criação de experiências de RV de forma declarativa, utilizando HTML. O A-Frame simplifica o desenvolvimento de RV, abstraindo a complexidade da biblioteca Three.js e permitindo a criação de cenas 3D com tags HTML. O A-Frame utiliza a WebXR para integrar as experiências imersivas com dispositivos compatíveis.</li>
 </ul>
 </section>
-<section id="breve-introdução-ao-htmljavascript" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Breve introdução ao HTML/Javascript</h1>
-<ul>
-<li>Como se estrutura um arquivo HTML/Javascript básico</li>
-<li>Formas de rodar o arquivo HTML:
-<ul>
-<li>Página local (editor de texto txt). Usaremos apenas para mostrar os passos iniciais do HTML/Javascript.</li>
-<li>Servidor web (usaremos o Glitch, mas existem inúmeros outros). Será usado para o desenvolvimento de todo o aplicativo deste minicurso.</li>
-<li>Servidor local (apenas mostraremos, ao final do minicurso, o caminho que estamos adotando em nossos projetos).</li>
-</ul></li>
-</ul>
-</section>
-<section id="aplicativo-sol-terra-lua-em-vr-com-o-a-frame" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Aplicativo Sol-Terra-Lua em VR com o A-Frame</h1>
-<p>Vamos aprender a usar o A-Frame através de um processo mão na massa de construção de um aplicativo VR para visualização da dinâmica do sistema Sol-Terra-Lua (STL).</p>
+<section id="principais-características-do-a-frame" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="principais-características-do-a-frame">Principais características do A-Frame</h2>
+<p>O A-Frame adota a filosofia de simplificar o desenvolvimento de experiências de RV na web, tornando-o acessível a um público mais amplo, incluindo desenvolvedores web com pouca ou nenhuma experiência em computação gráfica 3D.</p>
+<p>A filosofia do A-Frame se reflete em sua abordagem declarativa, que permite a criação de cenas 3D utilizando tags HTML, familiar aos desenvolvedores web. Essa abordagem abstrai a complexidade da biblioteca gráfica subjacente (Three.js), permitindo que os desenvolvedores se concentrem na estrutura e no conteúdo da experiência de RV.</p>
+<p>O A-Frame também se baseia no conceito “Entidade-Componente-Sistema” (ECS), que promove a modularidade e reutilização de código. As entidades representam os objetos na cena 3D, os componentes definem suas propriedades e funcionalidades, e os sistemas gerenciam o comportamento global da cena. Essa estrutura modular torna o código mais organizado, legível e fácil de manter.</p>
 
 
 </section>

@@ -15,8 +15,7 @@ book:
   chapters:        
     - index.qmd
     - htmlbasico.qmd
-    - projetoSTL.qmd
-    - referencias.qmd  
+    - projetoSTL.qmd 
 
 crossref:
   custom:

@@ -149,6 +149,23 @@ Inclusão de imagens e outros recursos via elemento `a-asset`.
 Entidade `terra`com atributo `src` no lugar de `color`.
 :::
 
+::: {.callout-tip collapse="true"}
+## Dica de navegabilidade
+
+Além do Visual Inspector, o A-Frame possui um componente para navegação mais facilitada na cena quando não estamos usando os óculos de Realidade Virtual. Para incluí-lo no projeto basta incluir o script abaixo dentro element `head`:
+
+```html
+<script src="https://unpkg.com/aframe-orbit-controls@1.3.2/dist/aframe-orbit-controls.min.js"></script>
+```
+
+E incluir a seguinte `a-entity` de câmera dentro do elemento `a-scene`:
+
+```html
+<a-entity camera look-controls="enabled: false" orbit-controls="target: 0 0 0; minDistance: 0; maxDistance: 180; initialPosition: 0 3 5; rotateSpeed: 1.5"></a-entity>
+```
+
+:::
+
 ## Sistemas de coordenadas no A-Frame
 
 Um conceito fácil de implementar no A-Frame são os sistemas de coordenadas locais (também chamados de referenciais), que são produzidos quando você aninha uma `a-entity` dentro de outra.
@@ -440,7 +457,7 @@ Repare que a rotação se dá na direção $x$, uma vez que a perpendicular da �
 
 ### Inclinação do plano orbital da Lua
 
-O plano da órbita da Lua em torno da Terra possui uma inclinação de 5,14° em relação ao plano da órbita da Terra em torno do Sol. Apesar de não ser uma inclinação tão alta, é ela que faz com que não tenhamos um eclipse em cada lua nova (Lua entre o Sol e a Terra) ou em cada lua cheia (Terra entre o Sol e a Lua) -- ou seja, um eclipse solar e outro lunar todo mês.
+O plano da órbita da Lua em torno da Terra possui uma inclinação de 5,14° em relação ao plano da órbita da Terra em torno do Sol.[^6] Apesar de não ser uma inclinação tão alta, é ela que faz com que não tenhamos um eclipse em cada lua nova (Lua entre o Sol e a Terra) ou em cada lua cheia (Terra entre o Sol e a Lua) -- ou seja, um eclipse solar e outro lunar todo mês.
 
 Como não estamos utilizando uma escala de tamanhos e distâncias proporcionais ao tamanho real dos astros, precisamos usar uma inclinação maior para reproduzir, aproximadamente, efeito dos eclipses em nosso sistema. Adotaremos uma inclinação de 25°. Faremos isso aplicando o componente `rotation` na nova entidade `a-entity inc_orb_lua` imediatamente acima da `a-entity orb_lua`, conforme o código a seguir.
 
@@ -866,6 +883,69 @@ Sistema STL simplificado sem animação, mas que permite que os objetos sejam ag
 Vídeo mostrando a manipulação e os usos didáticos do sistema STL simplificado
 :::
 
+### Configurando a aplicação web para uso offline
+
+Ter que depender de uma conexão com a internet toda vez que necessitar fazer uma atividade em Realidade Virtual pode ser limitante, principalmente quando não se dispuser de uma infraestrutura robusta de internet por WiFi, o que é muito comum no ambiente escolar.
+
+Existe uma forma simples de resolver isso através do chamado *service worker* com *cache* estático. Ele é usado para interceptar as requisições e armazenar os recursos necessários no cache do navegador, permitindo que a página continue a funcionar mesmo sem conexão com a internet. É um caminho eficiente e moderno, especialmente quando se espera que os usuários usem a página offline. 
+
+Para isso, são necessários dois passos. Primeiramente, deve-se incluir o script Javascript (@cod-script-offline) dentro do elemento `body` do arquivo html principal.
+
+::: {#cod-script-offline}
+```html
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then((registration) => {
+          console.log('Service Worker registrado com sucesso:', registration);
+        })
+        .catch((error) => {
+          console.log('Falha ao registrar o Service Worker:', error);
+        });
+    });
+  }
+</script>
+```
+Script Javascript a ser incluído no `body` do arquivo html de forma a permitir que a aplicação continue acessível ao navegador mesmo estando offline.
+:::
+
+Por fim, deve-se criar um arquivo como o nome `service-worker.js` na mesma pasta do arquivo html principal com o com o conteúdo do @cod-service-worker.
+
+::: {#cod-service-worker}
+```js
+// service-worker.js
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open('my-cache').then((cache) => {
+      return cache.addAll([
+        '/',
+        '/index.html',
+        'https://aframe.io/releases/1.6.0/aframe.min.js'
+      ]);
+    })
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
+    })
+  );
+});
+```
+
+Conteúdo do arquivo `service-worker.js` para acesso offline da aplicação web. Aqui estamos considerando que o arquivo principal chama-se `index.html`.
+:::
+
+Script Javascript a ser incluído no `body` do arquivo html de forma a permitir que a aplicação continue acessível ao navegador mesmo estando offline.
+:::
+
+É recomendado que o `service-worker` seja habilitado somente quando o projeto estiver pronto. Na fase de desenvolvimento, que requer que a página seja recarregada várias vezes, pode haver o cache indesejado de versões antigas da página html, causando confusão. Para garantir que a versão mais atual da página seja carregada com o `service-worker` ativo é necessário limpar o cache do navegador.
+
+## Palavras finais
+
 Com isso, concluímos este minicurso. Apesar do A-Frame permitir a programação usando exclusivamente linguagem HTML, é possível usar todo o poder da linguagem Javascript para desenvolver aplicações mais sofisticadas. O modo correto de fazer isso no A-Frame é através da [criação de novos *Components*](https://aframe.io/docs/1.6.0/introduction/writing-a-component.html), os quais receberão toda a lógica de programação em Javascript. Além disso, o A-Frame disponibiliza acesso a todas as funcionalidades da poderosa biblioteca gráfica [Three.js](https://threejs.org/) (pois é uma abstração desta). E existe também as [componentes criadas pela comunidade de desenvolvedores](https://aframe.wiki/en/#!pages/component-directory.md), as quais abrangem uma boa diversidade de usos. Escolhemos não abordar essas possibilidades devido à curta duração deste minicurso.
 
 [^1]:
@@ -877,8 +957,8 @@ Com isso, concluímos este minicurso. Apesar do A-Frame permitir a programação
 [^3]:
     Na verdade, a Lua não gira em tono da Terra, mas em torno do centro de massa do sistema Terra-Lua, assim como a própria Terra. Por motivos didáticos, usaremos o sistema de referência centrado na Terra para implementar o movimento orbital da Lua. Essa aproximação não é tão ruim, uma vez que o centro de massa do sistema está bem mais próximo da Terra do que da Lua.
 
-[^4]:
-    O período do Sol se refere à rotação em relação às estrelas distantes, também chamado de período sideral. O período da Terra e da Lua correspondem ao período sinódico que é o período para que o astro volte à mesma posição em relação ao astro que ele orbita. 
-
 [^5]:
     O movimento de precessão do eixo de rotação terrestre realmente existe e é conhecido como precessão dos equinócios. Mas é um movimento muito lento, em que uma precessão completa dura 26 mil anos e é causada pela interação gravitacional da Terra oblata principalmente com o Sol e a Lua.
+
+[^6]:
+    Neste projeto, iremos considerar que a normal ao plano da órbita da Lua possui uma direção fixa no espaço. Mas isso não é verdade, pois assim como o eixo de rotação da Terra, o plano orbital da Lua possui um movimento de precessão ([semelhante ao movimento de um bambolê](https://en.wikipedia.org/wiki/Saros_(astronomy)#/media/File:Saros15122015.gif)) só que com um período bem mais curto de 18,6 anos. Apesar disso, representa uma alteração de direção em torno de 5% ao ano e não altera o fato de que temos dois momentos no ano em que ocorrem os eclipses separados por aproximadamente 6 meses. De um ano para o outro as datas dos eclipses vão se deslocando de 3 a 4 semanas devido a essa precessão. É esse movimento que determina o [ciclo de Saros](https://en.wikipedia.org/wiki/Saros_(astronomy)) e sua causa se deve à força gravitacional diferencial que a Lua sofre do Sol ao longo da sua órbita em torno da Terra. 

@@ -7,7 +7,7 @@ As tecnologias de realidade virtual (RV) têm experimentado avanços notáveis t
 
 A realidade virtual oferece grande potencial para o ensino de ciências, Física e Astronomia. Ao permitir visualizações de objetos celestes, simulação de fenômenos astronômicos básicos como eclipses e estações do ano e a interação direta com o ambiente virtual, a RV proporciona experiências de aprendizagem imersivas e envolventes que podem aumentar a compreensão, a motivação e o engajamento dos alunos. A possibilidade de visualizar e manipular objetos 3D virtuais com as próprias mãos, em contraste com representações bidimensionais tradicionais, facilita a compreensão de conceitos abstratos e a construção de modelos mentais mais precisos.  
 
-Este minicurso visa introduzir os participantes ao desenvolvimento de aplicações de RV para o ensino de astronomia utilizando a plataforma A-Frame, com base na linguagem HTML/Javascript. Ao final do curso, os participantes construirão um sistema solar virtual simplificado, com o Sol, a Terra e a Lua, incluindo movimento orbital e de rotação. O curso aborda os conceitos básicos de modelagem 3D, animação, iluminação e interação no ambiente A-Frame. Devido ao tempo limitado, o curso não explora programação avançada em Javascript, a criação de componentes personalizados nem a integração com a biblioteca Three.js, tópicos que podem ser aprofundados em estudos posteriores. 
+Este minicurso visa introduzir os participantes ao desenvolvimento de aplicações de RV para o ensino de astronomia utilizando a plataforma [A-Frame](https://aframe.io/), com base na linguagem HTML/Javascript. Ao final do curso, os participantes construirão um sistema solar virtual simplificado, com o Sol, a Terra e a Lua, incluindo movimento orbital e de rotação. O curso aborda os conceitos básicos de modelagem 3D, animação, iluminação e interação no ambiente A-Frame. Devido ao tempo limitado, o curso não explora programação avançada em Javascript, a criação de componentes personalizados nem a integração com a biblioteca [Three.js](https://threejs.org/), tópicos que podem ser aprofundados em estudos posteriores. 
 
 
 ## Vantagens das Aplicações Web em Realidade Virtual {.unnumbered}
@@ -16,7 +16,18 @@ O desenvolvimento de aplicações de Realidade Virtual (RV) em páginas e aplica
 
 Além da portabilidade, a web oferece uma infraestrutura robusta para o desenvolvimento e distribuição de aplicações, com ferramentas de desenvolvimento acessíveis, bibliotecas gráficas poderosas como o Three.js e frameworks como o A-Frame que simplificam o processo de criação de experiências imersivas. A vasta comunidade de desenvolvedores web também contribui para a disponibilidade de recursos, tutoriais e exemplos de código, facilitando a aprendizagem e o desenvolvimento de aplicações.
 
-Outra vantagem não menos importante é a dispensa de instalações dispendiosas que ocupam dezenas de gigabytes no disco e necessitam de instalações de diversos plugins e dependências. Basta carregar os arquivos de texto escritos em HTML/Javascript diretamente no navegador de internet para se obter resultados poderosos.
+Outra vantagem não menos importante é a dispensa de instalações dispendiosas que ocupam dezenas de gigabytes no disco e necessitam de instalações de diversos plugins e dependências. Basta carregar os arquivos de texto escritos em HTML/Javascript diretamente no navegador de internet para se obter resultados poderosos. Como exemplo, na plataforma A-Frame basta você incluir a seguinte declaração no seu arquivo de texto html:
+
+```html
+<script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+```
+
+para ter acesso direto e imediato (sem nenhuma instalação, pré-configuração ou pré-compilações dispendiosas e demoradas adicionais) aos recursos de todo o espectro da Realidade Estendida. Para citar apenas alguns desses recursos, destacamos:
+
+- **hand-controls**: habilita o rastreamento das mãos e dispara eventos conforme movimentos específicos dos dedos
+- **hand-tracking-grab-controls**: permite que objetos sejam agarrados com as mãos virtuais e deslocados
+- **laser-controls**: funciona como um laser pointer virtual usado para indicar ou selecionar objetos virtuais.
+- **sound**: permite que fontes sonoras sejam atribuídas à localização de objetos virtuais específicos e promovendo estereoscopia auditiva.
 
 ## Realidade Virtual em Headsets versus Smartphones {.unnumbered}
 
@@ -24,7 +35,7 @@ Embora a RV em smartphones ofereça acessibilidade e conveniência, os *headsets
 
 ## WebXR: A API para Realidade Virtual na Web {.unnumbered}
 
-A WebXR é uma Interface de Programação de Aplicativos (API) que permite a criação de experiências de RV e Realidade Aumentada (RA) diretamente em páginas web, acessíveis através de navegadores de internet. A WebXR fornece uma camada de abstração entre o código da aplicação e os diferentes dispositivos de RV e RA, permitindo que os desenvolvedores criem experiências imersivas sem se preocupar com as especificidades de cada hardware.
+A [WebXR](https://immersiveweb.dev/) é uma Interface de Programação de Aplicativos (API) que permite a criação de experiências de RV e Realidade Aumentada (RA) diretamente em páginas web, acessíveis através de navegadores de internet. A WebXR fornece uma camada de abstração entre o código da aplicação e os diferentes dispositivos de RV e RA, permitindo que os desenvolvedores criem experiências imersivas sem se preocupar com as especificidades de cada hardware.
 
 A API WebXR oferece funcionalidades para rastreamento de posição e orientação do headset e dos controladores, renderização de cenas 3D, interação com objetos virtuais e acesso a sensores do dispositivo.
 
@@ -39,7 +50,7 @@ Existem diversas plataformas e bibliotecas Javascript que utilizam a API WebXR p
 
 ## Principais características do A-Frame {.unnumbered}
 
-O A-Frame adota a filosofia de simplificar o desenvolvimento de experiências de RV na web, tornando-o acessível a um público mais amplo, incluindo desenvolvedores web com pouca ou nenhuma experiência em computação gráfica 3D. O A-Frame se baseia na ideia de que a web é a plataforma ideal para RV, devido à sua natureza aberta, universal e acessível a partir de uma ampla gama de dispositivos.
+O A-Frame adota a filosofia de simplificar o desenvolvimento de experiências de RV na web, tornando-o acessível a um público mais amplo, incluindo desenvolvedores web com pouca ou nenhuma experiência em computação gráfica 3D.
 
 A filosofia do A-Frame se reflete em sua abordagem declarativa, que permite a criação de cenas 3D utilizando tags HTML, familiar aos desenvolvedores web. Essa abordagem abstrai a complexidade da biblioteca gráfica subjacente (Three.js), permitindo que os desenvolvedores se concentrem na estrutura e no conteúdo da experiência de RV.
 

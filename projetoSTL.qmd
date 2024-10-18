@@ -747,6 +747,8 @@ Código completo do sistema STL.
 Sistema STL em movimento com câmera estática externa.
 :::
 
+Veja também o [sistema STL completo rodando no Glitch](https://stl-completo.glitch.me).
+
 ## Aprimoramentos
 
 Vamos aprimorar nosso projeto de forma a incluir diversidade de visualizações e interatividade.
@@ -776,6 +778,7 @@ Essa posição da câmera produz a visualização mostrada no @vid-stl-na-terra.
 Sistema STL visto por uma câmera colocada na superfície da Terra.
 :::
 
+Veja também o [sistema Sol-Terra-Lua com câmera fixa na superfície da Terra no Glitch](https://stl-camera-terra.glitch.me).
 
 ### Interação com os objetos
 
@@ -882,6 +885,8 @@ Sistema STL simplificado sem animação, mas que permite que os objetos sejam ag
 
 Vídeo mostrando a manipulação e os usos didáticos do sistema STL simplificado
 :::
+
+Veja também o [sistema Sol-Terra-Lua manipulável no Glitch](https://stl-grabbable.glitch.me).
 
 ### Configurando a aplicação web para uso offline
 

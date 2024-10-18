@@ -4,13 +4,12 @@ project:
 
 book:
   title: "Minicurso: Realidade Virtual com A-Frame para Ensino de Física e Astronomia"  
-  author: "João Teles"
+  author: "João Teles de Carvalho Neto"
   date: "10/17/2024"
   cover-image: Logo-minicurso-AFrame-Astronomia.png
   search: true
-  repo-url: https://jocoteles.github.io/Minicurso-A-Frame-VR/
+  repo-url: https://github.com/jocoteles/Minicurso-A-Frame-VR
   repo-actions: [edit]
-  downloads: [pdf, epub]
   sharing: [twitter, facebook]
   chapters:        
     - index.qmd

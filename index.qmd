@@ -43,9 +43,9 @@ A API WebXR oferece funcionalidades para rastreamento de posição e orientaçã
 
 Existem diversas plataformas e bibliotecas Javascript que utilizam a API WebXR para facilitar o desenvolvimento de aplicações de RV em páginas web. Algumas das mais populares incluem:
 
-- **Three.js:** Uma biblioteca gráfica 3D completa e versátil, amplamente utilizada para a criação de jogos, animações e experiências interativas na web. O Three.js oferece uma ampla gama de funcionalidades para modelagem 3D, materiais, iluminação, animação e renderização, além de suporte à WebXR para a criação de experiências imersivas.
-- **Babylon.js:** Outra biblioteca gráfica 3D popular, com foco na criação de jogos e experiências interativas de alto desempenho. O Babylon.js oferece uma interface amigável, um sistema de física integrado e suporte à WebXR.
-- **A-Frame:** Um framework web para a criação de experiências de RV de forma declarativa, utilizando HTML. O A-Frame simplifica o desenvolvimento de RV, abstraindo a complexidade da biblioteca Three.js e permitindo a criação de cenas 3D com tags HTML. O A-Frame utiliza a WebXR para integrar as experiências imersivas com dispositivos compatíveis.
+- **[Three.js](https://threejs.org/):** Uma biblioteca gráfica 3D completa e versátil, amplamente utilizada para a criação de jogos, animações e experiências interativas na web. O Three.js oferece uma ampla gama de funcionalidades para modelagem 3D, materiais, iluminação, animação e renderização, além de suporte à WebXR para a criação de experiências imersivas.
+- **[Babylon.js](https://www.babylonjs.com/):** Outra biblioteca gráfica 3D popular, com foco na criação de jogos e experiências interativas de alto desempenho. O Babylon.js oferece uma interface amigável, um sistema de física integrado e suporte à WebXR.
+- **[A-Frame](https://aframe.io/):** Um framework web para a criação de experiências de RV de forma declarativa, utilizando HTML. O A-Frame simplifica o desenvolvimento de RV, abstraindo a complexidade da biblioteca Three.js e permitindo a criação de cenas 3D com tags HTML. O A-Frame utiliza a WebXR para integrar as experiências imersivas com dispositivos compatíveis.
 
 
 ## Principais características do A-Frame {.unnumbered}

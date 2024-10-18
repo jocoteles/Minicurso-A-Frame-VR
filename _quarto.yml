@@ -33,8 +33,6 @@ format:
   html:
     theme: journal
     lang: pt
-  pdf:
-    documentclass: scrreprt
 
 
 

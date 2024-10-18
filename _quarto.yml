@@ -3,7 +3,7 @@ project:
   output-dir: docs  
 
 book:
-  title: "Minicurso: Realidade Virtual com A-Frame para Ensino de Física e Astronomia"  
+  title: "Realidade Virtual com A-Frame para Ensino de Física e Astronomia"  
   author: "João Teles de Carvalho Neto"
   date: "10/17/2024"
   cover-image: Logo-minicurso-AFrame-Astronomia.png

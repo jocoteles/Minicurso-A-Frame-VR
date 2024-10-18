@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -178,6 +198,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O projeto Sol-Terra-Lua</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -243,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Clique nesse botão e veja o que acontece: <span class="dt">&lt;</span><span class="kw">button</span><span class="dt">&gt;</span>Clique em mim<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span> <span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Em seguida, salve o arquivo com extensão html. Por exemplo: “arquivomeu.html”.</p></li>
-<li><p>Abra o arquivo com o navegador de internet (Chrome, Bing, Firefox, Safari, etc.)</p></li>
+<li><p>Abra o arquivo com o navegador de internet (Chrome, Edge, Firefox, Safari, etc.)</p></li>
 <li><p>Edite o arquivo para incluir elementos novos criados por você. Salve o arquivo, recarregue a página e veja que suas alterações foram atualizadas na página.</p></li>
 </ol>
 </section>
@@ -251,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="adicionando-lógica-e-programação-com-javascript"><span class="header-section-number">2.1.2</span> Adicionando lógica e programação com Javascript</h3>
 <p>Para que coisas úteis aconteçam na página HTML, precisamos processar informação. Para isso, existe a linguagem Javascript que é incluída com a tag <code>&lt;script&gt;&lt;/script&gt;</code>.</p>
 <ol start="4" class="example" type="1">
-<li><p>O código abaixo foi extraído de Silva (2016)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Salve-o em um arquivo HTML e carregue no seu navegador de internet para ver o resultado.</p>
+<li><p>O código abaixo foi extraído de <span class="citation" data-cites="silva2016">Silva (<a href="referencias.html#ref-silva2016" role="doc-biblioref">2016</a>)</span>. Salve-o em um arquivo HTML e carregue no seu navegador de internet para ver o resultado.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> a <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> b <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
@@ -439,12 +465,11 @@ Tarefa
 </p>
 
 
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>Silva, Nelson Canzian da. 2016. <em>Física Com JavaScript</em>. Depto de Física - UFSC. <a href="https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf">https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-silva2016" class="csl-entry" role="listitem">
+Silva, Nelson Canzian da. 2016. <em>Física com JavaScript</em>. Depto de Física - UFSC. <a href="https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf">https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

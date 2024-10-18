@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -178,6 +198,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O projeto Sol-Terra-Lua</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -234,13 +260,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As tecnologias de realidade virtual (RV) têm experimentado avanços notáveis tanto em hardware (headsets) quanto em software (plataformas de desenvolvimento). Dispositivos como o Meta Quest, com processamento, rastreamento e baterias integrados, proporcionam experiências imersivas e portáteis. Paralelamente, plataformas de desenvolvimento como Unity, Unreal Engine e A-Frame oferecem ferramentas poderosas para criar aplicações de RV cada vez mais sofisticadas. Apesar desse progresso, o potencial da RV para o ensino ainda é pouco explorado, especialmente em áreas como a astronomia, que se beneficiariam enormemente de sua capacidade de representar conceitos complexos em um ambiente tridimensional interativo.</p>
 <p>A realidade virtual oferece grande potencial para o ensino de ciências, Física e Astronomia. Ao permitir visualizações de objetos celestes, simulação de fenômenos astronômicos básicos como eclipses e estações do ano e a interação direta com o ambiente virtual, a RV proporciona experiências de aprendizagem imersivas e envolventes que podem aumentar a compreensão, a motivação e o engajamento dos alunos. A possibilidade de visualizar e manipular objetos 3D virtuais com as próprias mãos, em contraste com representações bidimensionais tradicionais, facilita a compreensão de conceitos abstratos e a construção de modelos mentais mais precisos.</p>
 <p>Este minicurso visa introduzir os participantes ao desenvolvimento de aplicações de RV para o ensino de astronomia utilizando a plataforma <a href="https://aframe.io/">A-Frame</a>, com base na linguagem HTML/Javascript. Ao final do curso, os participantes construirão um sistema solar virtual simplificado, com o Sol, a Terra e a Lua, incluindo movimento orbital e de rotação. O curso aborda os conceitos básicos de modelagem 3D, animação, iluminação e interação no ambiente A-Frame. Devido ao tempo limitado, o curso não explora programação avançada em Javascript, a criação de componentes personalizados nem a integração com a biblioteca <a href="https://threejs.org/">Three.js</a>, tópicos que podem ser aprofundados em estudos posteriores.</p>
+<p>Também não nos aprofundaremos em conteúdos específicos de Física, Astronomia e o Ensino dessas ciências. Existem excelentes referências que tratam desses conteúdos. Entre as que estão disponíveis gratuitamente na internet, sugerimos o livro de <span class="citation" data-cites="nogueira2009">Nogueira e Canalle (<a href="referencias.html#ref-nogueira2009" role="doc-biblioref">2009</a>)</span> para o Ensino de Astronomia e o livro de <span class="citation" data-cites="oliveirafilho2000">Oliveira Filho e Saraiva (<a href="referencias.html#ref-oliveirafilho2000" role="doc-biblioref">2000</a>)</span> para conhecimentos específicos de Astronomia e Astrofísica. Para a aprendizagem da linguagem Javascript e seu uso na Física recomendamos o livro de <span class="citation" data-cites="silva2016">Silva (<a href="referencias.html#ref-silva2016" role="doc-biblioref">2016</a>)</span>.</p>
 <section id="vantagens-das-aplicações-web-em-realidade-virtual" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="vantagens-das-aplicações-web-em-realidade-virtual">Vantagens das Aplicações Web em Realidade Virtual</h2>
 <p>O desenvolvimento de aplicações de Realidade Virtual (RV) em páginas e aplicativos web, utilizando tecnologias como HTML5, Javascript e CSS, oferece uma série de vantagens significativas em termos de flexibilidade, alcance e potencial. A natureza aberta e universal da web permite que aplicações desenvolvidas nessas linguagens sejam acessadas em uma ampla gama de dispositivos, desde computadores desktop e notebooks até smartphones, tablets e headsets de RV, sem a necessidade de compilações específicas para cada plataforma.</p>
 <p>Além da portabilidade, a web oferece uma infraestrutura robusta para o desenvolvimento e distribuição de aplicações, com ferramentas de desenvolvimento acessíveis, bibliotecas gráficas poderosas como o Three.js e frameworks como o A-Frame que simplificam o processo de criação de experiências imersivas. A vasta comunidade de desenvolvedores web também contribui para a disponibilidade de recursos, tutoriais e exemplos de código, facilitando a aprendizagem e o desenvolvimento de aplicações.</p>
-<p>Outra vantagem não menos importante é a dispensa de instalações dispendiosas que ocupam dezenas de gigabytes no disco e necessitam de instalações de diversos plugins e dependências. Basta carregar os arquivos de texto escritos em HTML/Javascript diretamente no navegador de internet para se obter resultados poderosos. Como exemplo, na plataforma A-Frame basta você incluir a seguinte declaração no seu arquivo de texto html:</p>
+<p>Outra vantagem não menos importante é a dispensa de instalações, plugins e dependências que ocupam dezenas de gigabytes no disco. Basta carregar os arquivos de texto escritos em HTML/Javascript diretamente no navegador de internet para obter resultados poderosos. Como exemplo, na plataforma A-Frame basta incluir a seguinte declaração no arquivo de texto html:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://aframe.io/releases/1.6.0/aframe.min.js"</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>para ter acesso direto e imediato (sem nenhuma instalação, pré-configuração ou pré-compilações dispendiosas e demoradas adicionais) aos recursos de todo o espectro da Realidade Estendida. Para citar apenas alguns desses recursos, destacamos:</p>
+<p>para ter acesso direto e imediato (sem nenhuma instalação, pré-configuração ou pré-compilação adicionais) aos recursos de todo o espectro da Realidade Estendida. Para citar apenas alguns desses recursos, destacamos:</p>
 <ul>
 <li><strong>hand-controls</strong>: habilita o rastreamento das mãos e dispara eventos conforme movimentos específicos dos dedos</li>
 <li><strong>hand-tracking-grab-controls</strong>: permite que objetos sejam agarrados com as mãos virtuais e deslocados</li>
@@ -273,6 +300,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>O A-Frame também se baseia no conceito “Entidade-Componente-Sistema” (ECS), que promove a modularidade e reutilização de código. As entidades representam os objetos na cena 3D, os componentes definem suas propriedades e funcionalidades, e os sistemas gerenciam o comportamento global da cena. Essa estrutura modular torna o código mais organizado, legível e fácil de manter.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-nogueira2009" class="csl-entry" role="listitem">
+Nogueira, Salvador, e João Batista Garcia Canalle. 2009. <em>Astronomia: ensino fundamental e médio</em>. Brasília : MEC, SEB, MCT, AEB. <a href="https://repositorio.mcti.gov.br/handle/mctic/4994">https://repositorio.mcti.gov.br/handle/mctic/4994</a>.
+</div>
+<div id="ref-oliveirafilho2000" class="csl-entry" role="listitem">
+Oliveira Filho, Kepler de Souza, e Maria de Fátima Oliveira Saraiva. 2000. <em>Astronomia e Astrofisica</em>. Ed. Universidade/UFRGS. <a href="http://astro.if.ufrgs.br/index.htm#gsc.tab=0">http://astro.if.ufrgs.br/index.htm#gsc.tab=0</a>.
+</div>
+<div id="ref-silva2016" class="csl-entry" role="listitem">
+Silva, Nelson Canzian da. 2016. <em>Física com JavaScript</em>. Depto de Física - UFSC. <a href="https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf">https://canzian.prof.ufsc.br/fisicacomjavascript/fjs-00-tudo.pdf</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

@@ -944,9 +944,6 @@ self.addEventListener('fetch', (event) => {
 Conteúdo do arquivo `service-worker.js` para acesso offline da aplicação web. Aqui estamos considerando que o arquivo principal chama-se `index.html`.
 :::
 
-Script Javascript a ser incluído no `body` do arquivo html de forma a permitir que a aplicação continue acessível ao navegador mesmo estando offline.
-:::
-
 É recomendado que o `service-worker` seja habilitado somente quando o projeto estiver pronto. Na fase de desenvolvimento, que requer que a página seja recarregada várias vezes, pode haver o cache indesejado de versões antigas da página html, causando confusão. Para garantir que a versão mais atual da página seja carregada com o `service-worker` ativo é necessário limpar o cache do navegador.
 
 ## Palavras finais

@@ -4,6 +4,7 @@ lang: pt
 code-overflow: wrap
 ---
 
+<br>
 Neste capítulo, aprenderemos o uso básico do [A-Frame](https://aframe.io/) por meio do desenvolvimento de um projeto para ensino de Astronomia.
 
 No projeto Sol-Terra-Lua (abrev. STL) iremos:
@@ -269,12 +270,12 @@ Todos os astros com seus respectivos mapas de superfície aninhado em seus respe
 
 Repare que para o raio esférico de cada astro usamos o atributo `radius` do componente `geometry`. Outra observação é que todas as dimensões são informadas ao A-Frame sem explicitar as unidades, pois o A-Frame considera todas elas em metros por padrão. A @fig-geometria mostra a disposição geométrica do sistema.
 
-![Sol-Terra-Lua gerado pelo código 7 e visto de cima. Cada divisão do grid (em cinza claro) corresponde a 0,5 metros. As setas correspondem às direções x (vermelha à direita), y (verde saindo da tela) e z (azul para baixo).](STL_visto_de_cima.png){#fig-geometria}
+![Sol-Terra-Lua gerado pelo @cod-astros-com-mapa e visto de cima. Cada divisão do grid (em cinza claro) corresponde a 0,5 metros. As setas correspondem às direções x (vermelha à direita), y (verde saindo da tela) e z (azul para baixo).](STL_visto_de_cima.png){#fig-geometria}
 
 
 ## Animando as coisas
 
-Como já dizia o sábio Galileu, "*Eppur si muove*".[^2] Vamos então pôr o mundo a girar.
+Como diria o sábio Galileu, "*Eppur si muove*".[^2] Vamos então pôr o mundo a girar.
 
 O A-Frame possui várias possibilidades de animação *built in* através do componente `animation`. Os atributos principais desse componente são:
 

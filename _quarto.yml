@@ -33,6 +33,31 @@ format:
   html:
     theme: journal
     lang: pt
+  pdf:
+    documentclass: book
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    geometry:
+      - top=30mm
+      - bottom=30mm
+      - left=25mm
+      - right=25mm
+    fontsize: 12pt
+    mainfont: "Times New Roman"
+    sansfont: "Arial"
+    monofont: "Courier New"
+    colorlinks: true
+    linkcolor: blue
+    citecolor: red
+    urlcolor: magenta
+    include-in-header:
+      - text: |
+          \usepackage{fancyhdr}
+          \pagestyle{fancy}
+          \fancyhf{}
+          \rhead{\thepage}
+          \lhead{\leftmark}
 
 
 

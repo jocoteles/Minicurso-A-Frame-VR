@@ -292,7 +292,7 @@ window.Quarto = {
 </ul>
 <section id="elementos-html-do-a-frame" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="elementos-html-do-a-frame"><span class="header-section-number">3.1</span> Elementos HTML do A-Frame</h2>
-<p>Todo o desenvolvimento do projeto será realizado no <a href="./htmlbasico.html#disponibilizando-páginas-web-diretamente-na-internet-com-glitch">Glitch</a>. Vide <a href="htmlbasico.html#sec-glitch" class="quarto-xref"><span>Seção 2.3</span></a>.</p>
+<p>Todo o desenvolvimento do projeto será realizado no <a href="./htmlbasico.html#disponibilizando-páginas-web-diretamente-na-internet-com-glitch">Glitch</a>. Vide <a href="#sec-glitch" class="quarto-xref"><span class="quarto-unresolved-ref">sec-glitch</span></a>.</p>
 <ol class="example" type="1">
 <li>Faça o login na sua conta do Glitch e remixe o projeto <a href="https://glitch.com/edit/#!/aframe-minicurso-vr">aframe-minicurso-vr</a></li>
 </ol>
@@ -300,7 +300,7 @@ window.Quarto = {
 <p><code>https://aframe.io/releases/1.6.0/aframe.min.js</code>.</p>
 <p>É esse arquivo, acessado remotamente, que disponibilizará o núcleo de funcionalidades do A-Frame.</p>
 <ol start="2" class="example" type="1">
-<li>O elemento HTML básico e obrigatório do A-Frame é o <code>a-scene</code> (<a href="https://aframe.io/docs/1.6.0/core/scene.html">Cena</a>), o qual temos que incluir dentro do elemento <code>body</code> conforme o <a href="#cod-scene" class="quarto-xref">Código&nbsp;<span>3.1</span></a>.</li>
+<li>O elemento HTML básico e obrigatório do A-Frame é o <code>a-scene</code> (<a href="https://aframe.io/docs/1.6.0/core/scene.html">Cena</a>), o qual temos que incluir dentro do elemento <code>body</code> conforme o <a href="#cod-scene" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-scene</span></a>.</li>
 </ol>
 <div id="cod-scene" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-cod figure">
@@ -375,7 +375,7 @@ Figura&nbsp;3.1: Ilustração das <em>Entidades</em> carro e moto com seus <em>c
 </ul>
 <p>Vamos então criar nossa primeira entidade: o planeta Terra.</p>
 <ol start="3" class="example" type="1">
-<li>Coloque a entidade do <a href="#cod-terra" class="quarto-xref">Código&nbsp;<span>3.2</span></a> dentro do elemento a-scene do <a href="#cod-scene" class="quarto-xref">Código&nbsp;<span>3.1</span></a>.</li>
+<li>Coloque a entidade do <a href="#cod-terra" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-terra</span></a> dentro do elemento a-scene do <a href="#cod-scene" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-scene</span></a>.</li>
 </ol>
 <div id="cod-terra" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-cod figure">
@@ -412,7 +412,7 @@ Código&nbsp;3.2: Início da criação do planeta Terra – uma esfera azul por 
 </figure>
 </div>
 <ol start="5" class="example" type="1">
-<li>Dentro do elemento <code>a-scene</code> inclua o elemento <code>img</code> conform e o <a href="#cod-asset" class="quarto-xref">Código&nbsp;<span>3.3</span></a>.</li>
+<li>Dentro do elemento <code>a-scene</code> inclua o elemento <code>img</code> conform e o <a href="#cod-asset" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-asset</span></a>.</li>
 </ol>
 <div id="cod-asset" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-cod figure">
@@ -427,7 +427,7 @@ Código&nbsp;3.3: Inclusão de imagens e outros recursos via elemento <code>a-as
 </figure>
 </div>
 <ol start="6" class="example" type="1">
-<li>Em seguida substitua o atributo <em>color</em> por <em>src</em> no componente <em>material</em> da entidade <code>terra</code>, usando como valor a <code>id</code> do mapa da Terra, resultando no <a href="#cod-terra-com-mapa" class="quarto-xref">Código&nbsp;<span>3.4</span></a></li>
+<li>Em seguida substitua o atributo <em>color</em> por <em>src</em> no componente <em>material</em> da entidade <code>terra</code>, usando como valor a <code>id</code> do mapa da Terra, resultando no <a href="#cod-terra-com-mapa" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-terra-com-mapa</span></a></li>
 </ol>
 <div id="cod-terra-com-mapa" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-cod figure">
@@ -467,7 +467,7 @@ Dica de navegabilidade
 <p>Um conceito fácil de implementar no A-Frame são os sistemas de coordenadas locais (também chamados de referenciais), que são produzidos quando você aninha uma <code>a-entity</code> dentro de outra.</p>
 <p>Pense que cada entidade tem seu próprio sistema de coordenadas (x, y, z), que define sua posição, rotação e escala. Quando uma <code>a-entity</code> está dentro de outra, dizemos que a entidade interna usa o sistema de referência local da entidade que a contém. Isso significa que qualquer transformação (movimento, rotação) aplicada à entidade “pai” afeta todas as suas “filhas” de forma relativa. Ou seja, quando criamos uma <code>a-entity</code>, não definimos apenas as propriedades do objeto 3D pelas suas componentes, mas também, implicitamente, criamos um sistema de coordenadas local.</p>
 <p>Podemos, ainda, criar uma <code>a-entity</code> sem componentes geométricos ou atributos. Nesse caso, ela serve exclusivamente como um sistema de coordenadas de referência para todas as outras entidades que sejam aninhadas dentro dela.</p>
-<p>E o nosso projeto Sol-Terra-Lua se beneficia diretamente desse recurso. Vamos considerar uma <code>a-entity</code> que representa, exclusivamente, o referencial Terra (<code>ref_terra</code>) e dentro dela outra <code>a-entity</code> que representa a Lua. Se você mover ou rotacionar o referencial Terra (a entidade “pai”), a Lua (a entidade “filha”) será movida junto, mas ela ainda pode orbitar ao redor do referencial Terra se aplicarmos uma rotação à Lua individualmente. Assim, a Lua se move de duas maneiras: ela orbita o Sol ao “seguir” a Terra (movimento da entidade “pai”) e orbita a Terra (movimento da entidade “filha”).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> O <a href="#vid-ref" class="quarto-xref">Vídeo&nbsp;<span>3.1</span></a> ilustra esse conceito.</p>
+<p>E o nosso projeto Sol-Terra-Lua se beneficia diretamente desse recurso. Vamos considerar uma <code>a-entity</code> que representa, exclusivamente, o referencial Terra (<code>ref_terra</code>) e dentro dela outra <code>a-entity</code> que representa a Lua. Se você mover ou rotacionar o referencial Terra (a entidade “pai”), a Lua (a entidade “filha”) será movida junto, mas ela ainda pode orbitar ao redor do referencial Terra se aplicarmos uma rotação à Lua individualmente. Assim, a Lua se move de duas maneiras: ela orbita o Sol ao “seguir” a Terra (movimento da entidade “pai”) e orbita a Terra (movimento da entidade “filha”).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> O <a href="#vid-ref" class="quarto-xref">Vídeo&nbsp;<span class="quarto-unresolved-ref">vid-ref</span></a> ilustra esse conceito.</p>
 <div id="vid-ref" class="quarto-float quarto-figure quarto-figure-center anchored" loop="true">
 <figure class="quarto-float quarto-float-vid figure">
 <div aria-describedby="vid-ref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -484,7 +484,7 @@ Vídeo&nbsp;3.1: Ao deslocar a <code>a-entity ref-Terra</code> (referencial “p
 <h2 data-number="3.4" class="anchored" data-anchor-id="cada-astro-em-seu-lugar"><span class="header-section-number">3.4</span> Cada astro em seu lugar</h2>
 <p>Neste ponto, temos todos os elementos para a construção do sistema Sol-Terra-Lua.</p>
 <ol start="7" class="example" type="1">
-<li>Primeiramente, vamos atualizar os nossos assets com as imagens das superfícies do Sol e da Lua conforme o <a href="#cod-assets-sol-terra-lua" class="quarto-xref">Código&nbsp;<span>3.5</span></a>.</li>
+<li>Primeiramente, vamos atualizar os nossos assets com as imagens das superfícies do Sol e da Lua conforme o <a href="#cod-assets-sol-terra-lua" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-assets-sol-terra-lua</span></a>.</li>
 </ol>
 <div id="cod-assets-sol-terra-lua" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-cod figure">
@@ -501,7 +501,7 @@ Código&nbsp;3.5: Imagens dos mapas em projeção cilíndrica de todos os astros
 </figure>
 </div>
 <p>Vamos agora inserir cada astro em seu devido lugar e com o seu devido tamanho. Poderíamos respeitar a escala relativa de tamanhos, mas como o Sol é muito maior que a Terra (cerca de 100 vezes), vamos adotar uma escala alternativa para fins didáticos. O mesmo vale para as distâncias entre os astros (a distância Sol-Terra é quae 400 vezes maior que a Terra-Lua).</p>
-<p>A <a href="#tbl-dimensoes" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> contém os tamanhos (raios esféricos) e distâncias ao astro “pai” (raios orbitais) dos astros do projeto.</p>
+<p>A <a href="#tbl-dimensoes" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-dimensoes</span></a> contém os tamanhos (raios esféricos) e distâncias ao astro “pai” (raios orbitais) dos astros do projeto.</p>
 <div id="tbl-dimensoes" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dimensoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -560,7 +560,7 @@ Tabela&nbsp;3.1: Dimensões dos astros em valores reais (real) e com os valores 
 </div>
 </figure>
 </div>
-<p>Vamos criar o sistema de coordenadas de cada astro a uma distância do astro “pai” igual aos raios orbitais (util) da <a href="#tbl-dimensoes" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a>. O Sol será a entidade que comporá o sistema de coordenadas pai. Dentro dele, criaremos uma entidade para o referencial Terra e, dentro deste, o referencial Lua.</p>
+<p>Vamos criar o sistema de coordenadas de cada astro a uma distância do astro “pai” igual aos raios orbitais (util) da <a href="#tbl-dimensoes" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-dimensoes</span></a>. O Sol será a entidade que comporá o sistema de coordenadas pai. Dentro dele, criaremos uma entidade para o referencial Terra e, dentro deste, o referencial Lua.</p>
 <p>Teremos, portanto, o seguinte aninhamento de sistemas de coordenadas:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_sol"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"0 0 0"</span><span class="dt">&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> id</span><span class="op">=</span><span class="st">"pos_terra"</span><span class="ot"> position</span><span class="op">=</span><span class="st">"1.5 0 0"</span><span class="dt">&gt;</span></span>
@@ -569,7 +569,7 @@ Tabela&nbsp;3.1: Dimensões dos astros em valores reais (real) e com os valores 
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>    </span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Repare que para as distâncias usamos o componente <code>position</code> cujo atributo é uma trinca de coordenadas <code>x, y, z</code>.</p>
-<p>Agora, vamos colocar a entidade que representa a esfera de cada astro dentro dos respectivos referenciais. Para isso, substitua o <a href="#cod-terra-com-mapa" class="quarto-xref">Código&nbsp;<span>3.4</span></a> pelo <a href="#cod-astros-com-mapa" class="quarto-xref">Código&nbsp;<span>3.6</span></a>.</p>
+<p>Agora, vamos colocar a entidade que representa a esfera de cada astro dentro dos respectivos referenciais. Para isso, substitua o <a href="#cod-terra-com-mapa" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-terra-com-mapa</span></a> pelo <a href="#cod-astros-com-mapa" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-astros-com-mapa</span></a>.</p>
 <div id="cod-astros-com-mapa" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-cod figure">
 <div aria-describedby="cod-astros-com-mapa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -603,14 +603,14 @@ Código&nbsp;3.6: Todos os astros com seus respectivos mapas de superfície anin
 </figcaption>
 </figure>
 </div>
-<p>Repare que para o raio esférico de cada astro usamos o atributo <code>radius</code> do componente <code>geometry</code>. Outra observação é que todas as dimensões são informadas ao A-Frame sem explicitar as unidades, pois o A-Frame considera todas elas em metros por padrão. A <a href="#fig-geometria" class="quarto-xref">Figura&nbsp;<span>3.2</span></a> mostra a disposição geométrica do sistema.</p>
+<p>Repare que para o raio esférico de cada astro usamos o atributo <code>radius</code> do componente <code>geometry</code>. Outra observação é que todas as dimensões são informadas ao A-Frame sem explicitar as unidades, pois o A-Frame considera todas elas em metros por padrão. A <a href="#fig-geometria" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-geometria</span></a> mostra a disposição geométrica do sistema.</p>
 <div id="fig-geometria" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-geometria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="STL_visto_de_cima.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-geometria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.2: Sol-Terra-Lua gerado pelo <a href="#cod-astros-com-mapa" class="quarto-xref">Código&nbsp;<span>3.6</span></a> e visto de cima. Cada divisão do grid (em cinza claro) corresponde a 0,5 metros. As setas correspondem às direções x (vermelha à direita), y (verde saindo da tela) e z (azul para baixo).
+Figura&nbsp;3.2: Sol-Terra-Lua gerado pelo <a href="#cod-astros-com-mapa" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-astros-com-mapa</span></a> e visto de cima. Cada divisão do grid (em cinza claro) corresponde a 0,5 metros. As setas correspondem às direções x (vermelha à direita), y (verde saindo da tela) e z (azul para baixo).
 </figcaption>
 </figure>
 </div>
@@ -631,7 +631,7 @@ Figura&nbsp;3.2: Sol-Terra-Lua gerado pelo <a href="#cod-astros-com-mapa" class=
 <section id="sec-movimento_orbital" class="level3" data-number="3.5.1">
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="sec-movimento_orbital"><span class="header-section-number">3.5.1</span> Movimento orbital</h3>
 <p>O movimento orbital, também conhecido por movimento de translação, será implementado por uma entidade específica (e.g.&nbsp;<code>orb_terra</code>) colocada acima da entidade do raio orbital (e.g.&nbsp;<code>pos_terra</code>). Essa entidade terá o componente <code>animation</code> que rotacionará a <code>a-entity pos_terra</code> que por sua vez está deslocada do centro pelo raio orbital especificado na componente <code>position</code>.</p>
-<p>Da mesma forma que fizemos com as dimensões espaciais, não seremos fieis às proporções temporais da dinâmica dos astros. A <a href="#tbl-periodos" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a> contém os períodos de rotação e orbital que escolhemos para os três astros.</p>
+<p>Da mesma forma que fizemos com as dimensões espaciais, não seremos fieis às proporções temporais da dinâmica dos astros. A <a href="#tbl-periodos" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-periodos</span></a> contém os períodos de rotação e orbital que escolhemos para os três astros.</p>
 <div id="tbl-periodos" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-periodos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -703,7 +703,7 @@ Tabela&nbsp;3.2: Períodos dos astros em valores reais (real) e com os valores u
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>               </span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Com ele, deveremos observar a Terra orbitando em torno do Sol <em>ad aeternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução (<code>to: 0 360 0</code>) a cada 300 segundos (<code>dur: 300000</code>) conforme <a href="#vid-orbita-terra-travada" class="quarto-xref">Vídeo&nbsp;<span>3.2</span></a>.</p>
+<p>Com ele, deveremos observar a Terra orbitando em torno do Sol <em>ad aeternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução (<code>to: 0 360 0</code>) a cada 300 segundos (<code>dur: 300000</code>) conforme <a href="#vid-orbita-terra-travada" class="quarto-xref">Vídeo&nbsp;<span class="quarto-unresolved-ref">vid-orbita-terra-travada</span></a>.</p>
 <div id="vid-orbita-terra-travada" class="quarto-float quarto-figure quarto-figure-center anchored" loop="true">
 <figure class="quarto-float quarto-float-vid figure">
 <div aria-describedby="vid-orbita-terra-travada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -731,7 +731,7 @@ Vídeo&nbsp;3.2: Ilustração do movimento orbital da Terra usando o <code>anima
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>               </span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>        </span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Esse código resulta no movimento orbital da Terra sem o movimento espúrio de rotação em torno do próprio eixo, conforme vemos no <a href="#vid-orbita-terra-corrigida" class="quarto-xref">Vídeo&nbsp;<span>3.3</span></a>.</p>
+<p>Esse código resulta no movimento orbital da Terra sem o movimento espúrio de rotação em torno do próprio eixo, conforme vemos no <a href="#vid-orbita-terra-corrigida" class="quarto-xref">Vídeo&nbsp;<span class="quarto-unresolved-ref">vid-orbita-terra-corrigida</span></a>.</p>
 <div id="vid-orbita-terra-corrigida" class="quarto-float quarto-figure quarto-figure-center anchored" loop="true">
 <figure class="quarto-float quarto-float-vid figure">
 <div aria-describedby="vid-orbita-terra-corrigida-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -758,7 +758,7 @@ Vídeo&nbsp;3.3: Ilustração do movimento orbital da Terra com a compensação 
 <span data-code-cell="annotated-cell-4" data-code-lines="4" data-code-annotation="1">Componente <code>animation</code> para rotação da Terra.</span>
 </dd>
 </dl>
-<p>Assim, deveremos observar a Terra girando <em>ad aeternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução (<code>to: 0 360 0</code>) a cada 10 segundos (<code>dur: 10000</code>). O <a href="#vid-terra-rotacao" class="quarto-xref">Vídeo&nbsp;<span>3.4</span></a> mostra esse movimento isoladamente (sem o movimento orbital).</p>
+<p>Assim, deveremos observar a Terra girando <em>ad aeternum</em> (<code>loop: true</code>) com velocidade constante (<code>easing: linear</code>) e executando uma revolução (<code>to: 0 360 0</code>) a cada 10 segundos (<code>dur: 10000</code>). O <a href="#vid-terra-rotacao" class="quarto-xref">Vídeo&nbsp;<span class="quarto-unresolved-ref">vid-terra-rotacao</span></a> mostra esse movimento isoladamente (sem o movimento orbital).</p>
 <div id="vid-terra-rotacao" class="quarto-float quarto-figure quarto-figure-center anchored" loop="true">
 <figure class="quarto-float quarto-float-vid figure">
 <div aria-describedby="vid-terra-rotacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -773,7 +773,7 @@ Vídeo&nbsp;3.4: Terra em movimento de rotação com o componente <code>animatio
 <section id="movimento-completo" class="level3" data-number="3.5.3">
 <h3 data-number="3.5.3" class="anchored" data-anchor-id="movimento-completo"><span class="header-section-number">3.5.3</span> Movimento completo</h3>
 <ol start="8" class="example" type="1">
-<li>Implementado os movimentos de rotação e orbital discutidos acima no sistema Sol-Terra-Lua completo temos o <a href="#cod-stl-orbital" class="quarto-xref">Código&nbsp;<span>3.7</span></a> que substitui o <a href="#cod-astros-com-mapa" class="quarto-xref">Código&nbsp;<span>3.6</span></a></li>
+<li>Implementado os movimentos de rotação e orbital discutidos acima no sistema Sol-Terra-Lua completo temos o <a href="#cod-stl-orbital" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-stl-orbital</span></a> que substitui o <a href="#cod-astros-com-mapa" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-astros-com-mapa</span></a></li>
 </ol>
 <div id="cod-stl-orbital" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-cod figure">
@@ -894,7 +894,7 @@ Dica
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    material</span><span class="op">=</span><span class="st">"src: #mapa_lua"</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    rotation</span><span class="op">=</span><span class="st">"0 90 0"</span><span class="dt">&gt;</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Com isso temos todos os movimentos desejados para as nossas finalidades didáticas conforme mostrado no <a href="#vid-ovimento-completo-com-inclinacoes" class="quarto-xref">Vídeo&nbsp;<span>3.6</span></a>.</p>
+<p>Com isso temos todos os movimentos desejados para as nossas finalidades didáticas conforme mostrado no <a href="#vid-ovimento-completo-com-inclinacoes" class="quarto-xref">Vídeo&nbsp;<span class="quarto-unresolved-ref">vid-ovimento-completo-com-inclinacoes</span></a>.</p>
 <div id="vid-ovimento-completo-com-inclinacoes" class="quarto-float quarto-figure quarto-figure-center anchored" loop="true">
 <figure class="quarto-float quarto-float-vid figure">
 <div aria-describedby="vid-ovimento-completo-com-inclinacoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -975,7 +975,7 @@ Vídeo&nbsp;3.6: Sistema Sol-Terra-Lua com todos os movimentos e inclinações d
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Sendo que a imagem <code>skymap</code> utilizada deve ser incluída em <code>assets</code> da mesma forma que os demais mapas dos astros:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> id</span><span class="op">=</span><span class="st">"skymap"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://i.postimg.cc/9mjwfS4J/Tycho-Skymap-16384x08192.jpg"</span><span class="dt">/&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Essa imagem (<a href="#fig-skymap" class="quarto-xref">Figura&nbsp;<span>3.3</span></a>) foi obtida do <a href="https://svs.gsfc.nasa.gov/3442/">catálogo estelar Tycho</a> e colocada temporariamente no <em>postimg</em> para que pudesse ser carregada online pelo a-Frame.</p>
+<p>Essa imagem (<a href="#fig-skymap" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-skymap</span></a>) foi obtida do <a href="https://svs.gsfc.nasa.gov/3442/">catálogo estelar Tycho</a> e colocada temporariamente no <em>postimg</em> para que pudesse ser carregada online pelo a-Frame.</p>
 <div id="fig-skymap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-skymap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1161,8 +1161,8 @@ Vídeo&nbsp;3.7: Sistema STL em movimento com câmera estática externa.
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="dt">&gt;</span></span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot"> camera look-controls position</span><span class="op">=</span><span class="st">"1.35 0.755 0"</span><span class="ot"> fov</span><span class="op">=</span><span class="st">"80"</span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span>    </span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>No código acima, aumentamos a segmentação da esfera terrestre para uma superfície mais suave e aumentamos o seu raio para um horizonte menos curvo. Fora isso, o código é essencialmente o mesmo do <a href="#cod-stl-completo" class="quarto-xref">Código&nbsp;<span>3.8</span></a>.</p>
-<p>Essa posição da câmera produz a visualização mostrada no <a href="#vid-stl-na-terra" class="quarto-xref">Vídeo&nbsp;<span>3.8</span></a>.</p>
+<p>No código acima, aumentamos a segmentação da esfera terrestre para uma superfície mais suave e aumentamos o seu raio para um horizonte menos curvo. Fora isso, o código é essencialmente o mesmo do <a href="#cod-stl-completo" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-stl-completo</span></a>.</p>
+<p>Essa posição da câmera produz a visualização mostrada no <a href="#vid-stl-na-terra" class="quarto-xref">Vídeo&nbsp;<span class="quarto-unresolved-ref">vid-stl-na-terra</span></a>.</p>
 <div id="vid-stl-na-terra" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-vid figure">
 <div aria-describedby="vid-stl-na-terra-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1192,7 +1192,7 @@ Vídeo&nbsp;3.8: Sistema STL visto por uma câmera colocada na superfície da Te
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    position</span><span class="op">=</span><span class="st">"1 1.2 0"</span></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="ot">    shadow</span><span class="op">=</span><span class="st">"receive: true; cast: true"</span><span class="ot">                </span></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O <a href="#cod-stl-grabbable" class="quarto-xref">Código&nbsp;<span>3.9</span></a> corresponde a um sistema STL alternativo mais simples em que os astros não são animados, mas apenas habilitados para serem “agarráveis” pelo usuário. Apesar dessa simplicidade, as condições de iluminação dentro desse ambiente virtual são difíceis de reproduzir em um ambiente real, possibilitando explorar com riqueza os fenômenos que mencionamos anteriormente envolvendo as fases da Lua, eclipses e estações do ano. Vide <a href="#vid-stl-grabbable" class="quarto-xref">Vídeo&nbsp;<span>3.9</span></a>.</p>
+<p>O <a href="#cod-stl-grabbable" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-stl-grabbable</span></a> corresponde a um sistema STL alternativo mais simples em que os astros não são animados, mas apenas habilitados para serem “agarráveis” pelo usuário. Apesar dessa simplicidade, as condições de iluminação dentro desse ambiente virtual são difíceis de reproduzir em um ambiente real, possibilitando explorar com riqueza os fenômenos que mencionamos anteriormente envolvendo as fases da Lua, eclipses e estações do ano. Vide <a href="#vid-stl-grabbable" class="quarto-xref">Vídeo&nbsp;<span class="quarto-unresolved-ref">vid-stl-grabbable</span></a>.</p>
 <div id="cod-stl-grabbable" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-cod figure">
 <div aria-describedby="cod-stl-grabbable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1284,7 +1284,7 @@ Vídeo&nbsp;3.9: Vídeo mostrando a manipulação e os usos didáticos do sistem
 <h3 data-number="3.10.3" class="anchored" data-anchor-id="configurando-a-aplicação-web-para-uso-offline"><span class="header-section-number">3.10.3</span> Configurando a aplicação web para uso offline</h3>
 <p>Ter que depender de uma conexão com a internet toda vez que necessitar fazer uma atividade em Realidade Virtual pode ser limitante, principalmente quando não se dispuser de uma infraestrutura robusta de internet por WiFi, o que é muito comum no ambiente escolar.</p>
 <p>Existe uma forma simples de resolver isso através do chamado <em>service worker</em> com <em>cache</em> estático. Ele é usado para interceptar as requisições e armazenar os recursos necessários no cache do navegador, permitindo que a página continue a funcionar mesmo sem conexão com a internet. É um caminho eficiente e moderno, especialmente quando se espera que os usuários usem a página offline.</p>
-<p>Para isso, são necessários dois passos. Primeiramente, deve-se incluir o script Javascript (<a href="#cod-script-offline" class="quarto-xref">Código&nbsp;<span>3.10</span></a>) dentro do elemento <code>body</code> do arquivo html principal.</p>
+<p>Para isso, são necessários dois passos. Primeiramente, deve-se incluir o script Javascript (<a href="#cod-script-offline" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-script-offline</span></a>) dentro do elemento <code>body</code> do arquivo html principal.</p>
 <div id="cod-script-offline" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-cod figure">
 <div aria-describedby="cod-script-offline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1307,7 +1307,7 @@ Código&nbsp;3.10: Script Javascript a ser incluído no <code>body</code> do arq
 </figcaption>
 </figure>
 </div>
-<p>Por fim, deve-se criar um arquivo como o nome <code>service-worker.js</code> na mesma pasta do arquivo html principal com o com o conteúdo do <a href="#cod-service-worker" class="quarto-xref">Código&nbsp;<span>3.11</span></a>.</p>
+<p>Por fim, deve-se criar um arquivo como o nome <code>service-worker.js</code> na mesma pasta do arquivo html principal com o com o conteúdo do <a href="#cod-service-worker" class="quarto-xref">Código&nbsp;<span class="quarto-unresolved-ref">cod-service-worker</span></a>.</p>
 <div id="cod-service-worker" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-cod figure">
 <div aria-describedby="cod-service-worker-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
